@@ -1,0 +1,14 @@
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.deps.json
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.dll
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.pdb
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Release\netcoreapp2.2\Colipu.BasicData.API.Core.dll
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.dll
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Release\netcoreapp2.2\Colipu.BasicData.API.Core.pdb
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.pdb
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.csprojAssemblyReference.cache
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.csproj.CoreCompileInputs.cache
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.AssemblyInfoInputs.cache
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.AssemblyInfo.cs
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.csproj.CopyComplete
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.dll
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Release\netcoreapp2.2\Colipu.BasicData.API.EntityFrameworkCore.pdb

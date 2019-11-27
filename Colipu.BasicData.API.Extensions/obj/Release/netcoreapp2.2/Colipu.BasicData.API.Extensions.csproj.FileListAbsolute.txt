@@ -1,0 +1,9 @@
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\bin\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.deps.json
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\bin\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.dll
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\bin\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.pdb
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\obj\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.csprojAssemblyReference.cache
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\obj\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.csproj.CoreCompileInputs.cache
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\obj\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.AssemblyInfoInputs.cache
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\obj\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.AssemblyInfo.cs
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\obj\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.dll
+D:\Colipu_ERP\netcore\api2\Colipu.BasicData.API.Extensions\obj\Release\netcoreapp2.2\Colipu.BasicData.API.Extensions.pdb

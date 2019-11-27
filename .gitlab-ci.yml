@@ -1,0 +1,45 @@
+stages:
+  - build
+  - image
+  - test
+  - deploy
+
+dotnet build:
+  stage: build
+  only: 
+    - master
+    - pushes
+  script: 
+    - rm -rf target
+    - dotnet publish Colipu.BasicData.API.WebAPI/Colipu.BasicData.API.WebApi.csproj --configuration Release -nowarn:CS1591 --output target
+  artifacts: 
+    paths: 
+      - target
+
+docker build and push: 
+  stage: image
+  only: 
+    - master
+    - pushes
+  script: 
+    - if docker images | grep erp-basicdata-webapi;then docker rmi -f $(docker images | grep erp-basicdata-webapi | awk '{print $3}'); else echo 'no images'; fi
+    - docker build --tag registry.cn-shanghai.aliyuncs.com/clp-dev/erp-basicdata-webapi:latest --tag registry.cn-shanghai.aliyuncs.com/clp-dev/erp-basicdata-webapi:$CI_COMMIT_SHORT_SHA .
+    - docker login --username $docker_username --password $docker_password registry.cn-shanghai.aliyuncs.com
+    - docker push registry.cn-shanghai.aliyuncs.com/clp-dev/erp-basicdata-webapi:latest
+    - docker push registry.cn-shanghai.aliyuncs.com/clp-dev/erp-basicdata-webapi:$CI_COMMIT_SHORT_SHA
+
+job-test: 
+  stage: test
+  only: 
+    - master
+    - pushes
+  script: 
+    - echo 'skipped'
+
+job-deploy: 
+  stage: deploy
+  only: 
+    - master
+    - pushes
+  script: 
+    - curl https://cs.console.aliyun.com/hook/trigger?token=$K8S_TOKEN
