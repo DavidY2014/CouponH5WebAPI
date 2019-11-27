@@ -1,9 +1,9 @@
-﻿using Colipu.BasicData.API.Core.ECPubDB;
+﻿using BangBangFuli.H5.API.Core.ECPubDB;
 using Microsoft.EntityFrameworkCore;
 using System;
 
 
-namespace Colipu.BasicData.API.EntityFrameworkCore.ECPubDB
+namespace BangBangFuli.H5.API.EntityFrameworkCore.ECPubDB
 {
     public partial class ECPubDBContext : DbContext
     {

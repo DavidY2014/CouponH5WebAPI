@@ -1,0 +1,15 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/.vs/BangBangFuli.H5.API/v15
+/Colipu.BasicData.API.Application/bin/Debug/netcoreapp2.2
+/Colipu.BasicData.API.Application/obj/Debug/netcoreapp2.2
+/Colipu.BasicData.API.Core/bin/Debug/netcoreapp2.2
+/Colipu.BasicData.API.Core/obj/Debug/netcoreapp2.2
+/Colipu.BasicData.API.EntityFrameworkCore/bin/Debug/netcoreapp2.2
+/Colipu.BasicData.API.Extensions/bin/Debug/netcoreapp2.2
+/Colipu.BasicData.API.Extensions/obj/Debug/netcoreapp2.2
+/Colipu.BasicData.API.Test/bin/Debug/netcoreapp2.2
+/Colipu.BasicData.API.WebApi/bin/Debug/netcoreapp2.2
+/Colipu.BasicData.API.WebApi/obj/Debug/netcoreapp2.2

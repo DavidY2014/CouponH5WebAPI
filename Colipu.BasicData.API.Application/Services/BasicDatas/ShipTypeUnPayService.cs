@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Colipu.BasicData.API.Core.IRepositories.BasicDatas;
+using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 using AutoMapper;
-using Colipu.BasicData.API.Core.BSystemDB;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Application.Models.Delivery;
+using BangBangFuli.H5.API.Core.BSystemDB;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Models.Delivery;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class ShipTypeUnPayService : IShipTypeUnPayService
     {

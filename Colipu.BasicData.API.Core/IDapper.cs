@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Core
+namespace BangBangFuli.H5.API.Core
 {
     public interface IDapper
     {

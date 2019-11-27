@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Colipu.BasicData.API.Core.Utils
+namespace BangBangFuli.H5.API.Core.Utils
 {
     public static class Extension
     {

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Services.Redis
+namespace BangBangFuli.H5.API.Application.Services.Redis
 {
     public class RedisCacheService : ICacheService
     {

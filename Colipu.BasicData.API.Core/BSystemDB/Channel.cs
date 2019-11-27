@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Core.BSystemDB
+namespace BangBangFuli.H5.API.Core.BSystemDB
 {
     public partial class Channel
     {

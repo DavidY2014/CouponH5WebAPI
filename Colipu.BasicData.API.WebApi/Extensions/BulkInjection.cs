@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Colipu.BasicData.API.WebApi
+namespace BangBangFuli.H5.API.WebAPI
 {
     public static class BulkInjection
     {

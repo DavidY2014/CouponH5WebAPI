@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Colipu.BasicData.API.Core
+namespace BangBangFuli.H5.API.Core
 {
     public class AppConst
     {

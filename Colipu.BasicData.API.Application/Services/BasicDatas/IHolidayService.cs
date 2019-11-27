@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public interface IHolidayService: ICanCacheService
     {

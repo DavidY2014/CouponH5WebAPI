@@ -1,12 +1,12 @@
-﻿using Colipu.BasicData.API.Core.ECPubDB;
-using Colipu.BasicData.API.Core.IRepositories.ECPubs;
-using Colipu.BasicData.API.EntityFrameworkCore.ECPubDB;
+﻿using BangBangFuli.H5.API.Core.ECPubDB;
+using BangBangFuli.H5.API.Core.IRepositories.ECPubs;
+using BangBangFuli.H5.API.EntityFrameworkCore.ECPubDB;
 using Colipu.Utils.ORM.Imp;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.EntityFrameworkCore.Repositories
+namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
     public class SaleDistrictRepository : BaseRepository<ECPubDBContext, SaleDistrict>, ISaleDistrictRepository
     {

@@ -2,13 +2,13 @@
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
 using AutoMapper;
-using Colipu.BasicData.API.Application;
-using Colipu.BasicData.API.Application.Services.BasicDatas;
-using Colipu.BasicData.API.Application.Services.Redis;
-using Colipu.BasicData.API.EntityFrameworkCore.BSystemDB;
-using Colipu.BasicData.API.EntityFrameworkCore.ECPubDB;
-using Colipu.BasicData.API.WebAPI.AOP;
-using Colipu.BasicData.API.WebAPI.Extensions;
+using BangBangFuli.H5.API.Application;
+using BangBangFuli.H5.API.Application.Services.BasicDatas;
+using BangBangFuli.H5.API.Application.Services.Redis;
+using BangBangFuli.H5.API.EntityFrameworkCore.BSystemDB;
+using BangBangFuli.H5.API.EntityFrameworkCore.ECPubDB;
+using BangBangFuli.H5.API.WebAPI.AOP;
+using BangBangFuli.H5.API.WebAPI.Extensions;
 using Colipu.Utils.Cache.Redis.Extension;
 using Colipu.Utils.Log.Aliyun;
 using Colipu.Utils.ORM.Imp;
@@ -25,7 +25,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Colipu.BasicData.API.WebApi
+namespace BangBangFuli.H5.API.WebAPI
 {
     public class Startup
     {
@@ -61,8 +61,8 @@ namespace Colipu.BasicData.API.WebApi
                 });
             });
 
-            services.AddByAssembly("Colipu.BasicData.API.EntityFrameworkCore", "IBaseRepository");
-            services.AddByAssembly("Colipu.BasicData.API.Application", "IAppService");
+            services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");
+            services.AddByAssembly("BangBangFuli.H5.API.Application", "IAppService");
 
             //colipu 版本
             services.Configure<RedisOptions>(Configuration.GetSection("Redis"));
@@ -122,12 +122,12 @@ namespace Colipu.BasicData.API.WebApi
 
             builder.RegisterType<CachingIntercept>(); // 注册AOP
 
-            //var assemblysServices = Assembly.Load("Colipu.BasicData.API.Application");
+            //var assemblysServices = Assembly.Load("BangBangFuli.H5.API.Application");
             //builder.RegisterAssemblyTypes(assemblysServices);
 
 
             //只注入需要AOP的Types,继承ICanCacheService 即可
-            var filterTypes = builder.AddFilterTypes("Colipu.BasicData.API.Application", "ICanCacheService");
+            var filterTypes = builder.AddFilterTypes("BangBangFuli.H5.API.Application", "ICanCacheService");
             builder.RegisterTypes(filterTypes)
                 .AsImplementedInterfaces()
               .InstancePerLifetimeScope()

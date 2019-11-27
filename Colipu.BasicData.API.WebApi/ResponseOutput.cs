@@ -1,7 +1,7 @@
-﻿using Colipu.BasicData.API.Application;
-using Colipu.BasicData.API.Core;
+﻿using BangBangFuli.H5.API.Application;
+using BangBangFuli.H5.API.Core;
 
-namespace Colipu.BasicData.API.WebApi
+namespace BangBangFuli.H5.API.WebAPI
 {
     /// <summary>
     /// 回复信息

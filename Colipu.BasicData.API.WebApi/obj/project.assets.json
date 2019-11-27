@@ -5507,45 +5507,45 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "Colipu.BasicData.API.Application/1.0.0": {
+      "BangBangFuli.H5.API.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "AutoMapper": "9.0.0",
-          "Colipu.BasicData.API.Core": "1.0.0",
-          "Colipu.BasicData.API.EntityFrameworkCore": "1.0.0",
+          "BangBangFuli.H5.API.Core": "1.0.0",
+          "BangBangFuli.H5.API.EntityFrameworkCore": "1.0.0",
           "Microsoft.Extensions.Caching.Redis": "2.2.0",
           "Newtonsoft.Json": "12.0.2"
         },
         "compile": {
-          "bin/placeholder/Colipu.BasicData.API.Application.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.Application.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Colipu.BasicData.API.Application.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.Application.dll": {}
         }
       },
-      "Colipu.BasicData.API.Core/1.0.0": {
+      "BangBangFuli.H5.API.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
-          "Colipu.BasicData.API.Extensions": "1.0.0",
+          "BangBangFuli.H5.API.Extensions": "1.0.0",
           "Colipu.Utils.BusinessLog": "1.0.1",
           "Colipu.Utils.ORM.Interface": "1.0.5",
           "System.Data.SqlClient": "4.7.0"
         },
         "compile": {
-          "bin/placeholder/Colipu.BasicData.API.Core.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.Core.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Colipu.BasicData.API.Core.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.Core.dll": {}
         }
       },
-      "Colipu.BasicData.API.EntityFrameworkCore/1.0.0": {
+      "BangBangFuli.H5.API.EntityFrameworkCore/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
-          "Colipu.BasicData.API.Core": "1.0.0",
-          "Colipu.BasicData.API.Extensions": "1.0.0",
+          "BangBangFuli.H5.API.Core": "1.0.0",
+          "BangBangFuli.H5.API.Extensions": "1.0.0",
           "Colipu.Utils.ORM.Imp": "1.0.8",
           "Dapper": "2.0.30",
           "Microsoft.Extensions.Logging": "2.2.0",
@@ -5553,20 +5553,20 @@
           "System.Data.SqlClient": "4.7.0"
         },
         "compile": {
-          "bin/placeholder/Colipu.BasicData.API.EntityFrameworkCore.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.EntityFrameworkCore.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Colipu.BasicData.API.EntityFrameworkCore.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.EntityFrameworkCore.dll": {}
         }
       },
-      "Colipu.BasicData.API.Extensions/1.0.0": {
+      "BangBangFuli.H5.API.Extensions/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "compile": {
-          "bin/placeholder/Colipu.BasicData.API.Extensions.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.Extensions.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Colipu.BasicData.API.Extensions.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.Extensions.dll": {}
         }
       }
     }
@@ -14973,25 +14973,25 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
-    "Colipu.BasicData.API.Application/1.0.0": {
+    "BangBangFuli.H5.API.Application/1.0.0": {
       "type": "project",
-      "path": "../Colipu.BasicData.API.Application/Colipu.BasicData.API.Application.csproj",
-      "msbuildProject": "../Colipu.BasicData.API.Application/Colipu.BasicData.API.Application.csproj"
+      "path": "../Colipu.BasicData.API.Application/BangBangFuli.H5.API.Application.csproj",
+      "msbuildProject": "../Colipu.BasicData.API.Application/BangBangFuli.H5.API.Application.csproj"
     },
-    "Colipu.BasicData.API.Core/1.0.0": {
+    "BangBangFuli.H5.API.Core/1.0.0": {
       "type": "project",
-      "path": "../Colipu.BasicData.API.Core/Colipu.BasicData.API.Core.csproj",
-      "msbuildProject": "../Colipu.BasicData.API.Core/Colipu.BasicData.API.Core.csproj"
+      "path": "../Colipu.BasicData.API.Core/BangBangFuli.H5.API.Core.csproj",
+      "msbuildProject": "../Colipu.BasicData.API.Core/BangBangFuli.H5.API.Core.csproj"
     },
-    "Colipu.BasicData.API.EntityFrameworkCore/1.0.0": {
+    "BangBangFuli.H5.API.EntityFrameworkCore/1.0.0": {
       "type": "project",
-      "path": "../Colipu.BasicData.API.EntityFrameworkCore/Colipu.BasicData.API.EntityFrameworkCore.csproj",
-      "msbuildProject": "../Colipu.BasicData.API.EntityFrameworkCore/Colipu.BasicData.API.EntityFrameworkCore.csproj"
+      "path": "../Colipu.BasicData.API.EntityFrameworkCore/BangBangFuli.H5.API.EntityFrameworkCore.csproj",
+      "msbuildProject": "../Colipu.BasicData.API.EntityFrameworkCore/BangBangFuli.H5.API.EntityFrameworkCore.csproj"
     },
-    "Colipu.BasicData.API.Extensions/1.0.0": {
+    "BangBangFuli.H5.API.Extensions/1.0.0": {
       "type": "project",
-      "path": "../Colipu.BasicData.API.Extensions/Colipu.BasicData.API.Extensions.csproj",
-      "msbuildProject": "../Colipu.BasicData.API.Extensions/Colipu.BasicData.API.Extensions.csproj"
+      "path": "../Colipu.BasicData.API.Extensions/BangBangFuli.H5.API.Extensions.csproj",
+      "msbuildProject": "../Colipu.BasicData.API.Extensions/BangBangFuli.H5.API.Extensions.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -15001,8 +15001,8 @@
       "Autofac >= 4.9.4",
       "Autofac.Extensions.DependencyInjection >= 5.0.1",
       "Autofac.Extras.DynamicProxy >= 4.5.0",
+      "BangBangFuli.H5.API.Application >= 1.0.0",
       "Castle.Core >= 4.4.0",
-      "Colipu.BasicData.API.Application >= 1.0.0",
       "Colipu.Utils.Cache.Redis.Extension >= 1.0.2",
       "Colipu.Utils.Log.Aliyun >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
@@ -15023,9 +15023,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.WebAPI\\Colipu.BasicData.API.WebAPI.csproj",
-      "projectName": "Colipu.BasicData.API.WebAPI",
-      "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.WebAPI\\Colipu.BasicData.API.WebAPI.csproj",
+      "projectUniqueName": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.WebAPI\\BangBangFuli.H5.API.WebAPI.csproj",
+      "projectName": "BangBangFuli.H5.API.WebAPI",
+      "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.WebAPI\\BangBangFuli.H5.API.WebAPI.csproj",
       "packagesPath": "C:\\Users\\yuandawei\\.nuget\\packages\\",
       "outputPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
@@ -15050,8 +15050,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Application\\Colipu.BasicData.API.Application.csproj": {
-              "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Application\\Colipu.BasicData.API.Application.csproj"
+            "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Application\\BangBangFuli.H5.API.Application.csproj": {
+              "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Application\\BangBangFuli.H5.API.Application.csproj"
             }
           }
         }

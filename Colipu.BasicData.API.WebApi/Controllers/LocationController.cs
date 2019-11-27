@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Application.Models.Location;
-using Colipu.BasicData.API.Application.Services.BasicDatas;
-using Colipu.BasicData.API.WebApi;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Models.Location;
+using BangBangFuli.H5.API.Application.Services.BasicDatas;
+using BangBangFuli.H5.API.WebAPI;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Colipu.BasicData.API.WebAPI.Controllers
+namespace BangBangFuli.H5.API.WebAPI.Controllers
 {
     [ApiVersion("1.0")]
     [Produces("application/json")]

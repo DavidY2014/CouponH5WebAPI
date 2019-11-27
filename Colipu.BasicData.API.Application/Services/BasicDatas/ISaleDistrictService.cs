@@ -1,9 +1,9 @@
-﻿using Colipu.BasicData.API.Core.ECPubDB;
+﻿using BangBangFuli.H5.API.Core.ECPubDB;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public interface ISaleDistrictService: IAppService
     {

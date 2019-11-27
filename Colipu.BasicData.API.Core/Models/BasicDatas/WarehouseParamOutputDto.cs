@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Core.Param
+namespace BangBangFuli.H5.API.Core.Param
 {
     [Serializable]
     public class WarehouseParamOutputDto

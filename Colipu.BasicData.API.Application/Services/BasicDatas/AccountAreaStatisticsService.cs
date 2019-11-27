@@ -1,11 +1,11 @@
-﻿using Colipu.BasicData.API.Core;
-using Colipu.BasicData.API.Core.IRepositories.BasicDatas;
+﻿using BangBangFuli.H5.API.Core;
+using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class AccountAreaStatisticsService : IAccountAreaStatisticsService
     {

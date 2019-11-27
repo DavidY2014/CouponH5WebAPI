@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Models.Delivery
+namespace BangBangFuli.H5.API.Application.Models.Delivery
 {
     [Serializable]
     public class ShipTypeOutputDto

@@ -1,11 +1,11 @@
-﻿using Colipu.BasicData.API.Core.BSystemDB;
+﻿using BangBangFuli.H5.API.Core.BSystemDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Colipu.BasicData.API.Application.Models.BasicDatas
+namespace BangBangFuli.H5.API.Application.Models.BasicDatas
 {
     [Serializable]
     public class BranchOutputDto

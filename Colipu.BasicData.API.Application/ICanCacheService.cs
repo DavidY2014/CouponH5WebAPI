@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application
+namespace BangBangFuli.H5.API.Application
 {
     /// <summary>
     /// 可以启用缓存的接口

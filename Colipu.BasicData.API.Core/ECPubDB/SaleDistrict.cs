@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Colipu.BasicData.API.Core.ECPubDB
+namespace BangBangFuli.H5.API.Core.ECPubDB
 {
     public partial class SaleDistrict
     {

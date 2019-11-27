@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Models.BasicDatas
+namespace BangBangFuli.H5.API.Application.Models.BasicDatas
 {
     [Serializable]
     public class WarehouseOutputDto

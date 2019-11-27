@@ -1,10 +1,10 @@
 ﻿using System;
-using Colipu.BasicData.API.Core.BSystemDB;
+using BangBangFuli.H5.API.Core.BSystemDB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
 
-namespace Colipu.BasicData.API.EntityFrameworkCore.BSystemDB
+namespace BangBangFuli.H5.API.EntityFrameworkCore.BSystemDB
 {
     public partial class BSystemDBContext : DbContext
     {

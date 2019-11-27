@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application
+namespace BangBangFuli.H5.API.Application
 {
     public class PageCollection<T>
     {

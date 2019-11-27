@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Colipu.BasicData.API.Core.BSystemDB
+namespace BangBangFuli.H5.API.Core.BSystemDB
 {
     public partial class PayType
     {

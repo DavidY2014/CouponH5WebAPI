@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Models.Location
+namespace BangBangFuli.H5.API.Application.Models.Location
 {
     [Serializable]
     public class DistrictOutputDto

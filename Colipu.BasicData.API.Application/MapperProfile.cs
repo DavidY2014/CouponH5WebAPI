@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Application.Models.Delivery;
-using Colipu.BasicData.API.Application.Models.Location;
-using Colipu.BasicData.API.Application.Models.Payment;
-using Colipu.BasicData.API.Core.BSystemDB;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Models.Delivery;
+using BangBangFuli.H5.API.Application.Models.Location;
+using BangBangFuli.H5.API.Application.Models.Payment;
+using BangBangFuli.H5.API.Core.BSystemDB;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application
+namespace BangBangFuli.H5.API.Application
 {
    public  class MapperProfile: Profile
     {

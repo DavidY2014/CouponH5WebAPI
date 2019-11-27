@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Colipu.BasicData.API.WebAPI": {
+    "BangBangFuli.H5.API.WebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

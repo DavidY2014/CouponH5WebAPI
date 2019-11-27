@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Colipu.BasicData.API.Application\Colipu.BasicData.API.Application.csproj" />
+    <ProjectReference Include="..\Colipu.BasicData.API.Application\BangBangFuli.H5.API.Application.csproj" />
   </ItemGroup>
   
 </Project>

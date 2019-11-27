@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Colipu.BasicData.API.Application.Models.BasicDatas
+namespace BangBangFuli.H5.API.Application.Models.BasicDatas
 {
     [Serializable]
     public class ChannelOutputDto

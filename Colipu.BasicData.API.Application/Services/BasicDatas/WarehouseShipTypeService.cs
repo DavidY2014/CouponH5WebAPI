@@ -1,11 +1,11 @@
-﻿using Colipu.BasicData.API.Core;
-using Colipu.BasicData.API.Core.BSystemDB;
-using Colipu.BasicData.API.Core.IRepositories.BasicDatas;
-using Colipu.BasicData.API.EntityFrameworkCore.BSystemDB;
+﻿using BangBangFuli.H5.API.Core;
+using BangBangFuli.H5.API.Core.BSystemDB;
+using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
+using BangBangFuli.H5.API.EntityFrameworkCore.BSystemDB;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class WarehouseShipTypeService : IWarehouseShipTypeService
     {

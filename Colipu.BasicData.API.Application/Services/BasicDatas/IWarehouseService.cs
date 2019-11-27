@@ -1,9 +1,9 @@
-﻿using Colipu.BasicData.API.Core.Param;
-using Colipu.BasicData.API.Core.BSystemDB;
+﻿using BangBangFuli.H5.API.Core.Param;
+using BangBangFuli.H5.API.Core.BSystemDB;
 using System.Collections.Generic;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public interface IWarehouseService: IAppService
     {

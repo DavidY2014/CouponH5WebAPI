@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Colipu.BasicData.API.WebApi
+namespace BangBangFuli.H5.API.WebAPI
 {
     public class Program
     {

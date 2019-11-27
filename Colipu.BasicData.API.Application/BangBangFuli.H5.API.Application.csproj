@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Colipu.BasicData.API.EntityFrameworkCore\Colipu.BasicData.API.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\Colipu.BasicData.API.Core\Colipu.BasicData.API.Core.csproj" />
+    <ProjectReference Include="..\Colipu.BasicData.API.Core\BangBangFuli.H5.API.Core.csproj" />
+    <ProjectReference Include="..\Colipu.BasicData.API.EntityFrameworkCore\BangBangFuli.H5.API.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
-﻿using Colipu.BasicData.API.Core;
-using Colipu.BasicData.API.Core.ECPubDB;
-using Colipu.BasicData.API.Core.IRepositories.ECPubs;
+﻿using BangBangFuli.H5.API.Core;
+using BangBangFuli.H5.API.Core.ECPubDB;
+using BangBangFuli.H5.API.Core.IRepositories.ECPubs;
 using Colipu.BasicData.API.Extension.Const;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class SaleDistrictService : ISaleDistrictService
     {

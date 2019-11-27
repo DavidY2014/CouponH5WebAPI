@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Core.BSystemDB;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Core.BSystemDB;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public interface IBranchService: ICanCacheService
     {

@@ -692,9 +692,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\Colipu.BasicData.API.Extensions.csproj",
-      "projectName": "Colipu.BasicData.API.Extensions",
-      "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\Colipu.BasicData.API.Extensions.csproj",
+      "projectUniqueName": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj",
+      "projectName": "BangBangFuli.H5.API.Extensions",
+      "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj",
       "packagesPath": "C:\\Users\\yuandawei\\.nuget\\packages\\",
       "outputPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\obj\\",
       "projectStyle": "PackageReference",

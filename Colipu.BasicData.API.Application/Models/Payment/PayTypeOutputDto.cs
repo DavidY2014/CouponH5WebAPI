@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Models.Payment
+namespace BangBangFuli.H5.API.Application.Models.Payment
 {
     [Serializable]
     public class PayTypeOutputDto

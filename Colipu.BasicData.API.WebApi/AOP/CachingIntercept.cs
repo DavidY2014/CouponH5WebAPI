@@ -1,6 +1,6 @@
 ﻿using Castle.DynamicProxy;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Application.Services.Redis;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Services.Redis;
 using Colipu.Utils.Cache;
 using Newtonsoft.Json;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Colipu.BasicData.API.WebAPI.AOP
+namespace BangBangFuli.H5.API.WebAPI.AOP
 {
     public class CachingIntercept : IInterceptor
     {

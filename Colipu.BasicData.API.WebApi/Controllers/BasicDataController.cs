@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Application.Services.BasicDatas;
-using Colipu.BasicData.API.Application.Services.Redis;
-using Colipu.BasicData.API.Core.Param;
-using Colipu.BasicData.API.WebApi;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Services.BasicDatas;
+using BangBangFuli.H5.API.Application.Services.Redis;
+using BangBangFuli.H5.API.Core.Param;
+using BangBangFuli.H5.API.WebAPI;
 using Colipu.Utils.Cache;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 
-namespace Colipu.BasicData.API.WebAPI.Controllers
+namespace BangBangFuli.H5.API.WebAPI.Controllers
 {
     [ApiVersion("1.0")]
     [Produces("application/json")]

@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Colipu.BasicData.API.Core.IRepositories.BasicDatas;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class ECSiteService : IECSiteService
     {

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Colipu.BasicData.API.Core;
+using BangBangFuli.H5.API.Core;
 using System.Linq;
 using Colipu.BasicData.API.Extension.Const;
-using Colipu.BasicData.API.Core.BSystemDB;
-using Colipu.BasicData.API.Core.IRepositories;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Application.Services.Redis;
+using BangBangFuli.H5.API.Core.BSystemDB;
+using BangBangFuli.H5.API.Core.IRepositories;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Services.Redis;
 using Newtonsoft.Json;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class BranchService : IBranchService
     {

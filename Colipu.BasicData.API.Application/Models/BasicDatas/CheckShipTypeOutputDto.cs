@@ -1,9 +1,9 @@
-﻿using Colipu.BasicData.API.Application.Models.Location;
+﻿using BangBangFuli.H5.API.Application.Models.Location;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Colipu.BasicData.API.Application.Models.BasicDatas
+namespace BangBangFuli.H5.API.Application.Models.BasicDatas
 {
     [Serializable]
     public class CheckShipTypeOutputDto

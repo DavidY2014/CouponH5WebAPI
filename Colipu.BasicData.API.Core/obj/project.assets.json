@@ -1791,14 +1791,14 @@
           "lib/netstandard1.3/System.Threading.ThreadPool.dll": {}
         }
       },
-      "Colipu.BasicData.API.Extensions/1.0.0": {
+      "BangBangFuli.H5.API.Extensions/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "compile": {
-          "bin/placeholder/Colipu.BasicData.API.Extensions.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.Extensions.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Colipu.BasicData.API.Extensions.dll": {}
+          "bin/placeholder/BangBangFuli.H5.API.Extensions.dll": {}
         }
       }
     }
@@ -6225,15 +6225,15 @@
         "system.threading.threadpool.nuspec"
       ]
     },
-    "Colipu.BasicData.API.Extensions/1.0.0": {
+    "BangBangFuli.H5.API.Extensions/1.0.0": {
       "type": "project",
-      "path": "../Colipu.BasicData.API.Extensions/Colipu.BasicData.API.Extensions.csproj",
-      "msbuildProject": "../Colipu.BasicData.API.Extensions/Colipu.BasicData.API.Extensions.csproj"
+      "path": "../Colipu.BasicData.API.Extensions/BangBangFuli.H5.API.Extensions.csproj",
+      "msbuildProject": "../Colipu.BasicData.API.Extensions/BangBangFuli.H5.API.Extensions.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "Colipu.BasicData.API.Extensions >= 1.0.0",
+      "BangBangFuli.H5.API.Extensions >= 1.0.0",
       "Colipu.Utils.BusinessLog >= 1.0.1",
       "Colipu.Utils.ORM.Interface >= 1.0.5",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -6247,9 +6247,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Core\\Colipu.BasicData.API.Core.csproj",
-      "projectName": "Colipu.BasicData.API.Core",
-      "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Core\\Colipu.BasicData.API.Core.csproj",
+      "projectUniqueName": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Core\\BangBangFuli.H5.API.Core.csproj",
+      "projectName": "BangBangFuli.H5.API.Core",
+      "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Core\\BangBangFuli.H5.API.Core.csproj",
       "packagesPath": "C:\\Users\\yuandawei\\.nuget\\packages\\",
       "outputPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Core\\obj\\",
       "projectStyle": "PackageReference",
@@ -6274,8 +6274,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\Colipu.BasicData.API.Extensions.csproj": {
-              "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\Colipu.BasicData.API.Extensions.csproj"
+            "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj": {
+              "projectPath": "D:\\SVN\\CouponAPI\\source\\api2\\Colipu.BasicData.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj"
             }
           }
         }

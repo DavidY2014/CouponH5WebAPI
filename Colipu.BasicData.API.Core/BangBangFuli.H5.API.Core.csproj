@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Colipu.BasicData.API.Extensions\Colipu.BasicData.API.Extensions.csproj" />
+    <ProjectReference Include="..\Colipu.BasicData.API.Extensions\BangBangFuli.H5.API.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

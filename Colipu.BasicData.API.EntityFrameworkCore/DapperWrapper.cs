@@ -1,11 +1,11 @@
-﻿using Colipu.BasicData.API.EntityFrameworkCore;
+﻿using BangBangFuli.H5.API.EntityFrameworkCore;
 using Dapper;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace Colipu.BasicData.API.Core
+namespace BangBangFuli.H5.API.Core
 {
     /// <summary>
     /// dapper 接口

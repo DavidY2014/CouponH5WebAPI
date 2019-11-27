@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AutoMapper;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Application.Models.Delivery;
-using Colipu.BasicData.API.Application.Models.Location;
-using Colipu.BasicData.API.Application.Models.Payment;
-using Colipu.BasicData.API.Core;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Models.Delivery;
+using BangBangFuli.H5.API.Application.Models.Location;
+using BangBangFuli.H5.API.Application.Models.Payment;
+using BangBangFuli.H5.API.Core;
 using Colipu.BasicData.API.Extension.Configuration.DBConfig;
 using Colipu.BasicData.API.Extension.Const;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class BSystemService : IBSystemService
     {

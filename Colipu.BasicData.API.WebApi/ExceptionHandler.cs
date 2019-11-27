@@ -1,4 +1,4 @@
-﻿using Colipu.BasicData.API.Core;
+﻿using BangBangFuli.H5.API.Core;
 using Colipu.BasicData.API.Domain;
 using Colipu.Utils.Log.Aliyun;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
-namespace Colipu.BasicData.API.WebApi
+namespace BangBangFuli.H5.API.WebAPI
 {
     public class ExceptionHandler
     {

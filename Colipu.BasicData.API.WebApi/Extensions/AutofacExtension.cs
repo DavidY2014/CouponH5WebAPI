@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Colipu.BasicData.API.WebAPI.Extensions
+namespace BangBangFuli.H5.API.WebAPI.Extensions
 {
     public static class AutofacExtension
     {

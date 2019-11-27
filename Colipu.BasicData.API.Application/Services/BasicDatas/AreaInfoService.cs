@@ -1,16 +1,16 @@
-﻿using Colipu.BasicData.API.Core.BSystemDB;
-using Colipu.BasicData.API.Core.ECPubDB;
+﻿using BangBangFuli.H5.API.Core.BSystemDB;
+using BangBangFuli.H5.API.Core.ECPubDB;
 using Colipu.BasicData.API.Extension.Const;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using Colipu.BasicData.API.EntityFrameworkCore.BSystemDB;
-using Colipu.BasicData.API.Core.IRepositories.BasicDatas;
+using BangBangFuli.H5.API.EntityFrameworkCore.BSystemDB;
+using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 using AutoMapper;
-using Colipu.BasicData.API.Application.Models.Location;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Application.Models.Location;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class AreaInfoService : IAreaInfoService
     {

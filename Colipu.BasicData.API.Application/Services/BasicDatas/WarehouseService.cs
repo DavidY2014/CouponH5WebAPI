@@ -1,14 +1,14 @@
-﻿using Colipu.BasicData.API.Core.Param;
-using Colipu.BasicData.API.Core;
-using Colipu.BasicData.API.Core.BSystemDB;
+﻿using BangBangFuli.H5.API.Core.Param;
+using BangBangFuli.H5.API.Core;
+using BangBangFuli.H5.API.Core.BSystemDB;
 using Colipu.BasicData.API.Extension.Configuration.DBConfig;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using Colipu.BasicData.API.Application.Models.BasicDatas;
-using Colipu.BasicData.API.Core.IRepositories.BasicDatas;
+using BangBangFuli.H5.API.Application.Models.BasicDatas;
+using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 
-namespace Colipu.BasicData.API.Application.Services.BasicDatas
+namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class WarehouseService : IWarehouseService
     {
