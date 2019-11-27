@@ -1,5 +1,4 @@
-﻿
-using BangBangFuli.H5.API.Core.CouponSystemDB;
+﻿using BangBangFuli.H5.API.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -13,6 +12,12 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore
                    : base(options)
         {
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<Coupon> Coupons { get; set; }
 
     }

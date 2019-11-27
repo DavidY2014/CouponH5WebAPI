@@ -1,7 +1,6 @@
-﻿using BangBangFuli.H5.API.Core.BSystemDB;
-using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
-using BangBangFuli.H5.API.EntityFrameworkCore.BSystemDB;
-using Colipu.Utils.ORM.Imp;
+﻿using BangBangFuli.H5.API.Core.Entities;
+using BangBangFuli.H5.API.Core.IRepositories;
+using BangBangFuli.Utils.ORM.Imp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +8,21 @@ using System.Text;
 
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
-    public class CouponRepository : BaseRepository<BSystemDBContext, WarehouseShipType>, IWarehouseShipTypeRepository
+    public class CouponRepository : BaseRepository<CouponSystemDBContext, Coupon>, ICouponRepository
     {
-        public WarehouseShipTypeRepository(IDbContextManager<BSystemDBContext> dbContextManager)
+        public CouponRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
   : base(dbContextManager)
         {
         }
 
-        public List<WarehouseShipType> GetAll()
+        public List<Coupon> GetAll()
         {
-            return null;
+            throw new NotImplementedException();
+        }
+
+        public Coupon GetCouponById(int CouponId)
+        {
+            throw new NotImplementedException();
         }
     }
+}

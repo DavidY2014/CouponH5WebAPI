@@ -5,17 +5,15 @@ using AutoMapper;
 using BangBangFuli.H5.API.Application;
 using BangBangFuli.H5.API.Application.Services.BasicDatas;
 using BangBangFuli.H5.API.Application.Services.Redis;
-using BangBangFuli.H5.API.EntityFrameworkCore.BSystemDB;
-using BangBangFuli.H5.API.EntityFrameworkCore.ECPubDB;
+using BangBangFuli.H5.API.EntityFrameworkCore;
 using BangBangFuli.H5.API.WebAPI.AOP;
 using BangBangFuli.H5.API.WebAPI.Extensions;
-using Colipu.Utils.Cache.Redis.Extension;
-using Colipu.Utils.Log.Aliyun;
-using Colipu.Utils.ORM.Imp;
+using BangBangFuli.Utils.ORM.Imp;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
@@ -39,24 +37,10 @@ namespace BangBangFuli.H5.API.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<BSystemDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BasicData")));
-            //services.AddDbContext<ECPubDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ECPubDB")));
-
-            services.AddScoped<IDbContextManager<BSystemDBContext>>(s =>
-            {
-                return new DbContextManager<BSystemDBContext>(new ConnectionOption()
-                {
-                    Master = Configuration.GetConnectionString("H5BasicData"),
-                    SqlProvider = SqlProvider.SqlServer
-                });
-            });
+            services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
 
             services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");
             services.AddByAssembly("BangBangFuli.H5.API.Application", "IAppService");
-
-            //colipu 版本
-            //services.Configure<RedisOptions>(Configuration.GetSection("Redis"));
-            //services.AddRedisCache();
             
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
@@ -93,13 +77,6 @@ namespace BangBangFuli.H5.API.WebAPI
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
             });
 
-
-            services.AddAliyunLog(options =>
-            {
-                Configuration.GetSection("AliyunLog").Bind(options);
-            });
-
-            services.AddHttpClient<ILogService, LogService>();
 
             services.AddAutoMapper(typeof(MapperProfile));
 
@@ -143,7 +120,6 @@ namespace BangBangFuli.H5.API.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseAliyunLog();
 
             app.UseSwagger();
 
@@ -155,7 +131,6 @@ namespace BangBangFuli.H5.API.WebAPI
                 }
             });
 
-            app.UseMiddleware<ExceptionHandler>();
 
             app.UseMvc(routes =>
             {

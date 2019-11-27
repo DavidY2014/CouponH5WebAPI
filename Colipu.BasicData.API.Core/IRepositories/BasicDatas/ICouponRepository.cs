@@ -1,13 +1,14 @@
-﻿using BangBangFuli.H5.API.Core.CouponSystemDB;
+﻿using BangBangFuli.H5.API.Core.Entities;
+using BangBangFuli.Utils.ORM.Interface;
 using System.Collections.Generic;
 
 namespace BangBangFuli.H5.API.Core.IRepositories
 {
-    public interface ICouponRepository: IRepository<Coupon>
+    public interface ICouponRepository: IBaseRepository<Coupon>
     {
         List<Coupon> GetAll();
 
-        Coupon GetBranchById(int branchId);
+        Coupon GetCouponById(int CouponId);
 
     }
 }

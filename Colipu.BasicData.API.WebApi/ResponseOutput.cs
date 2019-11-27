@@ -32,7 +32,6 @@ namespace BangBangFuli.H5.API.WebAPI
         public ResponseOutput(string requestId)
         {
             RequestId = requestId;
-            Code = AppConst.ResponseCode.Success;
         }
 
         public ResponseOutput(string code, string message, string requestId)

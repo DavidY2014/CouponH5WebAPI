@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BangBangFuli.Utils.ORM.Interface\BangBangFuli.Utils.ORM.Interface.csproj" />
     <ProjectReference Include="..\Colipu.BasicData.API.Extensions\BangBangFuli.H5.API.Extensions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utlis\" />
   </ItemGroup>
 
 </Project>

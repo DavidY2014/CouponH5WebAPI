@@ -14,58 +14,7 @@ namespace BangBangFuli.H5.API.Application.Models.BasicDatas
         public List<AddressOutputDto> CustomerAddresses { get; set; }
 
         public int TotalCount { get; set; }
-        public AddressOutputDto customerAddress
-        {
-            get { return null; }
-            set
-            {
-                if (value != null)
-                {
-                    this.SysNo = value.SysNo;
-                    this.CustomerSysNo = value.CustomerSysNo;
-                    this.Brief = value.Brief;
-                    this.Name = value.Name;
-                    this.Contact = value.Contact;
-                    this.Phone = value.Phone;
-                    this.CellPhone = value.CellPhone;
-                    this.Fax = value.Fax;
-                    this.Address = value.Address;
-                    this.Zip = value.Zip;
-                    this.AreaSysNo = value.AreaSysNo;
-                    this.IsDefault = value.IsDefault;
-                    this.UpdateTime = value.UpdateTime;
-                    this.ReceivePASPhone = value.ReceivePASPhone;
-                    this.Email = value.Email;
-                    this.Sex = value.Sex;
-                    this.DistributionCode = value.DistributionCode;
-                    this.OperatorID = value.OperatorID;
-                    this.Status = value.Status;
-                    this.CompanySysNo = value.CompanySysNo;
-                    this.StockSysNo = value.StockSysNo;
-                    this.Latitude = value.Latitude;
-                    this.Longitude = value.Longitude;
-                }
-            }
-        }
 
-        public AddressOutputDto area
-        {
-            get { return null; }
-            set
-            {
-                if (value != null)
-                {
-                    this.ProvinceName = value.ProvinceName;
-                    this.CityName = value.CityName;
-                    this.DistrictName = value.DistrictName;
-                    this.ProvinceSysNo = value.ProvinceSysNo;
-                    this.CitySysNo = value.CitySysNo;
-                    this.DistrictSysNo = value.SysNo;
-                    this.areaname = value.ProvinceName + " " + value.CityName + " " + value.DistrictName;
-                }
-
-            }
-        }
         /// <summary>
         ///客户地址系统编号 
         /// </summary>

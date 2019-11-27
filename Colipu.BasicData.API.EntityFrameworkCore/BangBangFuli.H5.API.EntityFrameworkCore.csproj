@@ -7,12 +7,19 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BangBangFuli.Utils.ORM\BangBangFuli.Utils.ORM.Imp.csproj" />
     <ProjectReference Include="..\Colipu.BasicData.API.Core\BangBangFuli.H5.API.Core.csproj" />
     <ProjectReference Include="..\Colipu.BasicData.API.Extensions\BangBangFuli.H5.API.Extensions.csproj" />
   </ItemGroup>
+
+
 
   <ItemGroup>
     <Reference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore">
