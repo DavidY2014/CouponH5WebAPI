@@ -18,6 +18,21 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Banner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BatchCode");
+
+                    b.Property<string>("Photo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
+                });
+
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Coupon", b =>
                 {
                     b.Property<int>("Id")

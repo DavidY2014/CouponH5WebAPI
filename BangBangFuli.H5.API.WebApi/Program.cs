@@ -17,24 +17,29 @@ namespace BangBangFuli.H5.API.WebAPI
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
 
-                try
-                {
-                    var context = services.GetRequiredService<CouponSystemDBContext>();
-                    DbIniializer.Initialize(context);
-                }
-                catch (Exception e)
-                {
-                    //初始化系统测试数据的时候报错，请联系管理员。
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(e, "初始化系统测试数据的时候报错，请联系管理员。");
+            #region CodeFirst 用
 
-                }
-            }
+            //using (var scope = host.Services.CreateScope())
+            //{
+            //    var services = scope.ServiceProvider;
 
+            //    try
+            //    {
+            //        var context = services.GetRequiredService<CouponSystemDBContext>();
+            //        DbIniializer.Initialize(context);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        //初始化系统测试数据的时候报错，请联系管理员。
+            //        var logger = services.GetRequiredService<ILogger<Program>>();
+            //        logger.LogError(e, "初始化系统测试数据的时候报错，请联系管理员。");
+
+            //    }
+            //}
+
+
+            #endregion
 
 
             host.Run();

@@ -37,7 +37,19 @@ namespace BangBangFuli.H5.API.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
+            #region CodeFirst 用
+            //services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
+            #endregion
+
+            services.AddScoped<IDbContextManager<CouponSystemDBContext>>(s =>
+            {
+                return new DbContextManager<CouponSystemDBContext>(new ConnectionOption()
+                {
+                    Master = Configuration.GetConnectionString("H5BasicData"),
+                    SqlProvider = SqlProvider.SqlServer
+                });
+            });
+
 
             services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");
             services.AddByAssembly("BangBangFuli.H5.API.Application", "IAppService");

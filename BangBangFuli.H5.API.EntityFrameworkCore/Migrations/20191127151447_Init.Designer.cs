@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CouponSystemDBContext))]
-    [Migration("20191127120003_EFCoreDemo")]
-    partial class EFCoreDemo
+    [Migration("20191127151447_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,17 +20,36 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Coupon", b =>
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Banner", b =>
                 {
-                    b.Property<int>("EnrollmentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CourseId");
+                    b.Property<string>("BatchCode");
 
-                    b.Property<int>("StudentId");
+                    b.Property<string>("Photo");
 
-                    b.HasKey("EnrollmentId");
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
+                });
+
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Coupon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
 
                     b.ToTable("Coupons");
                 });

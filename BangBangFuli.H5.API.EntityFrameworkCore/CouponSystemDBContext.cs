@@ -20,5 +20,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore
 
         public DbSet<Coupon> Coupons { get; set; }
 
+        public DbSet<Banner> Banners { get; set; }
+
     }
 }

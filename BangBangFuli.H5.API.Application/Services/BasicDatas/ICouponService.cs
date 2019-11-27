@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
-    public interface ICouponService
+    public interface ICouponService:IAppService
     {
     }
 }

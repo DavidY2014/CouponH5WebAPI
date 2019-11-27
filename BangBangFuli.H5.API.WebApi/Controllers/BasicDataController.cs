@@ -20,49 +20,29 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
     [ApiController]
     public class BasicDataController : ControllerBase
     {
-        //private readonly IECSiteService _ecSiteService;
-        //private readonly IBranchService _branchService;
-        //private readonly IChannelService _channelService;
-        //private readonly IHolidayService _holidayService;
-        //private readonly IWarehouseService _warehouseService;
+        private readonly ICouponService _couponService;
+        private readonly IBannerService _bannerService;
 
+        public BasicDataController(ICouponService couponService,IBannerService bannerService)
+        {
+            _couponService = couponService;
+            _bannerService = bannerService;
+        }
 
-        //public BasicDataController(IECSiteService ecSiteService, IBranchService branchService, 
-        //    IChannelService channelService, IHolidayService holidayService, IWarehouseService warehouseService, ICache cache)
-        //{
-        //    _ecSiteService = ecSiteService;
-        //    _branchService = branchService;
-        //    _channelService = channelService;
-        //    _holidayService = holidayService;
-        //    _warehouseService = warehouseService;
-        //}
 
 
         /// <summary>
-        /// 获取所有分公司
+        /// 获取banner根据批次时间
         /// </summary>
         /// <returns></returns>
-        //[HttpGet]
-        //[Route("/api/v{version:apiVersion}/BasicData/AllBranchs")]
-        //public ResponseOutput GetAllBranch()
-        //{
-        //    List<BranchOutputDto> models= _branchService.GetAllBranch();              
-        //    return new ResponseOutput(models, HttpContext.TraceIdentifier);
-        //}
+        [HttpGet]
+        [Route("/api/v{version:apiVersion}/BasicData/Banner/{batchCode}")]
+        public ResponseOutput GetBannerByBatchCode(string batchCode)
+        {
+            var photoUniqueNames = _bannerService.GetUniquePhotoNamesByBatchCode(batchCode);
+            return new ResponseOutput(photoUniqueNames, HttpContext.TraceIdentifier);
+        }
 
-        ///// <summary>
-        ///// 校验下单时间是否节假日
-        ///// </summary>
-        ///// <param name="orderDateString"></param>
-        ///// <returns></returns>
-        //[HttpGet]
-        //[Route("/api/v{version:apiVersion}/BasicData/IsHoliday/{orderDateString}")]
-        //public ResponseOutput CheckIsHoliday(string orderDateString)
-        //{
-        //    DateTime orderDate = DateTime.ParseExact(orderDateString, "yyyyMMdd", null);
-        //    var ret = _holidayService.CheckIsHoliday(orderDate);
-        //    return new ResponseOutput(ret, HttpContext.TraceIdentifier);
-        //}
 
 
 

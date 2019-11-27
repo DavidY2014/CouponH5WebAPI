@@ -1,0 +1,526 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\bangbang\\source\\BangBangFuli.API.MVC\\BangBangFuli.API.MVC.csproj": {}
+  },
+  "projects": {
+    "E:\\bangbang\\source\\BangBangFuli.API.MVC\\BangBangFuli.API.MVC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\bangbang\\source\\BangBangFuli.API.MVC\\BangBangFuli.API.MVC.csproj",
+        "projectName": "BangBangFuli.API.MVC",
+        "projectPath": "E:\\bangbang\\source\\BangBangFuli.API.MVC\\BangBangFuli.API.MVC.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\bangbang\\source\\BangBangFuli.API.MVC\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "E:\\bangbang\\source\\BangBangFuli.H5.API.Application\\BangBangFuli.H5.API.Application.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Application\\BangBangFuli.H5.API.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.PlatformAbstractions": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\bangbang\\source\\BangBangFuli.H5.API.Application\\BangBangFuli.H5.API.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\bangbang\\source\\BangBangFuli.H5.API.Application\\BangBangFuli.H5.API.Application.csproj",
+        "projectName": "BangBangFuli.H5.API.Application",
+        "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Application\\BangBangFuli.H5.API.Application.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "E:\\bangbang\\source\\BangBangFuli.H5.API.Core\\BangBangFuli.H5.API.Core.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Core\\BangBangFuli.H5.API.Core.csproj"
+              },
+              "E:\\bangbang\\source\\BangBangFuli.H5.API.EntityFrameworkCore\\BangBangFuli.H5.API.EntityFrameworkCore.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.EntityFrameworkCore\\BangBangFuli.H5.API.EntityFrameworkCore.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Caching.Redis": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\bangbang\\source\\BangBangFuli.H5.API.Core\\BangBangFuli.H5.API.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\bangbang\\source\\BangBangFuli.H5.API.Core\\BangBangFuli.H5.API.Core.csproj",
+        "projectName": "BangBangFuli.H5.API.Core",
+        "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Core\\BangBangFuli.H5.API.Core.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "E:\\bangbang\\source\\BangBangFuli.H5.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj"
+              },
+              "E:\\bangbang\\source\\BangBangFuli.Utils.ORM.Interface\\BangBangFuli.Utils.ORM.Interface.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM.Interface\\BangBangFuli.Utils.ORM.Interface.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\bangbang\\source\\BangBangFuli.H5.API.EntityFrameworkCore\\BangBangFuli.H5.API.EntityFrameworkCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\bangbang\\source\\BangBangFuli.H5.API.EntityFrameworkCore\\BangBangFuli.H5.API.EntityFrameworkCore.csproj",
+        "projectName": "BangBangFuli.H5.API.EntityFrameworkCore",
+        "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.EntityFrameworkCore\\BangBangFuli.H5.API.EntityFrameworkCore.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.EntityFrameworkCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "E:\\bangbang\\source\\BangBangFuli.H5.API.Core\\BangBangFuli.H5.API.Core.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Core\\BangBangFuli.H5.API.Core.csproj"
+              },
+              "E:\\bangbang\\source\\BangBangFuli.H5.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj"
+              },
+              "E:\\bangbang\\source\\BangBangFuli.Utils.ORM\\BangBangFuli.Utils.ORM.Imp.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM\\BangBangFuli.Utils.ORM.Imp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\bangbang\\source\\BangBangFuli.H5.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\bangbang\\source\\BangBangFuli.H5.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj",
+        "projectName": "BangBangFuli.H5.API.Extensions",
+        "projectPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Extensions\\BangBangFuli.H5.API.Extensions.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\bangbang\\source\\BangBangFuli.H5.API.Extensions\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\bangbang\\source\\BangBangFuli.Utils.ORM.Interface\\BangBangFuli.Utils.ORM.Interface.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM.Interface\\BangBangFuli.Utils.ORM.Interface.csproj",
+        "projectName": "BangBangFuli.Utils.ORM.Interface",
+        "projectPath": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM.Interface\\BangBangFuli.Utils.ORM.Interface.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM.Interface\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\bangbang\\source\\BangBangFuli.Utils.ORM\\BangBangFuli.Utils.ORM.Imp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM\\BangBangFuli.Utils.ORM.Imp.csproj",
+        "projectName": "BangBangFuli.Utils.ORM.Imp",
+        "projectPath": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM\\BangBangFuli.Utils.ORM.Imp.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "E:\\bangbang\\source\\BangBangFuli.Utils.ORM.Interface\\BangBangFuli.Utils.ORM.Interface.csproj": {
+                "projectPath": "E:\\bangbang\\source\\BangBangFuli.Utils.ORM.Interface\\BangBangFuli.Utils.ORM.Interface.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.30, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

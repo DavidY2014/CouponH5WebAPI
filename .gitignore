@@ -39,3 +39,6 @@
 /BangBangFuli.H5.API.Test/obj
 /BangBangFuli.H5.API.WebApi/bin
 /BangBangFuli.H5.API.WebApi/obj
+/.vs/BangBangFuli.H5.API/v16
+/BangBangFuli.API.MVC/bin/Debug/netcoreapp3.0
+/BangBangFuli.API.MVC/obj/Debug/netcoreapp3.0/staticwebassets
