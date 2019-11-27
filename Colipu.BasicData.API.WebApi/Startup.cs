@@ -37,7 +37,7 @@ namespace BangBangFuli.H5.API.WebAPI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<BSystemDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BasicData")));
             //services.AddDbContext<ECPubDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ECPubDB")));
@@ -46,17 +46,7 @@ namespace BangBangFuli.H5.API.WebAPI
             {
                 return new DbContextManager<BSystemDBContext>(new ConnectionOption()
                 {
-                    Master = Configuration.GetConnectionString("BasicData"),
-                    SqlProvider = SqlProvider.SqlServer
-                });
-            });
-
-
-            services.AddScoped<IDbContextManager<ECPubDBContext>>(s =>
-            {
-                return new DbContextManager<ECPubDBContext>(new ConnectionOption()
-                {
-                    Master = Configuration.GetConnectionString("ECPubDB"),
+                    Master = Configuration.GetConnectionString("H5BasicData"),
                     SqlProvider = SqlProvider.SqlServer
                 });
             });
@@ -65,8 +55,8 @@ namespace BangBangFuli.H5.API.WebAPI
             services.AddByAssembly("BangBangFuli.H5.API.Application", "IAppService");
 
             //colipu 版本
-            services.Configure<RedisOptions>(Configuration.GetSection("Redis"));
-            services.AddRedisCache();
+            //services.Configure<RedisOptions>(Configuration.GetSection("Redis"));
+            //services.AddRedisCache();
             
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
@@ -95,7 +85,7 @@ namespace BangBangFuli.H5.API.WebAPI
                 {
                     options.SwaggerDoc(description.GroupName, new Swashbuckle.AspNetCore.Swagger.Info
                     {
-                        Title = $"BasicData API {description.ApiVersion}",
+                        Title = $"棒棒福利网 H5 WebAPI {description.ApiVersion}",
                         Version = description.ApiVersion.ToString()
                     });
                 }
@@ -115,32 +105,32 @@ namespace BangBangFuli.H5.API.WebAPI
 
 
             
-            #region autofac 接管DI容器
+            //#region autofac 接管DI容器
 
 
-            var builder = new ContainerBuilder();
+            //var builder = new ContainerBuilder();
 
-            builder.RegisterType<CachingIntercept>(); // 注册AOP
+            //builder.RegisterType<CachingIntercept>(); // 注册AOP
 
-            //var assemblysServices = Assembly.Load("BangBangFuli.H5.API.Application");
-            //builder.RegisterAssemblyTypes(assemblysServices);
+            ////var assemblysServices = Assembly.Load("BangBangFuli.H5.API.Application");
+            ////builder.RegisterAssemblyTypes(assemblysServices);
 
 
-            //只注入需要AOP的Types,继承ICanCacheService 即可
-            var filterTypes = builder.AddFilterTypes("BangBangFuli.H5.API.Application", "ICanCacheService");
-            builder.RegisterTypes(filterTypes)
-                .AsImplementedInterfaces()
-              .InstancePerLifetimeScope()
-              .EnableInterfaceInterceptors()//引用Autofac.Extras.DynamicProxy;
-              .InterceptedBy(typeof(CachingIntercept));//可以直接替换拦截器
+            ////只注入需要AOP的Types,继承ICanCacheService 即可
+            //var filterTypes = builder.AddFilterTypes("BangBangFuli.H5.API.Application", "ICanCacheService");
+            //builder.RegisterTypes(filterTypes)
+            //    .AsImplementedInterfaces()
+            //  .InstancePerLifetimeScope()
+            //  .EnableInterfaceInterceptors()//引用Autofac.Extras.DynamicProxy;
+            //  .InterceptedBy(typeof(CachingIntercept));//可以直接替换拦截器
 
-            builder.Populate(services);
+            //builder.Populate(services);
 
-            var ApplicationContainer = builder.Build();
+            //var ApplicationContainer = builder.Build();
 
-            #endregion
+            //#endregion
 
-            return new AutofacServiceProvider(ApplicationContainer);//第三方IOC接管 core内置DI容器
+            //return new AutofacServiceProvider(ApplicationContainer);//第三方IOC接管 core内置DI容器
 
         }
 

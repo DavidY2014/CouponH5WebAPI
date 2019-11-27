@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Colipu.Utils.BusinessLog" Version="1.0.1" />
-    <PackageReference Include="Colipu.Utils.ORM.Interface" Version="1.0.5" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Colipu.BasicData.API.Extensions\BangBangFuli.H5.API.Extensions.csproj" />
   </ItemGroup>
 

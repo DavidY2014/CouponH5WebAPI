@@ -12,3 +12,5 @@ D:\SVN\CouponAPI\source\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Debug\
 D:\SVN\CouponAPI\source\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Debug\netcoreapp2.2\BangBangFuli.H5.API.EntityFrameworkCore.csproj.CopyComplete
 D:\SVN\CouponAPI\source\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Debug\netcoreapp2.2\BangBangFuli.H5.API.EntityFrameworkCore.dll
 D:\SVN\CouponAPI\source\api2\Colipu.BasicData.API.EntityFrameworkCore\obj\Debug\netcoreapp2.2\BangBangFuli.H5.API.EntityFrameworkCore.pdb
+D:\SVN\CouponAPI\source\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\SVN\CouponAPI\source\api2\Colipu.BasicData.API.EntityFrameworkCore\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml

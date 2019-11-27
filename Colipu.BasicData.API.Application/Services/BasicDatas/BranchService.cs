@@ -14,9 +14,9 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
     public class BranchService : IBranchService
     {
-        private readonly IBranchRepository _branchRepository;
+        private readonly ICouponRepository _branchRepository;
 
-        public BranchService(IBranchRepository branchRepository)
+        public BranchService(ICouponRepository branchRepository)
         {
             _branchRepository = branchRepository;
         }
