@@ -11,6 +11,7 @@ using BangBangFuli.H5.API.WebAPI.Extensions;
 using BangBangFuli.Utils.ORM.Imp;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
@@ -53,7 +54,22 @@ namespace BangBangFuli.H5.API.WebAPI
 
             services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");
             services.AddByAssembly("BangBangFuli.H5.API.Application", "IAppService");
-            
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("allow_all", builder =>
+                {
+                    builder.AllowAnyOrigin() //允许任何来源的主机访问
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();//指定处理cookie
+                });
+            });
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
@@ -144,6 +160,7 @@ namespace BangBangFuli.H5.API.WebAPI
             });
 
             app.UseStaticFiles();
+            app.UseCors("allow_all");
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "api/{controller}/{action}/{id?}");

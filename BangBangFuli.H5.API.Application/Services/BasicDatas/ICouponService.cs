@@ -11,5 +11,10 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         bool VerifyCoupon(int code, string password);
 
         Coupon GetCouponByCode(int code);
+
+        List<Coupon> GetAll();
+
+        void AddNew(Coupon coupon);
+
     }
 }

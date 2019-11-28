@@ -17,7 +17,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 
         public List<Coupon> GetAll()
         {
-            throw new NotImplementedException();
+            return Master.Coupons.ToList();
         }
 
         public Coupon GetCouponByCode(int code)
@@ -35,6 +35,12 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
                 return true;
             }
             return false;
+        }
+
+        public void CreateNew(Coupon coupon)
+        {
+            Master.Coupons.Add(coupon);
+            Master.SaveChanges();
         }
 
 

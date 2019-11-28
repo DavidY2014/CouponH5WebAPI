@@ -12,5 +12,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories
 
         bool VerifyCoupon(int code, string password);
 
+        void CreateNew(Coupon coupon);
+
     }
 }

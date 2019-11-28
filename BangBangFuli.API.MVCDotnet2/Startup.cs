@@ -38,6 +38,17 @@ namespace BangBangFuli.API.MVCDotnet2
             //services.AddControllersWithViews();
             services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");
             services.AddByAssembly("BangBangFuli.H5.API.Application", "IAppService");
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("allow_all", builder =>
+                {
+                    builder.AllowAnyOrigin() //允许任何来源的主机访问
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();//指定处理cookie
+                });
+            });
             services.AddMvc();
 
 
@@ -58,7 +69,7 @@ namespace BangBangFuli.API.MVCDotnet2
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseCors("allow_all");
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

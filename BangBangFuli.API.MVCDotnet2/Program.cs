@@ -19,8 +19,8 @@ namespace BangBangFuli.API.MVCDotnet2
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                    //.UseUrls("http://*:5001")
-                    .UseUrls("http://127.0.0.1:5001")
+                //.UseUrls("http://*:5001")
+                .UseUrls("http://127.0.0.1:5001")
                 .UseStartup<Startup>();
     }
 }

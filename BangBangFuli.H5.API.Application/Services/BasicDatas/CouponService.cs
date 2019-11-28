@@ -30,6 +30,15 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             return _couponRepository.GetCouponByCode(code);
         }
 
+        public List<Coupon> GetAll()
+        {
+            return _couponRepository.GetAll();
+        }
+
+        public void AddNew(Coupon coupon)
+        {
+            _couponRepository.CreateNew(coupon);
+        }
 
     }
 }
