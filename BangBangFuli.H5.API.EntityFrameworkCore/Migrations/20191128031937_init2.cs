@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
-    public partial class Init : Migration
+    public partial class init2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Code = table.Column<string>(maxLength: 20, nullable: false),
+                    Code = table.Column<int>(maxLength: 20, nullable: false),
                     Password = table.Column<string>(maxLength: 20, nullable: false)
                 },
                 constraints: table =>

@@ -1,0 +1,58 @@
+﻿@model List<BangBangFuli.API.MVCDotnet2.Models.ProductInformationViewModel>
+@{
+    ViewData["Title"] = "商品信息";
+}
+<h2>商品信息</h2>
+<p>
+    <a asp-action="Create">添加商品</a>
+    @*<a asp-action="UpdateCourseCredits">修改所有课程学分</a>*@
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                商品Id
+            </th>
+            <th>
+                商品名称
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Credits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Credits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductId">编辑</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductId">详情</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductId">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

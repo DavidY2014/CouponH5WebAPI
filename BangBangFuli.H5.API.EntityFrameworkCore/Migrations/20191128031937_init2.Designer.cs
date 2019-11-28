@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CouponSystemDBContext))]
-    [Migration("20191127151447_Init")]
-    partial class Init
+    [Migration("20191128031937_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,8 +41,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Code")
-                        .IsRequired()
+                    b.Property<int>("Code")
                         .HasMaxLength(20);
 
                     b.Property<string>("Password")

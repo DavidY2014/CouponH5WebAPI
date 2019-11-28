@@ -22,5 +22,9 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore
 
         public DbSet<Banner> Banners { get; set; }
 
+        public DbSet<ProductInformation> ProductInformations { get; set; }
+
+        public DbSet<ProductDetail> ProductDetails { get; set; }
+
     }
 }

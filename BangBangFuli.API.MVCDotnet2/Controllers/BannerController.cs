@@ -23,24 +23,6 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        #region webapi
-
-
-        /// <summary>
-        /// 获取banner根据批次时间
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("/api/v{version:apiVersion}/BasicData/Banner/{batchCode}")]
-        public ResponseOutput GetBannerByBatchCode(string batchCode)
-        {
-            var photoUniqueNames = _bannerService.GetUniquePhotoNamesByBatchCode(batchCode);
-            return new ResponseOutput(photoUniqueNames, HttpContext.TraceIdentifier);
-        }
-
-
-        #endregion
-
         /// <summary>
         /// 创建banner视图
         /// </summary>

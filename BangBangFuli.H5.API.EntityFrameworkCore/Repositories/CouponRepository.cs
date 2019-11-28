@@ -20,9 +20,23 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             throw new NotImplementedException();
         }
 
-        public Coupon GetCouponById(int CouponId)
+        public Coupon GetCouponByCode(int code)
         {
-            throw new NotImplementedException();
+            var coupon = Master.Coupons.Where(item => item.Code == code).FirstOrDefault();
+            return coupon;
         }
+
+
+        public bool VerifyCoupon(int code ,string password)
+        {
+            var coupon = Master.Coupons.Where(item => item.Code == code && item.Password == password);
+            if (coupon != null && coupon.Count() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }
