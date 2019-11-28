@@ -8,5 +8,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
     public interface IProductInformationService:IAppService
     {
         List<ProductInformation> GetAll();
+
+        void Save(ProductInformation product);
     }
 }

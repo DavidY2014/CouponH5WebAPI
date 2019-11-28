@@ -21,5 +21,11 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         {
             return Master.ProductInformations.ToList();
         }
+
+        public void Save(ProductInformation product)
+        {
+            Master.ProductInformations.Add(product);
+            Master.SaveChanges();
+        }
     }
 }

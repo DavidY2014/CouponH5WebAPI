@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,10 @@ namespace BangBangFuli.API.MVCDotnet2.Models
 
         [DisplayName("商品名称")]
         public string Name { get; set; }
+
+
+        [Display(Name = "图片")]
+        public List<IFormFile> Photos { get; set; }
 
     }
 }

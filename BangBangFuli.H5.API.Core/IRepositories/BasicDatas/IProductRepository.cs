@@ -9,5 +9,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
     public interface IProductRepository: IBaseRepository<ProductInformation>
     {
         List<ProductInformation> GetAll();
+
+        void Save(ProductInformation product);
     }
 }
