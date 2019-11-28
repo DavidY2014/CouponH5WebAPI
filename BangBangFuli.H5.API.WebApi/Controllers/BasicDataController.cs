@@ -23,12 +23,14 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
     {
         private readonly ICouponService _couponService;
         private readonly IBannerService _bannerService;
+        private readonly IProductInformationService _productService;
         public string VERFIY_CODE_TOKEN_COOKIE_NAME = "VerifyCode";
 
-        public BasicDataController(ICouponService couponService,IBannerService bannerService)
+        public BasicDataController(ICouponService couponService,IBannerService bannerService,IProductInformationService productService)
         {
             _couponService = couponService;
             _bannerService = bannerService;
+            _productService = productService;
         }
 
 

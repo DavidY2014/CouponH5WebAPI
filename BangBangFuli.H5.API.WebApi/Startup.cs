@@ -143,7 +143,7 @@ namespace BangBangFuli.H5.API.WebAPI
                 }
             });
 
-
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "api/{controller}/{action}/{id?}");

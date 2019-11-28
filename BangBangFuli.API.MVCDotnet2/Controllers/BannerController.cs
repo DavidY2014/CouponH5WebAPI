@@ -24,7 +24,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         }
 
         /// <summary>
-        /// 创建banner视图
+        /// 创建banner新建视图
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -85,8 +85,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     //通过HostingEnvironment服务去获取wwwroot文件夹的路径
                     string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
                     //为了确保文件名是唯一的，我们在文件名后附加一个新的GUID值和一个下划线
+                    string fileNameWithoutExtension =System.IO.Path.GetFileName(photo.FileName);
 
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + fileNameWithoutExtension;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                     //因为使用了非托管资源，所以需要手动进行释放

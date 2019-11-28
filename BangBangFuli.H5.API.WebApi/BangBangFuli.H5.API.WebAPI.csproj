@@ -31,5 +31,9 @@
   <ItemGroup>
     <ProjectReference Include="..\BangBangFuli.H5.API.Application\BangBangFuli.H5.API.Application.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
   
 </Project>

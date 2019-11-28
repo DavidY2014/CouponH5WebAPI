@@ -47,10 +47,10 @@ namespace BangBangFuli.H5.API.WebAPI
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-           //.UseKestrel()
-            //.UseUrls("http://localhost:5000", "http://10.10.21.253:9009")
-            //.UseIISIntegration()
-            //.UseUrls("http://*:5000")
+                //.UseKestrel()
+                //.UseUrls("http://localhost:5001", "http://106.54.112.131:9001")
+                //.UseIISIntegration()
+                .UseUrls("http://*:5000")
                 .UseStartup<Startup>();
     }
 }

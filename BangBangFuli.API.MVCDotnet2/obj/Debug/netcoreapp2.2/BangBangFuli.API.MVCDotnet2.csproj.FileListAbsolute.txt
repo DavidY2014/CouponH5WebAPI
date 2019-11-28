@@ -44,3 +44,4 @@ D:\SVN\CouponAPI\source\api2\BangBangFuli.API.MVCDotnet2\obj\Debug\netcoreapp2.2
 D:\SVN\CouponAPI\source\api2\BangBangFuli.API.MVCDotnet2\obj\Debug\netcoreapp2.2\Razor\Views\Banner\Detail.g.cshtml.cs
 D:\SVN\CouponAPI\source\api2\BangBangFuli.API.MVCDotnet2\obj\Debug\netcoreapp2.2\Razor\Views\Product\Index.g.cshtml.cs
 D:\SVN\CouponAPI\source\api2\BangBangFuli.API.MVCDotnet2\obj\Debug\netcoreapp2.2\Razor\Views\Product\Create.g.cshtml.cs
+D:\SVN\CouponAPI\source\api2\BangBangFuli.API.MVCDotnet2\obj\Debug\netcoreapp2.2\Razor\Views\Coupon\Index.g.cshtml.cs
