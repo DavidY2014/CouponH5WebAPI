@@ -4,6 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BangBangFuli.H5.API.Core.Entities
 {
+
+    /// <summary>
+    /// 券基本信息，静态数据，非业务流程动态生成数据
+    /// </summary>
     public  class Coupon
     {
         [Key]
@@ -30,5 +34,6 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Required]
         [Display(Name = "总次数")]
         public int TotalCount { get; set; }
+
     }
 }

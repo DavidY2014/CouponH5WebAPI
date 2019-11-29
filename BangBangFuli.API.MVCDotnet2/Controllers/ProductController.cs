@@ -28,7 +28,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             var products = _productInformationService.GetAll();
             foreach (var product in products)
             {
-                productViewModelList.Add(new ProductInformationViewModel { ProductId = product.Id, Name = product.Name });
+                productViewModelList.Add(new ProductInformationViewModel {ProductId=product.Id, ProductCode = product.ProductCode, ProductName = product.ProductName });
             }
             return View(productViewModelList);
         }
@@ -55,13 +55,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 var details = new List<ProductDetail>();
                 foreach (var uniqueFileName in uniqueFileNameList)
                 {
-                    details.Add(new ProductDetail { ProductId = model.ProductId, PhotoPath = uniqueFileName });
+                    details.Add(new ProductDetail { PhotoPath = uniqueFileName });
                 }
 
                 ProductInformation product = new ProductInformation
                 {
-                    ProductCode = model.ProductId.ToString(),
-                    Name = model.Name,
+                    ProductCode = model.ProductCode,
+                    ProductName = model.ProductName,
                     Details = details
                 };
 

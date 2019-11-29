@@ -76,6 +76,9 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                         .IsRequired()
                         .HasMaxLength(20);
 
+                    b.Property<int>("CouponId")
+                        .HasMaxLength(20);
+
                     b.Property<string>("District")
                         .IsRequired()
                         .HasMaxLength(10);
@@ -97,6 +100,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CouponId");
+
                     b.ToTable("Orders");
                 });
 
@@ -112,9 +117,10 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                         .IsRequired()
                         .HasMaxLength(10);
 
-                    b.Property<string>("ProductCount")
-                        .IsRequired()
+                    b.Property<int>("ProductCount")
                         .HasMaxLength(10);
+
+                    b.Property<int>("ProductId");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
@@ -168,6 +174,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductInformations");
+                });
+
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Order", b =>
+                {
+                    b.HasOne("BangBangFuli.H5.API.Core.Entities.Coupon")
+                        .WithMany("orders")
+                        .HasForeignKey("CouponId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.OrderDetail", b =>

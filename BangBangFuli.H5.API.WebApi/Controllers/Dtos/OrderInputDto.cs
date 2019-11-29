@@ -7,8 +7,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
 {
     public class OrderInputDto
     {
-        public int ProductId { get; set; }
-        public string ProductCode { get; set; }
+        public int CouponId { get; set; }
 
         public string Contactor { get; set; }
 
@@ -20,5 +19,10 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
 
         public int ZipCode { get; set; }
         public string Telephone { get; set; }
+
+        public int Count { get; set; }
+
+        public List<OrderDetailInputDto> DetailDtos { get; set; }
+
     }
 }

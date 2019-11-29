@@ -14,5 +14,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 
         List<ProductInformation> GetProductsByClass(int class1, int class2);
 
+        ProductInformation GetProductById(int ProductId);
+
     }
 }

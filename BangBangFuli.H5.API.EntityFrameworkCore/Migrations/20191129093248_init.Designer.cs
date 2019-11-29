@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CouponSystemDBContext))]
-    [Migration("20191128084049_init")]
+    [Migration("20191129093248_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,81 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     b.ToTable("Coupons");
                 });
 
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Contactor")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<int>("CouponId")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<string>("MobilePhone")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Telephone")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<int>("ZipCode")
+                        .HasMaxLength(10);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CouponId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.OrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<string>("ProductCode")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<int>("ProductCount")
+                        .HasMaxLength(10);
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetails");
+                });
+
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.ProductDetail", b =>
                 {
                     b.Property<int>("Id")
@@ -101,6 +176,22 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductInformations");
+                });
+
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Order", b =>
+                {
+                    b.HasOne("BangBangFuli.H5.API.Core.Entities.Coupon")
+                        .WithMany("orders")
+                        .HasForeignKey("CouponId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.OrderDetail", b =>
+                {
+                    b.HasOne("BangBangFuli.H5.API.Core.Entities.Order")
+                        .WithMany("Details")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.ProductDetail", b =>

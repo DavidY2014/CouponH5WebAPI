@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BangBangFuli.H5.API.Application.Models.BasicDatas;
 using BangBangFuli.H5.API.Application.Services.BasicDatas;
 using BangBangFuli.H5.API.Application.Services.Redis;
+using BangBangFuli.H5.API.Core.Entities;
 using BangBangFuli.H5.API.WebAPI;
 using BangBangFuli.H5.API.WebAPI.Controllers.Dtos;
 using Microsoft.AspNetCore.Http;
@@ -24,12 +25,14 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         private readonly ICouponService _couponService;
         private readonly IBannerService _bannerService;
         private readonly IProductInformationService _productService;
+        private readonly IOrderService _orderService;
         public string VERFIY_CODE_TOKEN_COOKIE_NAME = "VerifyCode";
 
-        public BasicDataController(ICouponService couponService,IBannerService bannerService,IProductInformationService productService)
+        public BasicDataController(ICouponService couponService,IBannerService bannerService,IProductInformationService productService, IOrderService orderService)
         {
             _couponService = couponService;
             _bannerService = bannerService;
+            _orderService = orderService;
             _productService = productService;
         }
 
@@ -111,7 +114,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 productDtos.Add(new ProductDto
                 {
                     Code = product.ProductCode,
-                    Name = product.Name,
+                    Name = product.ProductName,
                     Description = product.Description,
                     IsInStock = product.IsInStock,
                     Photos = product.Details.Select(item => item.PhotoPath).ToList()
@@ -121,6 +124,12 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
             return new ResponseOutput(productDtos, HttpContext.TraceIdentifier);
         }
 
+
+        /// <summary>
+        /// 6,下订单，可以传入多个商品的信息
+        /// </summary>
+        /// <param name="inputDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("/api/v{version:apiVersion}/BasicData/NewOrder")]
         public ResponseOutput CreateNewOrder(OrderInputDto inputDto)
@@ -130,15 +139,66 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 return new ResponseOutput(null, "传入参数为空", HttpContext.TraceIdentifier);
             }
 
+            List<OrderDetail> details = new List<OrderDetail>();
 
+            foreach (var item in inputDto.DetailDtos)
+            {
+                ProductInformation productInfo = _productService.GetProductById(item.ProductId);
 
+                details.Add(new OrderDetail
+                {
+                    ProductId = item.ProductId,
+                    ProductCode = productInfo.ProductCode,
+                    ProductName = productInfo.ProductName,
+                    ProductCount = item.Count,
+                });
+            }
+                
+            Order order = new Order
+            {
+                Contactor = inputDto.Contactor,
+                MobilePhone = inputDto.MobilePhone,
+                Province = inputDto.Province,
+                City = inputDto.City,
+                District = inputDto.District,
+                Address = inputDto.Address,
+                ZipCode = inputDto.ZipCode,
+                Telephone = inputDto.Telephone,
+                Details = details
+            };
 
+            _orderService.CreateNewOrder(order);
+            //发送手机短信给用户，当然这个可以用job实现
 
-
-
-
-            return new ResponseOutput(null, HttpContext.TraceIdentifier);
+            return new ResponseOutput(null,"创建订单成功" ,HttpContext.TraceIdentifier);
         }
+
+
+        /// <summary>
+        /// 7,获取此兑换券生成的订单列表
+        /// </summary>
+        /// <param name="couponId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("/api/v{version:apiVersion}/BasicData/Orders/{couponId}")]
+        public ResponseOutput GetOrderList(int couponId)
+        {
+            List<OrderOutputDto> orderDtos = new List<OrderOutputDto>();
+            Coupon coupon =  _couponService.GetCouponByCode(couponId);
+
+            //_orderService.geta; ;
+
+            //foreach (var order in coupon)
+            //{
+            //    OrderOutputDto dto = new OrderOutputDto { };
+            //    orderDtos.Add(dto);
+            //}
+
+            return new ResponseOutput(orderDtos, HttpContext.TraceIdentifier);
+        }
+
+
+
 
 
 

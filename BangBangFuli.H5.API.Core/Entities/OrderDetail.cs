@@ -15,6 +15,9 @@ namespace BangBangFuli.H5.API.Core.Entities
 
         public int OrderId { get; set; }
 
+        public int ProductId { get; set; }
+
+
         [Required]
         [MaxLength(10)]
         [Display(Name = "商品编号")]
@@ -29,6 +32,6 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Required]
         [MaxLength(10)]
         [Display(Name = "商品下单数量")]
-        public string ProductCount { get; set; }
+        public int ProductCount { get; set; }
     }
 }

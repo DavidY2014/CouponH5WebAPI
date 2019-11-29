@@ -28,5 +28,10 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         {
             return _productRepository.GetProductsByClass(class1, class2);
         }
+
+        public ProductInformation GetProductById(int ProductId)
+        {
+            return _productRepository.GetProductById(ProductId);
+        }
     }
 }

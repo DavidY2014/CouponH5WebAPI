@@ -58,6 +58,33 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CouponId = table.Column<int>(maxLength: 20, nullable: false),
+                    Contactor = table.Column<string>(maxLength: 20, nullable: false),
+                    MobilePhone = table.Column<string>(maxLength: 20, nullable: false),
+                    Province = table.Column<string>(maxLength: 10, nullable: false),
+                    City = table.Column<string>(maxLength: 10, nullable: false),
+                    District = table.Column<string>(maxLength: 10, nullable: false),
+                    Address = table.Column<string>(maxLength: 10, nullable: false),
+                    ZipCode = table.Column<int>(maxLength: 10, nullable: false),
+                    Telephone = table.Column<string>(maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Coupons_CouponId",
+                        column: x => x.CouponId,
+                        principalTable: "Coupons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductDetails",
                 columns: table => new
                 {
@@ -78,6 +105,39 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "OrderDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    OrderId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    ProductCode = table.Column<string>(maxLength: 10, nullable: false),
+                    ProductName = table.Column<string>(maxLength: 20, nullable: false),
+                    ProductCount = table.Column<int>(maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderDetails_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_OrderId",
+                table: "OrderDetails",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CouponId",
+                table: "Orders",
+                column: "CouponId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_ProductDetails_ProductInformationId",
                 table: "ProductDetails",
@@ -90,13 +150,19 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 name: "Banners");
 
             migrationBuilder.DropTable(
-                name: "Coupons");
+                name: "OrderDetails");
 
             migrationBuilder.DropTable(
                 name: "ProductDetails");
 
             migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
                 name: "ProductInformations");
+
+            migrationBuilder.DropTable(
+                name: "Coupons");
         }
     }
 }

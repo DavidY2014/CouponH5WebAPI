@@ -6,12 +6,20 @@ using System.Text;
 namespace BangBangFuli.H5.API.Core.Entities
 {
     /// <summary>
-    /// 订单信息
+    /// 订单信息，动态流程数据
     /// </summary>
    public class Order
     {
         [Key]
         public int Id { get; set; }
+
+        /// <summary>
+        /// 生成的每个订单都要关联当前的券号
+        /// </summary>
+        [Required]
+        [MaxLength(20)]
+        [Display(Name = "券卡号")]
+        public int CouponId { get; set; }
 
         [Required]
         [MaxLength(20)]

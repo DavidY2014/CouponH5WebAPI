@@ -30,7 +30,12 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 
         public List<ProductInformation> GetProductsByClass(int class1,int class2)
         {
-           return  Master.ProductInformations.Where(item => item.Catelog1 == class1 && item.Catelog2 == class2).ToList();
+           return  Master.ProductInformations.Where(item => item.Class1 == class1 && item.Class2 == class2).ToList();
+        }
+
+        public ProductInformation GetProductById(int ProductId)
+        {
+            return Master.ProductInformations.Find(ProductId);
         }
     }
 }
