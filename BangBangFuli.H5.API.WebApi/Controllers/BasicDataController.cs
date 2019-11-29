@@ -92,16 +92,48 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
             }
         }
 
-
         /// <summary>
-        /// 4，返回大类下的商品信息
+        /// 4and5 返回大类下的商品信息，包含图片，是否有货，详情等信息
         /// </summary>
-        /// <param name="CatelogId"></param>
+        /// <param name="class1"></param>
+        /// <param name="class2"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("/api/v{version:apiVersion}/BasicData/Products/{CatelogId}")]
-        public ResponseOutput GetProductsByCatelog(int CatelogId)
+        [Route("/api/v{version:apiVersion}/BasicData/Products/{class1}/{class2}")]
+        public ResponseOutput GetProductsByCatelog(int class1,int class2)
         {
+            var products = _productService.GetProductsByClass(class1, class2);
+
+            var productDtos = new List<ProductDto>();
+
+            foreach (var product in products)
+            {
+                productDtos.Add(new ProductDto
+                {
+                    Code = product.ProductCode,
+                    Name = product.Name,
+                    Description = product.Description,
+                    IsInStock = product.IsInStock,
+                    Photos = product.Details.Select(item => item.PhotoPath).ToList()
+                });
+            }
+
+            return new ResponseOutput(productDtos, HttpContext.TraceIdentifier);
+        }
+
+        [HttpPost]
+        [Route("/api/v{version:apiVersion}/BasicData/NewOrder")]
+        public ResponseOutput CreateNewOrder(OrderInputDto inputDto)
+        {
+            if (inputDto==null)
+            {
+                return new ResponseOutput(null, "传入参数为空", HttpContext.TraceIdentifier);
+            }
+
+
+
+
+
 
 
 
@@ -125,5 +157,10 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
 
 
 
-    }
+
+
+
+
+
+        }
 }

@@ -10,5 +10,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         List<ProductInformation> GetAll();
 
         void Save(ProductInformation product);
+
+        List<ProductInformation> GetProductsByClass(int class1, int class2);
     }
 }
