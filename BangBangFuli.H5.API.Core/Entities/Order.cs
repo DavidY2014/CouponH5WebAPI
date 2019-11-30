@@ -19,7 +19,7 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Required]
         [MaxLength(20)]
         [Display(Name = "券卡号")]
-        public int CouponId { get; set; }
+        public int CouponCode { get; set; }
 
         [Required]
         [MaxLength(20)]
@@ -63,7 +63,12 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Display(Name = "固定电话")]
         public string Telephone { get; set; }
 
+        /// <summary>
+        /// 物流单号，后台介入
+        /// </summary>
+        public string DeliveryNumber { get; set; }
 
+        public DateTime CreateTime { get; set; }
         public List<OrderDetail> Details { get; set; }
         
 

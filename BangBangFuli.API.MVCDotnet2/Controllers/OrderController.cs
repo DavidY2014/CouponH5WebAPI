@@ -30,7 +30,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 orderViewModels.Add(new OrderViewModel
                 {
                     OrderId = order.Id,
-                    CouponId = order.CouponId,
+                    CouponCode = order.CouponCode,
                     Contactor = order.Contactor,
                     MobilePhone = order.MobilePhone,
                     Address = order.Address,

@@ -25,15 +25,20 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         private readonly ICouponService _couponService;
         private readonly IBannerService _bannerService;
         private readonly IProductInformationService _productService;
+        private readonly IOrderDetailService _orderDetailService;
+        private readonly IProductDetailService _productDetailService;
         private readonly IOrderService _orderService;
         public string VERFIY_CODE_TOKEN_COOKIE_NAME = "VerifyCode";
 
-        public BasicDataController(ICouponService couponService,IBannerService bannerService,IProductInformationService productService, IOrderService orderService)
+        public BasicDataController(ICouponService couponService,IBannerService bannerService,IProductInformationService productService, IOrderService orderService,
+            IOrderDetailService orderDetailService,IProductDetailService productDetailService)
         {
             _couponService = couponService;
             _bannerService = bannerService;
             _orderService = orderService;
             _productService = productService;
+            _orderDetailService = orderDetailService;
+            _productDetailService = productDetailService;
         }
 
 
@@ -72,7 +77,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("/api/v{version:apiVersion}/BasicData/ExchangeCoupon/{code}/{password}")]
+        [Route("/api/v{version:apiVersion}/BasicData/ExchangeCoupon")]
         public ResponseOutput ExchangeCoupon(int code,string password )
         {
             CouponDto dto = new CouponDto();
@@ -87,11 +92,11 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     AvaliableCount = coupon.AvaliableCount,
                     TotalCount = coupon.TotalCount
                 };
-                return new ResponseOutput(dto, HttpContext.TraceIdentifier);
+                return new ResponseOutput(dto,"0","兑换成功", HttpContext.TraceIdentifier);
             }
             else
             {
-                return new ResponseOutput(dto,"劵信息获取失败", HttpContext.TraceIdentifier);
+                return new ResponseOutput(dto,"-1","劵信息获取失败", HttpContext.TraceIdentifier);
             }
         }
 
@@ -105,19 +110,28 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         [Route("/api/v{version:apiVersion}/BasicData/Products/{class1}/{class2}")]
         public ResponseOutput GetProductsByCatelog(int class1,int class2)
         {
-            var products = _productService.GetProductsByClass(class1, class2);
-
             var productDtos = new List<ProductDto>();
-
+            var products = _productService.GetProductsByClass(class1, class2);
             foreach (var product in products)
             {
+                var productDetails = _productDetailService.GetDetailsByProductId(product.Id);
+
+                List<ProductDetailOutputDto> detailDtos = new List<ProductDetailOutputDto>();
+                foreach (var productDetail in productDetails)
+                {
+                    detailDtos.Add(new ProductDetailOutputDto()
+                    {
+                        PhotoPath = productDetail.PhotoPath
+                    });
+                }
+
                 productDtos.Add(new ProductDto
                 {
                     Code = product.ProductCode,
                     Name = product.ProductName,
                     Description = product.Description,
                     IsInStock = product.IsInStock,
-                    Photos = product.Details.Select(item => item.PhotoPath).ToList()
+                    Photos = detailDtos.Select(item => item.PhotoPath).ToList()
                 });
             }
 
@@ -136,7 +150,18 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         {
             if (inputDto==null)
             {
-                return new ResponseOutput(null, "传入参数为空", HttpContext.TraceIdentifier);
+                return new ResponseOutput(null, "-1", "传入参数为空", HttpContext.TraceIdentifier);
+            }
+
+            if (inputDto.CouponCode == 0)
+            {
+                return new ResponseOutput(null, "-1", "券号不对", HttpContext.TraceIdentifier);
+            }
+
+            var coupon = _couponService.GetCouponByCode(inputDto.CouponCode);
+            if (coupon == null )
+            {
+                return new ResponseOutput(null,"-1", "券不存在", HttpContext.TraceIdentifier);
             }
 
             List<OrderDetail> details = new List<OrderDetail>();
@@ -156,6 +181,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 
             Order order = new Order
             {
+                CouponCode = inputDto.CouponCode,
                 Contactor = inputDto.Contactor,
                 MobilePhone = inputDto.MobilePhone,
                 Province = inputDto.Province,
@@ -175,24 +201,47 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
 
 
         /// <summary>
-        /// 7,获取此兑换券生成的订单列表
+        /// 7和8 获取此兑换券生成的订单列表,入参为券卡号
         /// </summary>
         /// <param name="couponId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("/api/v{version:apiVersion}/BasicData/Orders/{couponId}")]
-        public ResponseOutput GetOrderList(int couponId)
+        [Route("/api/v{version:apiVersion}/BasicData/Orders/{couponCode}")]
+        public ResponseOutput GetOrderList(int couponCode)
         {
             List<OrderOutputDto> orderDtos = new List<OrderOutputDto>();
-            Coupon coupon =  _couponService.GetCouponByCode(couponId);
+            Coupon coupon =  _couponService.GetCouponByCode(couponCode);
+            List<Order> orders =  _orderService.GetOrdersByCoupon(coupon.Code);
+            foreach (var order in orders)
+            {
+                List<OrderDetail> details = _orderDetailService.GetOrderDetailByOrderId(order.Id);
 
-            //_orderService.geta; ;
+                List<OrderDetailOutputDto> detailOutputDtos = new List<OrderDetailOutputDto>();
+                foreach (var detail in details)
+                {
+                    detailOutputDtos.Add(new OrderDetailOutputDto
+                    {
+                        ProductCode = detail.ProductCode,
+                        ProductName = detail.ProductName,
+                        ProductCount = detail.ProductCount
+                    });
+                }
 
-            //foreach (var order in coupon)
-            //{
-            //    OrderOutputDto dto = new OrderOutputDto { };
-            //    orderDtos.Add(dto);
-            //}
+                orderDtos.Add(new OrderOutputDto
+                {
+                    CouponCode = couponCode,
+                    Contactor = order.Contactor,
+                    MobilePhone = order.MobilePhone,
+                    Province = order.Province,
+                    City = order.City,
+                    District = order.District,
+                    Address = order.Address,
+                    ZipCode = order.ZipCode,
+                    Telephone = order.Telephone,
+                    CreateTime = order.CreateTime,
+                    Details = detailOutputDtos
+                });
+            }
 
             return new ResponseOutput(orderDtos, HttpContext.TraceIdentifier);
         }

@@ -41,6 +41,14 @@ namespace BangBangFuli.H5.API.WebAPI
             Message = message;
         }
 
+        public ResponseOutput(object data ,string code, string message, string requestId)
+    : this(requestId)
+        {
+            Code = code;
+            Message = message;
+            Data = data;
+        }
+
         public ResponseOutput(object data, string requestId)
             : this(requestId)
         {
