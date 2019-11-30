@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CouponSystemDBContext))]
-    [Migration("20191129093248_init")]
+    [Migration("20191130050840_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,8 +102,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CouponId");
-
                     b.ToTable("Orders");
                 });
 
@@ -143,9 +141,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 
                     b.Property<string>("PhotoPath");
 
-                    b.Property<int>("ProductId");
-
-                    b.Property<int?>("ProductInformationId");
+                    b.Property<int>("ProductInformationId");
 
                     b.HasKey("Id");
 
@@ -160,30 +156,24 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Catelog1");
+                    b.Property<int>("Class1");
 
-                    b.Property<int>("Catelog2");
+                    b.Property<int>("Class2");
 
                     b.Property<string>("Description");
 
                     b.Property<bool>("IsInStock");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductCode");
+
+                    b.Property<string>("ProductName")
                         .IsRequired();
 
-                    b.Property<string>("ProductCode");
+                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 
                     b.ToTable("ProductInformations");
-                });
-
-            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Order", b =>
-                {
-                    b.HasOne("BangBangFuli.H5.API.Core.Entities.Coupon")
-                        .WithMany("orders")
-                        .HasForeignKey("CouponId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.OrderDetail", b =>
@@ -198,7 +188,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 {
                     b.HasOne("BangBangFuli.H5.API.Core.Entities.ProductInformation")
                         .WithMany("Details")
-                        .HasForeignKey("ProductInformationId");
+                        .HasForeignKey("ProductInformationId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

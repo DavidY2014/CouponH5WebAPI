@@ -16,11 +16,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
     {
         private readonly IProductInformationService _productInformationService;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IProductDetailService _productDetailService;
 
-        public ProductController(IProductInformationService productInformationService ,IHostingEnvironment hostingEnvironment)
+        public ProductController(IProductInformationService productInformationService ,IHostingEnvironment hostingEnvironment,IProductDetailService productDetailService)
         {
             _productInformationService = productInformationService;
             _hostingEnvironment = hostingEnvironment;
+            _productDetailService = productDetailService;
         }
         public IActionResult Index()
         {
@@ -28,10 +30,33 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             var products = _productInformationService.GetAll();
             foreach (var product in products)
             {
-                productViewModelList.Add(new ProductInformationViewModel {ProductId=product.Id, ProductCode = product.ProductCode, ProductName = product.ProductName });
+                productViewModelList.Add(new ProductInformationViewModel
+                {
+                    ProductId = product.Id,
+                    ProductCode = product.ProductCode,
+                    ProductName = product.ProductName,
+                    IsInStock = product.IsInStock,
+                    Class1 = product.Class1,
+                    Class2 = product.Class2
+                });
             }
             return View(productViewModelList);
         }
+
+        public IActionResult Details(int id)
+        {
+            List<ProductDetailViewModel> detailViewModels = new List<ProductDetailViewModel>();
+            List<ProductDetail> details =  _productDetailService.GetDetailsByProductId(id);
+            foreach (var item in details)
+            {
+                detailViewModels.Add(new ProductDetailViewModel
+                {
+                    PhotoPath = item.PhotoPath
+                });
+            }
+            return View(detailViewModels);
+        }
+
 
         public IActionResult Create()
         {
@@ -62,6 +87,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
+                    IsInStock = model.IsInStock,
+                    Class1 = model.Class1,
+                    Class2 = model.Class2,
                     Details = details
                 };
 

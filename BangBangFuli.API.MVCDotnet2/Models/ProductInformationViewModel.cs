@@ -21,8 +21,8 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         [DisplayName("商品描述")]
         public string Description { get; set; }
 
-        //[DisplayName("商品状态")]
-        //public ProductStatus Status { get; set; }
+        [DisplayName("商品状态")]
+        public ProductStatus Status { get; set; }
 
         [DisplayName("是否有库存")]
         public bool IsInStock { get; set; }

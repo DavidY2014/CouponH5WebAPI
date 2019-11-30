@@ -3,6 +3,7 @@ using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 using BangBangFuli.Utils.ORM.Imp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
@@ -20,5 +21,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             Master.SaveChanges();
         }
 
+        public List<Order> GetAll()
+        {
+            return Master.Orders.ToList();
+        }
+
+        public Order GetOrderById(int orderId)
+        {
+            return Master.Orders.Find(orderId);
+        }
     }
 }

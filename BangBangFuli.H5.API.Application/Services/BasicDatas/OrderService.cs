@@ -20,5 +20,16 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _orderRepository.CreateNewOrder(order);
         }
 
+        public List<Order> GetAll()
+        {
+            return _orderRepository.GetAll();
+        }
+
+        public Order GetOrderById(int orderId)
+        {
+            return _orderRepository.GetOrderById(orderId);
+        }
+
+
     }
 }

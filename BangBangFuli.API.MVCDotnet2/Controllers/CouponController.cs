@@ -53,13 +53,14 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ValidityDate = model.ValidityDate,
                     TotalCount = model.TotalCount
                 };
-
                 _couponService.AddNew(coupon);
 
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
         }
+
+
 
 
     }

@@ -9,5 +9,9 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
     public interface IOrderRepository: IBaseRepository<Order>
     {
         void CreateNewOrder(Order order);
+
+        List<Order> GetAll();
+
+        Order GetOrderById(int orderId);
     }
 }

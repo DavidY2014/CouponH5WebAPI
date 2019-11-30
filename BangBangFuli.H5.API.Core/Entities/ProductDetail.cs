@@ -13,7 +13,7 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Key]
         public int Id { get; set; }
 
-        public int ProductId { get; set; }
+        public int ProductInformationId { get; set; }
         public string PhotoPath { get; set; }
 
     }

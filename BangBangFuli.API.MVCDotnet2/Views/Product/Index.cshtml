@@ -1,4 +1,4 @@
-﻿@model List<BangBangFuli.API.MVCDotnet2.Models.ProductInformationViewModel>
+﻿@model IEnumerable<BangBangFuli.API.MVCDotnet2.Models.ProductInformationViewModel>
 @{
     ViewData["Title"] = "商品信息";
 }
@@ -10,30 +10,56 @@
     <thead>
         <tr>
             <th>
-                商品Id
+                商品编码
             </th>
             <th>
                 商品名称
             </th>
-            <th></th>
+            <th>
+                是否有库存
+            </th>
+            <th>
+                状态
+            </th>
+            <th>
+                分类1
+            </th>
+            <th>
+                分类2
+            </th>
+            <th>
+                操作
+            </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var product in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ProductId">编辑</a> |
-                    <a asp-action="Details" asp-route-id="@item.ProductId">详情</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ProductId">删除</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => product.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => product.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => product.IsInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => product.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => product.Class1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => product.Class2)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary m-1" >编辑</a> |
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId"  class="btn btn-primary m-1">详情</a> |
+                <a asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-primary m-1">删除</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -1,0 +1,22 @@
+﻿@model List<ProductDetailViewModel>
+@{
+    ViewData["Title"] = "商品详情";
+}
+
+<h1>商品详情</h1>
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            @foreach (var item in Model)
+            {
+                <div class="card-body text-center">
+                    <img class="card-img-top" src="../../images/@item.PhotoPath" asp-append-version="true" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">返回列表</a>
+</div>
