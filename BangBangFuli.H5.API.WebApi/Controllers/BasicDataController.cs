@@ -196,7 +196,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
             _orderService.CreateNewOrder(order);
             //发送手机短信给用户，当然这个可以用job实现
 
-            return new ResponseOutput(null,"创建订单成功" ,HttpContext.TraceIdentifier);
+            return new ResponseOutput(null,"0","创建订单成功" ,HttpContext.TraceIdentifier);
         }
 
 
