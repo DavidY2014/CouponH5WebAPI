@@ -16,7 +16,7 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Required]
         [MaxLength(20)]
         [Display(Name = "劵卡号")]
-        public int Code { get; set; }
+        public string Code { get; set; }
 
         [Required]
         [MaxLength(20)]

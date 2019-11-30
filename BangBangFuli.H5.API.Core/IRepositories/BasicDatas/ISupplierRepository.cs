@@ -10,5 +10,6 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
     {
         List<Supplier> GetAll();
         Supplier GetSupplierById(int supplierId);
+        void CreateNew(Supplier supplier);
     }
 }

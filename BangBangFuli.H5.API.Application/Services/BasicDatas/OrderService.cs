@@ -30,7 +30,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             return _orderRepository.GetOrderById(orderId);
         }
 
-        public List<Order> GetOrdersByCoupon(int couponCode)
+        public List<Order> GetOrdersByCoupon(string couponCode)
         {
             return _orderRepository.GetOrdersByCoupon(couponCode);
         }

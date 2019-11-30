@@ -48,7 +48,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             {
                 Coupon coupon = new Coupon
                 {
-                    Code = int.Parse(model.Code),
+                    Code = model.Code,
                     Password = model.Password,
                     ValidityDate = model.ValidityDate,
                     TotalCount = model.TotalCount

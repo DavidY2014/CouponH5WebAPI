@@ -20,12 +20,12 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _couponRepository = couponRepository;
         }
 
-        public bool VerifyCoupon(int code, string password)
+        public bool VerifyCoupon(string code, string password)
         {
             return _couponRepository.VerifyCoupon(code, password);
         }
 
-        public Coupon GetCouponByCode(int code)
+        public Coupon GetCouponByCode(string code)
         {
             return _couponRepository.GetCouponByCode(code);
         }

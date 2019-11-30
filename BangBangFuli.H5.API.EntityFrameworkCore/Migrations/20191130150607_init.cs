@@ -15,7 +15,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BatchCode = table.Column<string>(nullable: true),
-                    Photo = table.Column<string>(nullable: true)
+                    Photo = table.Column<string>(nullable: true),
+                    CreateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +29,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Code = table.Column<int>(maxLength: 20, nullable: false),
+                    Code = table.Column<string>(maxLength: 20, nullable: false),
                     Password = table.Column<string>(maxLength: 20, nullable: false),
                     ValidityDate = table.Column<DateTime>(nullable: false),
                     AvaliableCount = table.Column<int>(nullable: false),
@@ -45,7 +46,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CouponId = table.Column<int>(maxLength: 20, nullable: false),
+                    CouponCode = table.Column<string>(maxLength: 20, nullable: false),
                     Contactor = table.Column<string>(maxLength: 20, nullable: false),
                     MobilePhone = table.Column<string>(maxLength: 20, nullable: false),
                     Province = table.Column<string>(maxLength: 10, nullable: false),
@@ -53,7 +54,9 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     District = table.Column<string>(maxLength: 10, nullable: false),
                     Address = table.Column<string>(maxLength: 10, nullable: false),
                     ZipCode = table.Column<int>(maxLength: 10, nullable: false),
-                    Telephone = table.Column<string>(maxLength: 10, nullable: false)
+                    Telephone = table.Column<string>(maxLength: 10, nullable: false),
+                    DeliveryNumber = table.Column<string>(nullable: true),
+                    CreateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,6 +80,21 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductInformations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Suppliers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Code = table.Column<string>(nullable: true),
+                    SupplierName = table.Column<string>(nullable: true),
+                    CreateTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suppliers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,6 +164,9 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductDetails");
+
+            migrationBuilder.DropTable(
+                name: "Suppliers");
 
             migrationBuilder.DropTable(
                 name: "Orders");

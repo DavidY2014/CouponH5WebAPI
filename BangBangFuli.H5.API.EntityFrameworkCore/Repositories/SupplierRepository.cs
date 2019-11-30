@@ -25,5 +25,11 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Suppliers.Find(supplierId);
         }
 
+        public void CreateNew(Supplier supplier)
+        {
+            Master.Suppliers.Add(supplier);
+            Master.SaveChanges();
+        }
+
     }
 }

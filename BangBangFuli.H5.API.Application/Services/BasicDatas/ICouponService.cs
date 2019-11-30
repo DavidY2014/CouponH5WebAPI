@@ -8,9 +8,9 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
     public interface ICouponService:IAppService
     {
 
-        bool VerifyCoupon(int code, string password);
+        bool VerifyCoupon(string code, string password);
 
-        Coupon GetCouponByCode(int code);
+        Coupon GetCouponByCode(string code);
 
         List<Coupon> GetAll();
 

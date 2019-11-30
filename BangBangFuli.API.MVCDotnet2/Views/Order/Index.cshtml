@@ -50,8 +50,8 @@
                 @Html.DisplayFor(modelItem => item.Telephone)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.OrderId">详情</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderId">删除</a>
+                <a asp-action="Details" asp-route-id="@item.OrderId" class="btn btn-primary m-1">详情</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderId" class="btn btn-primary m-1">删除</a>
             </td>
         </tr>
         }

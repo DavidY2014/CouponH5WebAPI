@@ -7,7 +7,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
 {
     public class CouponDto
     {
-        public int Code { get; set; } 
+        public string Code { get; set; } 
         public DateTime ValidityDate { get; set; }
 
         public int AvaliableCount { get; set; }

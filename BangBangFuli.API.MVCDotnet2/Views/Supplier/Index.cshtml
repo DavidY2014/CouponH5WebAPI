@@ -4,7 +4,7 @@
 }
     <h2>供应商信息</h2>
 <p>
-    <a asp-action="Create">添加供应商</a>
+    <a asp-action="Create" class="btn btn-primary">添加供应商</a>
 </p>
 <table class="table">
     <thead>
@@ -31,9 +31,9 @@
                     @Html.DisplayFor(modelItem => item.SupplierName)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.SupplierId">编辑</a> |
-                    <a asp-action="Details" asp-route-id="@item.SupplierId">详情</a> |
-                    <a asp-action="Delete" asp-route-id="@item.SupplierId">删除</a>
+                    <a asp-action="Edit" asp-route-id="@item.SupplierId" class="btn btn-primary m-1">编辑</a> |
+                    <a asp-action="Details" asp-route-id="@item.SupplierId" class="btn btn-primary m-1">详情</a> |
+                    <a asp-action="Delete" asp-route-id="@item.SupplierId" class="btn btn-primary m-1">删除</a>
                 </td>
             </tr>
         }

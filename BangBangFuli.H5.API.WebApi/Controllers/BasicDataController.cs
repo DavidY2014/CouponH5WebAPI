@@ -65,11 +65,26 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         public FileContentResult GetNumberVerifyCode()
         {
             string code = VerifyCodeHelper.GetSingleObj().CreateVerifyCode(VerifyCodeHelper.VerifyCodeType.NumberVerifyCode);
-
             Response.Cookies.Append(VERFIY_CODE_TOKEN_COOKIE_NAME, code);
-
             byte[] codeImage = VerifyCodeHelper.GetSingleObj().CreateByteByImgVerifyCode(code, 100, 40);
             return File(codeImage, @"image/jpeg");
+        }
+
+        /// <summary>
+        ///2.1, 验证码接口,验证code写入字典
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("/api/v{version:apiVersion}/BasicData/NumberVerifyCodeByDictionary")]
+        public ResponseOutput GetNumberVerifyCodeByDictionary()
+        {
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            string code = VerifyCodeHelper.GetSingleObj().CreateVerifyCode(VerifyCodeHelper.VerifyCodeType.NumberVerifyCode);
+            byte[] codeImage = VerifyCodeHelper.GetSingleObj().CreateByteByImgVerifyCode(code, 100, 40);
+            string imageStr = Convert.ToBase64String(codeImage);
+            result.Add("VerifyCode", code);
+            result.Add("ImageBase64", imageStr);
+            return new ResponseOutput(result,"0","Base64验证码",HttpContext.TraceIdentifier);
         }
 
         /// <summary>
@@ -78,13 +93,13 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("/api/v{version:apiVersion}/BasicData/ExchangeCoupon")]
-        public ResponseOutput ExchangeCoupon(int code,string password )
+        public ResponseOutput ExchangeCoupon(CouponInputDto couponInputDto )
         {
             CouponDto dto = new CouponDto();
-            var ret = _couponService.VerifyCoupon(code, password);
+            var ret = _couponService.VerifyCoupon(couponInputDto.Code,couponInputDto.Password);
             if (ret)
             {
-                var coupon = _couponService.GetCouponByCode(code);
+                var coupon = _couponService.GetCouponByCode(couponInputDto.Code);
                 dto = new CouponDto
                 {
                     Code = coupon.Code,
@@ -153,7 +168,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 return new ResponseOutput(null, "-1", "传入参数为空", HttpContext.TraceIdentifier);
             }
 
-            if (inputDto.CouponCode == 0)
+            if (inputDto.CouponCode == "0")
             {
                 return new ResponseOutput(null, "-1", "券号不对", HttpContext.TraceIdentifier);
             }
@@ -203,11 +218,11 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <summary>
         /// 7和8 获取此兑换券生成的订单列表,入参为券卡号
         /// </summary>
-        /// <param name="couponId"></param>
+        /// <param name="couponCode"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("/api/v{version:apiVersion}/BasicData/Orders/{couponCode}")]
-        public ResponseOutput GetOrderList(int couponCode)
+        public ResponseOutput GetOrderList(string couponCode)
         {
             List<OrderOutputDto> orderDtos = new List<OrderOutputDto>();
             Coupon coupon =  _couponService.GetCouponByCode(couponCode);

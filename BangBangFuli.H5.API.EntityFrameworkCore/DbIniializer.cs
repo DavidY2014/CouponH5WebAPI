@@ -14,9 +14,9 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore
 
             var coupons = new[]
             {
-                new Coupon { Code= 111111, Password="123456",ValidityDate=DateTime.Now.AddDays(30),AvaliableCount=10,TotalCount=10},
-                new Coupon { Code= 222222, Password="123456",ValidityDate=DateTime.Now.AddDays(30),AvaliableCount=10,TotalCount=10},
-                new Coupon { Code= 333333, Password="123456",ValidityDate=DateTime.Now.AddDays(30),AvaliableCount=10,TotalCount=10},
+                new Coupon { Code= "111111", Password="123456",ValidityDate=DateTime.Now.AddDays(30),AvaliableCount=10,TotalCount=10},
+                new Coupon { Code= "222222", Password="123456",ValidityDate=DateTime.Now.AddDays(30),AvaliableCount=10,TotalCount=10},
+                new Coupon { Code= "333333", Password="123456",ValidityDate=DateTime.Now.AddDays(30),AvaliableCount=10,TotalCount=10},
 
             };
             foreach (var s in coupons)

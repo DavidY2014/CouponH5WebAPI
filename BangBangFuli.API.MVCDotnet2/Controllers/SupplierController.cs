@@ -53,8 +53,17 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpPost]
         public ActionResult CreateSave(SupplierViewModel model)
         {
-
-
+            if (ModelState.IsValid)
+            {
+                Supplier supplier = new Supplier
+                {
+                    Code = model.SupplierCode,
+                    SupplierName = model.SupplierName,
+                    CreateTime = DateTime.Now
+                };
+                _supplierService.CreateNew(supplier);
+                return RedirectToAction(nameof(Index));
+            }
             return View(model);
         }
 

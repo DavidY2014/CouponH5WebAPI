@@ -31,7 +31,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Orders.Find(orderId);
         }
 
-        public List<Order> GetOrdersByCoupon(int couponCode)
+        public List<Order> GetOrdersByCoupon(string couponCode)
         {
             return Master.Orders.Where(item => item.CouponCode == couponCode).ToList();
         }

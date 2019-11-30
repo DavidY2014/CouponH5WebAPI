@@ -20,14 +20,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Coupons.ToList();
         }
 
-        public Coupon GetCouponByCode(int code)
+        public Coupon GetCouponByCode(string code)
         {
             var coupon = Master.Coupons.Where(item => item.Code == code).FirstOrDefault();
             return coupon;
         }
 
 
-        public bool VerifyCoupon(int code ,string password)
+        public bool VerifyCoupon(string code ,string password)
         {
             var coupon = Master.Coupons.Where(item => item.Code == code && item.Password == password);
             if (coupon != null && coupon.Count() > 0)

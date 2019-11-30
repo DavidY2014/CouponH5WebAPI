@@ -8,9 +8,9 @@ namespace BangBangFuli.H5.API.Core.IRepositories
     {
         List<Coupon> GetAll();
 
-        Coupon GetCouponByCode(int code);
+        Coupon GetCouponByCode(string code);
 
-        bool VerifyCoupon(int code, string password);
+        bool VerifyCoupon(string code, string password);
 
         void CreateNew(Coupon coupon);
 

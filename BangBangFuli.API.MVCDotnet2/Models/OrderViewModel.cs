@@ -11,7 +11,7 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         public int OrderId { get; set; }
 
         [Display(Name = "券号")]
-        public int CouponCode { get; set; }
+        public string CouponCode { get; set; }
 
         [Display(Name = "联系人")]
         public string Contactor { get; set; }

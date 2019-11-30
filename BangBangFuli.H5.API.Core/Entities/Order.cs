@@ -19,7 +19,7 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Required]
         [MaxLength(20)]
         [Display(Name = "券卡号")]
-        public int CouponCode { get; set; }
+        public string CouponCode { get; set; }
 
         [Required]
         [MaxLength(20)]

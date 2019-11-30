@@ -44,7 +44,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 
                     b.Property<int>("AvaliableCount");
 
-                    b.Property<int>("Code")
+                    b.Property<string>("Code")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<string>("Password")
@@ -78,7 +79,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                         .IsRequired()
                         .HasMaxLength(20);
 
-                    b.Property<int>("CouponCode")
+                    b.Property<string>("CouponCode")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<DateTime>("CreateTime");

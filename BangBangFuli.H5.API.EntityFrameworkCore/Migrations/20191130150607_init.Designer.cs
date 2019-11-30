@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CouponSystemDBContext))]
-    [Migration("20191130050840_init")]
+    [Migration("20191130150607_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 
                     b.Property<string>("BatchCode");
 
+                    b.Property<DateTime>("CreateTime");
+
                     b.Property<string>("Photo");
 
                     b.HasKey("Id");
@@ -44,7 +46,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 
                     b.Property<int>("AvaliableCount");
 
-                    b.Property<int>("Code")
+                    b.Property<string>("Code")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<string>("Password")
@@ -78,8 +81,13 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                         .IsRequired()
                         .HasMaxLength(20);
 
-                    b.Property<int>("CouponId")
+                    b.Property<string>("CouponCode")
+                        .IsRequired()
                         .HasMaxLength(20);
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<string>("DeliveryNumber");
 
                     b.Property<string>("District")
                         .IsRequired()
@@ -174,6 +182,23 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductInformations");
+                });
+
+            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Supplier", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code");
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<string>("SupplierName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.OrderDetail", b =>
