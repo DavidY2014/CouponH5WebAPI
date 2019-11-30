@@ -9,11 +9,15 @@ namespace BangBangFuli.API.MVCDotnet2.Models
 {
     public class BannerViewModel
     {
+        public int BannerId { get; set; }
+
         [Required(ErrorMessage = "请输入批次号"), MaxLength(50, ErrorMessage = "名字的长度不能超过50个字符")]
         [Display(Name = "批次号")]
         public string BatchCode { get; set; }
 
         [Display(Name = "图片")]
         public List<IFormFile> Photos { get; set; }
+
+        public DateTime CreateTime { get; set; }
     }
 }

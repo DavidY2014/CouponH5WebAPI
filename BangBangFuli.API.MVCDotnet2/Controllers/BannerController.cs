@@ -23,6 +23,14 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
+        public IActionResult Index()
+        {
+            List<BannerViewModel> bannerViewModels = new List<BannerViewModel>();
+
+            return View();
+        }
+
+
         /// <summary>
         /// 创建banner新建视图
         /// </summary>
