@@ -29,7 +29,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         {
             return _bannerRepository.GetUniquePhotoNamesByBatchCode(batchCode);
         }
-       
+
+        public List<Banner> GetAll()
+        {
+            return _bannerRepository.GetAll();
+        }
 
     }
 }

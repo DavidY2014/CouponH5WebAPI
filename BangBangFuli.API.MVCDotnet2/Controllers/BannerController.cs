@@ -26,8 +26,16 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         public IActionResult Index()
         {
             List<BannerViewModel> bannerViewModels = new List<BannerViewModel>();
-
-            return View();
+            List<Banner> banners = _bannerService.GetAll();
+            foreach (var banner in banners)
+            {
+                bannerViewModels.Add(new BannerViewModel
+                {
+                    BatchCode = banner.BatchCode,
+                    CreateTime = banner.CreateTime
+                });
+            }
+            return View(bannerViewModels);
         }
 
 
@@ -65,6 +73,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     Banner banner = new Banner
                     {
                         BatchCode = model.BatchCode,
+                        CreateTime = DateTime.Now,
                         Photo = uniqueFileName
                     };
                     _bannerService.Save(banner);

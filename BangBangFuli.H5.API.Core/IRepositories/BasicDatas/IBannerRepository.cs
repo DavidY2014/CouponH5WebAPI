@@ -12,5 +12,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
         int GetMax();
 
         List<string> GetUniquePhotoNamesByBatchCode(string batchCode);
+
+        List<Banner> GetAll();
     }
 }

@@ -4,14 +4,16 @@ using BangBangFuli.H5.API.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CouponSystemDBContext))]
-    partial class CouponSystemDBContextModelSnapshot : ModelSnapshot
+    [Migration("20191130123539_addcreatetime")]
+    partial class addcreatetime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,23 +180,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductInformations");
-                });
-
-            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Supplier", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Code");
-
-                    b.Property<DateTime>("CreateTime");
-
-                    b.Property<string>("SupplierName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.OrderDetail", b =>

@@ -15,5 +15,7 @@ namespace BangBangFuli.H5.API.Core.Entities
 
         public string Photo { get; set; }
 
+        public DateTime CreateTime { get; set; }
+
     }
 }
