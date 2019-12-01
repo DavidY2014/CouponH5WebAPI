@@ -61,6 +61,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         public IActionResult Create()
         {
+            PopulateClass1DropDownList();
             return View();
         }
 
@@ -102,7 +103,14 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View(model);
         }
 
-     
+
+        private void PopulateClass1DropDownList(object selectedClass1 = null)
+        {
+            var departments = from d in _context.Departments orderby d.Name select d;
+
+            ViewBag.DepartmentId = new SelectList(departments.AsNoTracking(), "Id", "Name", selectedDepartment);
+        }
+
 
 
 
