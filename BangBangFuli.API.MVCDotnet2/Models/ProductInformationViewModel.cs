@@ -33,6 +33,9 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         [DisplayName("分类2")]
         public int Class2 { get; set; }
 
+        [DisplayName("批次号")]
+        public int BatchId { get; set; }
+
         [Display(Name = "图片")]
         public List<IFormFile> Photos { get; set; }
 

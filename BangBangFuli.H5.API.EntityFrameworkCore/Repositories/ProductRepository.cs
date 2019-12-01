@@ -37,5 +37,11 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         {
             return Master.ProductInformations.Find(ProductId);
         }
+
+        public List<ProductInformation> GetProductsByBatchId(int batchId)
+        {
+            return Master.ProductInformations.Where(item => item.BatchId == batchId).ToList();
+        }
+  
     }
 }

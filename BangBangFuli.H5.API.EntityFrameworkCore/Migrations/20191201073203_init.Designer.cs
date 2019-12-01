@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CouponSystemDBContext))]
-    [Migration("20191130150607_init")]
+    [Migration("20191201073203_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,6 +163,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BatchId");
 
                     b.Property<int>("Class1");
 

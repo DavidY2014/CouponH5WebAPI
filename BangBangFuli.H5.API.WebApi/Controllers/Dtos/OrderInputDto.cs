@@ -17,10 +17,9 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
         public string District { get; set; }
         public string Address { get; set; }
 
-        public int ZipCode { get; set; }
+        public string ZipCode { get; set; }
         public string Telephone { get; set; }
 
-        public int Count { get; set; }
 
         public List<OrderDetailInputDto> DetailDtos { get; set; }
 

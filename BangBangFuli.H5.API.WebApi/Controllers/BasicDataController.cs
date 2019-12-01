@@ -116,6 +116,56 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         }
 
         /// <summary>
+        /// 4,通过批次号获取下面所有商品
+        /// </summary>
+        /// <param name="batchId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("/api/v{version:apiVersion}/BasicData/Products/{batchId}")]
+        public ResponseOutput GetProductsByBatchId(int batchId)
+        {
+            List<ProductDto> productDtos = new List<ProductDto>();
+            List<ProductInformation> products = _productService.GetProductsByBatchId(batchId);
+            foreach (var product in products)
+            {
+                productDtos.Add(new ProductDto
+                {
+                    Id=product.Id,
+                    Code = product.ProductCode,
+                    Name = product.ProductName,
+                    Description = product.Description,
+                    IsInStock = product.IsInStock,
+                    Class1 = product.Class1,
+                    Class2 = product.Class2
+                }) ;
+            }
+            return new ResponseOutput(productDtos, HttpContext.TraceIdentifier);
+        }
+
+        /// <summary>
+        /// 根据id 获取商品信息
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("/api/v{version:apiVersion}/BasicData/ProductDetail/{productId}")]
+        public ResponseOutput GetProductDetailByProductId(int productId)
+        {
+            ProductInformation product= _productService.GetProductById(productId);
+            ProductDto dto = new ProductDto
+            {
+                Code = product.ProductCode,
+                Name = product.ProductName,
+                Description = product.Description,
+                Class1 = product.Class1,
+                Class2 = product.Class2,
+                IsInStock = product.IsInStock
+            };
+            return new ResponseOutput(dto, HttpContext.TraceIdentifier);
+        }
+
+
+        /// <summary>
         /// 4and5 返回大类下的商品信息，包含图片，是否有货，详情等信息
         /// </summary>
         /// <param name="class1"></param>
@@ -203,7 +253,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 City = inputDto.City,
                 District = inputDto.District,
                 Address = inputDto.Address,
-                ZipCode = inputDto.ZipCode,
+                ZipCode = int.Parse(inputDto.ZipCode),
                 Telephone = inputDto.Telephone,
                 Details = details
             };

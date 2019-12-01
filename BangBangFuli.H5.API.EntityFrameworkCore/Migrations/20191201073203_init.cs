@@ -75,7 +75,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     Status = table.Column<int>(nullable: false),
                     IsInStock = table.Column<bool>(nullable: false),
                     Class1 = table.Column<int>(nullable: false),
-                    Class2 = table.Column<int>(nullable: false)
+                    Class2 = table.Column<int>(nullable: false),
+                    BatchId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

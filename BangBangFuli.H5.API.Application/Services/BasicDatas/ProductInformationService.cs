@@ -33,5 +33,10 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         {
             return _productRepository.GetProductById(ProductId);
         }
+
+        public List<ProductInformation> GetProductsByBatchId(int batchId)
+        {
+            return _productRepository.GetProductsByBatchId(batchId);
+        }
     }
 }

@@ -28,6 +28,9 @@
                 分类2
             </th>
             <th>
+                批次号
+            </th>
+            <th>
                 操作
             </th>
         </tr>
@@ -55,8 +58,11 @@
                 @Html.DisplayFor(modelItem => product.Class2)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary m-1" >编辑</a> |
-                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId"  class="btn btn-primary m-1">详情</a> |
+                @Html.DisplayFor(modelItem => product.BatchId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary m-1">编辑</a> |
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary m-1">详情</a> |
                 <a asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-primary m-1">删除</a>
             </td>
         </tr>

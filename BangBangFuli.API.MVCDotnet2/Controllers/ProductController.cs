@@ -37,7 +37,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductName = product.ProductName,
                     IsInStock = product.IsInStock,
                     Class1 = product.Class1,
-                    Class2 = product.Class2
+                    Class2 = product.Class2,
+                    BatchId = product.BatchId
                 });
             }
             return View(productViewModelList);
@@ -90,6 +91,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     IsInStock = model.IsInStock,
                     Class1 = model.Class1,
                     Class2 = model.Class2,
+                    BatchId = model.BatchId,
                     Details = details
                 };
 
@@ -99,6 +101,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             }
             return View(model);
         }
+
+     
+
 
 
         #region 上传图片文件到wwwroot目录

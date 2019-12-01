@@ -162,6 +162,8 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BatchId");
+
                     b.Property<int>("Class1");
 
                     b.Property<int>("Class2");
