@@ -19,9 +19,9 @@ namespace BangBangFuli.H5.API.Core.Entities
 
         public ProductStatus Status { get; set; }
 
-        public bool IsInStock { get; set; }
+        public StockStatus StockType { get; set; }
 
-        public int ClassId { get; set; }
+        public ClassType Type { get; set; }
 
         public int BatchId { get; set; }
         public List<ProductDetail> Details { get; set; }
@@ -29,13 +29,5 @@ namespace BangBangFuli.H5.API.Core.Entities
     }
 
 
-    /// <summary>
-    /// 商品上架状态
-    /// </summary>
-    public enum ProductStatus
-    {
-        On,
-        Down
-    }
 
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BangBangFuli.API.MVCDotnet2.Models;
 using BangBangFuli.H5.API.Application.Services.BasicDatas;
+using BangBangFuli.H5.API.Core;
 using BangBangFuli.H5.API.Core.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,15 +19,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         private readonly IProductInformationService _productInformationService;
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IProductDetailService _productDetailService;
-        private readonly ICatelogService _catelogService;
 
         public ProductController(IProductInformationService productInformationService ,IHostingEnvironment hostingEnvironment
-            ,IProductDetailService productDetailService,ICatelogService catelogService)
+            ,IProductDetailService productDetailService)
         {
             _productInformationService = productInformationService;
             _hostingEnvironment = hostingEnvironment;
             _productDetailService = productDetailService;
-            _catelogService = catelogService;
         }
         public IActionResult Index()
         {
@@ -39,10 +38,10 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductId = product.Id,
                     ProductCode = product.ProductCode,
                     ProductName = product.ProductName,
-                    IsInStock = product.IsInStock,
-                    ClassId = product.ClassId,
+                    StockStatus = product.StockType,
+                    ChineseTypeName = ConvertToChinese(product.Type),
                     BatchId = product.BatchId
-                });
+                }) ;
             }
             return View(productViewModelList);
         }
@@ -92,8 +91,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
-                    IsInStock = model.IsInStock,
-                    ClassId = model.ClassId,
+                    StockType = model.StockStatus,
+                    Type = ChineseConvertToEnum(GetMapClassName(model.ChineseTypeName)),
                     BatchId = model.BatchId,
                     Details = details
                 };
@@ -108,9 +107,78 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         private void PopulateClassDropDownList(object selectedClass = null)
         {
-            var catelogs = _catelogService.GetAll();
+            var productTypes = new List<object>();
+            productTypes.Add(new { id = 0, name = "悦享生活" });
+            productTypes.Add(new { id = 1, name = "居家好物" });
+            productTypes.Add(new { id = 2, name = "品质生活" });
+            productTypes.Add(new { id = 3, name = "厨房甄选" });
+            ViewBag.Catelogs = new SelectList(productTypes, "id", "name", selectedClass);
+        }
 
-            ViewBag.Catelogs = new SelectList(catelogs, "Id", "Name", selectedClass);
+        public string GetMapClassName(string index)
+        {
+            var ret = string.Empty;
+            switch (index)
+            {
+                case "0":
+                    ret = "悦享生活";
+                    break;
+                case "1":
+                    ret = "居家好物";
+                    break;
+                case "2":
+                    ret = "品质生活";
+                    break;
+                case "3":
+                    ret = "厨房甄选";
+                    break;
+            }
+            return ret;
+        }
+
+        public string ConvertToChinese(ClassType classType)
+        {
+            var ret =string.Empty;
+            switch (classType)
+            {
+                case ClassType.yuexiangmeiwei:
+                    ret ="悦享生活";
+                    break;
+                case ClassType.jujiahaowu:
+                    ret = "居家好物";
+                    break;
+                case ClassType.pingzhishenghuo:
+                    ret = "品质生活";
+                    break;
+                case ClassType.chufangzhengxuan:
+                    ret = "厨房甄选";
+                    break;
+            }
+            return ret;
+
+        }
+
+        public ClassType ChineseConvertToEnum(string chineseTypeName)
+        {
+            ClassType ret = ClassType.unknown  ;
+            switch (chineseTypeName)
+            {
+                case "悦享生活":
+                    ret = ClassType.yuexiangmeiwei;
+                    break;
+                case "居家好物":
+                    ret = ClassType.jujiahaowu;
+                    break;
+                case "品质生活":
+                    ret = ClassType.pingzhishenghuo;
+                    break;
+                case "厨房甄选":
+                    ret = ClassType.chufangzhengxuan;
+                    break;
+            }
+            return ret;
+
+
         }
 
 

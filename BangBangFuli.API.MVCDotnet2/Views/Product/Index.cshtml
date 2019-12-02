@@ -22,10 +22,7 @@
                 状态
             </th>
             <th>
-                分类1
-            </th>
-            <th>
-                分类2
+                分类
             </th>
             <th>
                 批次号
@@ -46,13 +43,13 @@
                 @Html.DisplayFor(modelItem => product.ProductName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => product.IsInStock)
+                @Html.DisplayFor(modelItem => product.StockStatus)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => product.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => product.ClassId)
+                @Html.DisplayFor(modelItem => product.ChineseTypeName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => product.BatchId)

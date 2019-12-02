@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BangBangFuli.H5.API.Core;
 using BangBangFuli.H5.API.Core.Entities;
 using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 
@@ -24,9 +25,9 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _productRepository.Save(product);
         }
 
-        public List<ProductInformation> GetProductsByClass(int classId)
+        public List<ProductInformation> GetProductsByClassType(ClassType type)
         {
-            return _productRepository.GetProductsByClass(classId);
+            return _productRepository.GetProductsByClassType(type);
         }
 
         public ProductInformation GetProductById(int ProductId)

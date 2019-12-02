@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BangBangFuli.H5.API.Application.Models.BasicDatas;
 using BangBangFuli.H5.API.Application.Services.BasicDatas;
 using BangBangFuli.H5.API.Application.Services.Redis;
+using BangBangFuli.H5.API.Core;
 using BangBangFuli.H5.API.Core.Entities;
 using BangBangFuli.H5.API.WebAPI;
 using BangBangFuli.H5.API.WebAPI.Controllers.Dtos;
@@ -134,8 +135,8 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Code = product.ProductCode,
                     Name = product.ProductName,
                     Description = product.Description,
-                    IsInStock = product.IsInStock,
-                    classId = product.ClassId
+                    IsInStock = Enum.GetName(typeof(StockStatus), product.StockType),
+                    TypeName = Enum.GetName(typeof(ClassType), product.Type),
                 }) ;
             }
             return new ResponseOutput(productDtos, HttpContext.TraceIdentifier);
@@ -157,7 +158,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 Name = product.ProductName,
                 Description = product.Description,
          
-                IsInStock = product.IsInStock
+                IsInStock = Enum.GetName(typeof(StockStatus), product.StockType)
             };
             return new ResponseOutput(dto, HttpContext.TraceIdentifier);
         }
@@ -170,11 +171,11 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <param name="class2"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("/api/v{version:apiVersion}/BasicData/Products/{classId}")]
-        public ResponseOutput GetProductsByCatelog(int classId)
+        [Route("/api/v{version:apiVersion}/BasicData/Products/{classType}")]
+        public ResponseOutput GetProductsByCatelog(ClassType classType)
         {
             var productDtos = new List<ProductDto>();
-            var products = _productService.GetProductsByClass(classId);
+            var products = _productService.GetProductsByClassType(classType);
             foreach (var product in products)
             {
                 var productDetails = _productDetailService.GetDetailsByProductId(product.Id);
@@ -193,7 +194,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Code = product.ProductCode,
                     Name = product.ProductName,
                     Description = product.Description,
-                    IsInStock = product.IsInStock,
+                    IsInStock = Enum.GetName(typeof(StockStatus), product.StockType),
                     Photos = detailDtos.Select(item => item.PhotoPath).ToList()
                 });
             }
@@ -310,29 +311,48 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public ClassType ConvertToEnum(string TypeName)
+        {
+            ClassType ret = ClassType.chufangzhengxuan;
+            switch (TypeName)
+            {
+                case "yuexiangmeiwei":
+                    ret = ClassType.yuexiangmeiwei;
+                    break;
+                case "jujiahaowu":
+                    ret = ClassType.jujiahaowu;
+                    break;
+                case "pingzhishenghuo":
+                    ret = ClassType.pingzhishenghuo;
+                    break;
+                case "chufangzhengxuan":
+                    ret = ClassType.chufangzhengxuan;
+                    break;
+            }
+            return ret;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 }

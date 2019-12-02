@@ -1,4 +1,5 @@
-﻿using BangBangFuli.H5.API.Core.Entities;
+﻿using BangBangFuli.H5.API.Core;
+using BangBangFuli.H5.API.Core.Entities;
 using IdentityServer4.Stores;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 
         void Save(ProductInformation product);
 
-        List<ProductInformation> GetProductsByClass(int classId);
+        List<ProductInformation> GetProductsByClassType(ClassType type);
 
         ProductInformation GetProductById(int ProductId);
 

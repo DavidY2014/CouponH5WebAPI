@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BangBangFuli.H5.API.Core;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,10 +26,10 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         public ProductStatus Status { get; set; }
 
         [DisplayName("是否有库存")]
-        public bool IsInStock { get; set; }
+        public StockStatus StockStatus { get; set; }
 
-        [DisplayName("分类号")]
-        public int ClassId { get; set; }
+        [DisplayName("类型")]
+        public string ChineseTypeName { get; set; }
 
         [DisplayName("批次号")]
         public int BatchId { get; set; }

@@ -1,4 +1,5 @@
-﻿using BangBangFuli.H5.API.Core.Entities;
+﻿using BangBangFuli.H5.API.Core;
+using BangBangFuli.H5.API.Core.Entities;
 using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 using BangBangFuli.Utils.ORM.Imp;
 using Microsoft.EntityFrameworkCore;
@@ -28,9 +29,9 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             Master.SaveChanges();
         }
 
-        public List<ProductInformation> GetProductsByClass(int classId)
+        public List<ProductInformation> GetProductsByClassType (ClassType type)
         {
-           return  Master.ProductInformations.Where(item => item.ClassId == classId).ToList();
+           return  Master.ProductInformations.Where(item => item.Type == type).ToList();
         }
 
         public ProductInformation GetProductById(int ProductId)

@@ -32,7 +32,5 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore
 
         public DbSet<Supplier> Suppliers { get; set; }
 
-        public DbSet<Catelog> Catelogs { get; set; }
-
     }
 }

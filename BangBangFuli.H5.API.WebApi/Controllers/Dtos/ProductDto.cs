@@ -12,9 +12,9 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
         
         public string Name { get; set; }
 
-        public bool IsInStock { get; set; }
+        public string IsInStock { get; set; }
 
-        public int classId { get; set; }
+        public string TypeName { get; set; }
 
         public string Description { get; set; }
 
