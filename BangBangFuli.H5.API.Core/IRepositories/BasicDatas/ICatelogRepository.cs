@@ -6,7 +6,7 @@ using BangBangFuli.Utils.ORM.Interface;
 
 namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 {
-    public interface ICatelogRepository: IBaseRepository<Catelog>
+    public interface ICatelogRepository : IBaseRepository<Catelog>
     {
     }
 }
