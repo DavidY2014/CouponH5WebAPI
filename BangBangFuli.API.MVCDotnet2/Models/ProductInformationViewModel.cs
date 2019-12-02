@@ -27,11 +27,8 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         [DisplayName("是否有库存")]
         public bool IsInStock { get; set; }
 
-        [DisplayName("分类1")]
-        public int Class1 { get; set; }
-
-        [DisplayName("分类2")]
-        public int Class2 { get; set; }
+        [DisplayName("分类号")]
+        public int ClassId { get; set; }
 
         [DisplayName("批次号")]
         public int BatchId { get; set; }

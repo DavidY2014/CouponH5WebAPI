@@ -9,6 +9,7 @@ using BangBangFuli.H5.API.Core.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BangBangFuli.API.MVCDotnet2.Controllers
 {
@@ -17,12 +18,15 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         private readonly IProductInformationService _productInformationService;
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IProductDetailService _productDetailService;
+        private readonly ICatelogService _catelogService;
 
-        public ProductController(IProductInformationService productInformationService ,IHostingEnvironment hostingEnvironment,IProductDetailService productDetailService)
+        public ProductController(IProductInformationService productInformationService ,IHostingEnvironment hostingEnvironment
+            ,IProductDetailService productDetailService,ICatelogService catelogService)
         {
             _productInformationService = productInformationService;
             _hostingEnvironment = hostingEnvironment;
             _productDetailService = productDetailService;
+            _catelogService = catelogService;
         }
         public IActionResult Index()
         {
@@ -36,8 +40,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductCode = product.ProductCode,
                     ProductName = product.ProductName,
                     IsInStock = product.IsInStock,
-                    Class1 = product.Class1,
-                    Class2 = product.Class2,
+                    ClassId = product.ClassId,
                     BatchId = product.BatchId
                 });
             }
@@ -61,7 +64,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         public IActionResult Create()
         {
-            PopulateClass1DropDownList();
+            PopulateClassDropDownList();
             return View();
         }
 
@@ -90,8 +93,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
                     IsInStock = model.IsInStock,
-                    Class1 = model.Class1,
-                    Class2 = model.Class2,
+                    ClassId = model.ClassId,
                     BatchId = model.BatchId,
                     Details = details
                 };
@@ -104,11 +106,11 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         }
 
 
-        private void PopulateClass1DropDownList(object selectedClass1 = null)
+        private void PopulateClassDropDownList(object selectedClass = null)
         {
-            var departments = from d in _context.Departments orderby d.Name select d;
+            var catelogs = _catelogService.GetAll();
 
-            ViewBag.DepartmentId = new SelectList(departments.AsNoTracking(), "Id", "Name", selectedDepartment);
+            ViewBag.Catelogs = new SelectList(catelogs, "Id", "Name", selectedClass);
         }
 
 

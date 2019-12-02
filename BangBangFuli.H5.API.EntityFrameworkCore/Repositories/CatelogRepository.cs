@@ -3,6 +3,7 @@ using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 using BangBangFuli.Utils.ORM.Imp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
@@ -15,6 +16,16 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         }
 
 
+        public Catelog GetCatelogInfoByClassId(int classId)
+        {
+            return Master.Catelogs.FirstOrDefault(item => item.ClassId == classId);
+        }
+
+
+        public List<Catelog> GetAll()
+        {
+            return Master.Catelogs.ToList();
+        }
 
     }
 }

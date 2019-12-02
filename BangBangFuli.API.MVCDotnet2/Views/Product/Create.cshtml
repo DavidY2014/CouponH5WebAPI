@@ -23,16 +23,6 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Class1" class="control-label"></label>
-                <input asp-for="Class1" class="form-control" />
-                <span asp-validation-for="Class1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Class2" class="control-label"></label>
-                <input asp-for="Class2" class="form-control" />
-                <span asp-validation-for="Class2" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="BatchId" class="control-label"></label>
                 <input asp-for="BatchId" class="form-control" />
@@ -40,11 +30,11 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Class1" class="control-label"></label>
-                <select asp-for="Class1" class="form-control" asp-items="ViewBag.Class1Items">
-                    <option value="">-- 选择状态 --</option>
+                <label asp-for="ClassId" class="control-label"></label>
+                <select asp-for="ClassId" class="form-control" asp-items="ViewBag.Catelogs">
+                    <option value="">-- 选择类型 --</option>
                 </select>
-                <span asp-validation-for="Class1" class="text-danger"></span>
+                <span asp-validation-for="ClassId" class="text-danger"></span>
             </div>
 
             <div class="form-group row">

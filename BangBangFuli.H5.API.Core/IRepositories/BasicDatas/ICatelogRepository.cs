@@ -8,5 +8,8 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 {
     public interface ICatelogRepository : IBaseRepository<Catelog>
     {
+        Catelog GetCatelogInfoByClassId(int classId);
+
+        List<Catelog> GetAll();
     }
 }

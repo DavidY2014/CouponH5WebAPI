@@ -135,8 +135,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Name = product.ProductName,
                     Description = product.Description,
                     IsInStock = product.IsInStock,
-                    Class1 = product.Class1,
-                    Class2 = product.Class2
+                    classId = product.ClassId
                 }) ;
             }
             return new ResponseOutput(productDtos, HttpContext.TraceIdentifier);
@@ -157,8 +156,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 Code = product.ProductCode,
                 Name = product.ProductName,
                 Description = product.Description,
-                Class1 = product.Class1,
-                Class2 = product.Class2,
+         
                 IsInStock = product.IsInStock
             };
             return new ResponseOutput(dto, HttpContext.TraceIdentifier);
@@ -172,11 +170,11 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <param name="class2"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("/api/v{version:apiVersion}/BasicData/Products/{class1}/{class2}")]
-        public ResponseOutput GetProductsByCatelog(int class1,int class2)
+        [Route("/api/v{version:apiVersion}/BasicData/Products/{classId}")]
+        public ResponseOutput GetProductsByCatelog(int classId)
         {
             var productDtos = new List<ProductDto>();
-            var products = _productService.GetProductsByClass(class1, class2);
+            var products = _productService.GetProductsByClass(classId);
             foreach (var product in products)
             {
                 var productDetails = _productDetailService.GetDetailsByProductId(product.Id);

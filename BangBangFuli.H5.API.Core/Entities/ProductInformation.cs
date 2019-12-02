@@ -21,9 +21,7 @@ namespace BangBangFuli.H5.API.Core.Entities
 
         public bool IsInStock { get; set; }
 
-        public int Class1 { get; set; }
-
-        public int Class2 { get; set; }
+        public int ClassId { get; set; }
 
         public int BatchId { get; set; }
         public List<ProductDetail> Details { get; set; }

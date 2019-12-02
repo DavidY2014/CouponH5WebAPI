@@ -11,7 +11,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 
         void Save(ProductInformation product);
 
-        List<ProductInformation> GetProductsByClass(int class1, int class2);
+        List<ProductInformation> GetProductsByClass(int classId);
 
         ProductInformation GetProductById(int ProductId);
 
