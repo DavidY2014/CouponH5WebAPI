@@ -122,7 +122,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <param name="batchId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("/api/v{version:apiVersion}/BasicData/Products/{batchId}")]
+        [Route("/api/v{version:apiVersion}/BasicData/BatchProducts/{batchId}")]
         public ResponseOutput GetProductsByBatchId(int batchId)
         {
             List<ProductDto> productDtos = new List<ProductDto>();
@@ -135,7 +135,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Code = product.ProductCode,
                     Name = product.ProductName,
                     Description = product.Description,
-                    IsInStock = Enum.GetName(typeof(StockStatus), product.StockType),
+                    IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
                     TypeName = Enum.GetName(typeof(ClassType), product.Type),
                 }) ;
             }
@@ -157,21 +157,19 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 Code = product.ProductCode,
                 Name = product.ProductName,
                 Description = product.Description,
-         
-                IsInStock = Enum.GetName(typeof(StockStatus), product.StockType)
+                IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType)
             };
             return new ResponseOutput(dto, HttpContext.TraceIdentifier);
         }
 
 
         /// <summary>
-        /// 4and5 返回大类下的商品信息，包含图片，是否有货，详情等信息
+        ///  4and5 返回大类下的商品信息，包含图片，是否有货，详情等信息
         /// </summary>
-        /// <param name="class1"></param>
-        /// <param name="class2"></param>
+        /// <param name="classType"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("/api/v{version:apiVersion}/BasicData/Products/{classType}")]
+        [Route("/api/v{version:apiVersion}/BasicData/ClassTypeProducts/{classType}")]
         public ResponseOutput GetProductsByCatelog(ClassType classType)
         {
             var productDtos = new List<ProductDto>();
@@ -194,7 +192,8 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Code = product.ProductCode,
                     Name = product.ProductName,
                     Description = product.Description,
-                    IsInStock = Enum.GetName(typeof(StockStatus), product.StockType),
+                    TypeName = Enum.GetName(typeof(ClassType), product.Type),
+                    IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
                     Photos = detailDtos.Select(item => item.PhotoPath).ToList()
                 });
             }
@@ -309,48 +308,6 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
 
             return new ResponseOutput(orderDtos, HttpContext.TraceIdentifier);
         }
-
-
-        public ClassType ConvertToEnum(string TypeName)
-        {
-            ClassType ret = ClassType.chufangzhengxuan;
-            switch (TypeName)
-            {
-                case "yuexiangmeiwei":
-                    ret = ClassType.yuexiangmeiwei;
-                    break;
-                case "jujiahaowu":
-                    ret = ClassType.jujiahaowu;
-                    break;
-                case "pingzhishenghuo":
-                    ret = ClassType.pingzhishenghuo;
-                    break;
-                case "chufangzhengxuan":
-                    ret = ClassType.chufangzhengxuan;
-                    break;
-            }
-            return ret;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -23,10 +23,10 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         public string Description { get; set; }
 
         [DisplayName("商品状态")]
-        public ProductStatus Status { get; set; }
+        public string ProductStatusName { get; set; }
 
         [DisplayName("是否有库存")]
-        public StockStatus StockStatus { get; set; }
+        public string StockStatusName { get; set; }
 
         [DisplayName("类型")]
         public string ChineseTypeName { get; set; }
@@ -37,11 +37,5 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         [Display(Name = "图片")]
         public List<IFormFile> Photos { get; set; }
 
-    }
-
-    public enum ProductStatus
-    {
-        On,
-        Down
     }
 }

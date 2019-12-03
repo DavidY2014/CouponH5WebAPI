@@ -38,7 +38,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductId = product.Id,
                     ProductCode = product.ProductCode,
                     ProductName = product.ProductName,
-                    StockStatus = product.StockType,
+                    StockStatusName = EnumStockStatusConvertToChinese(product.StockType),
+                    ProductStatusName = EnumConvertToChinese(product.ProductStatus),
                     ChineseTypeName = ConvertToChinese(product.Type),
                     BatchId = product.BatchId
                 }) ;
@@ -64,6 +65,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         public IActionResult Create()
         {
             PopulateClassDropDownList();
+            PopulateProductStatusDropDownList();
+            PopulateStockStatusDropDownList();
             return View();
         }
 
@@ -91,7 +94,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
-                    StockType = model.StockStatus,
+                    StockType = GetStockStatusMap(model.StockStatusName),
+                    ProductStatus = GetProductStatusMap(model.ProductStatusName),
                     Type = ChineseConvertToEnum(GetMapClassName(model.ChineseTypeName)),
                     BatchId = model.BatchId,
                     Details = details
@@ -104,7 +108,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View(model);
         }
 
-
+        #region 分类枚举
         private void PopulateClassDropDownList(object selectedClass = null)
         {
             var productTypes = new List<object>();
@@ -114,6 +118,24 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             productTypes.Add(new { id = 3, name = "厨房甄选" });
             ViewBag.Catelogs = new SelectList(productTypes, "id", "name", selectedClass);
         }
+
+
+        private void PopulateProductStatusDropDownList(object selectedProductStatus= null)
+        {
+            var productStatusTypes = new List<object>();
+            productStatusTypes.Add(new { id = 0, name = "上架" });
+            productStatusTypes.Add(new { id = 1, name = "下架" });
+            ViewBag.ProductStatusTypes = new SelectList(productStatusTypes, "id", "name", selectedProductStatus);
+        }
+
+        private void PopulateStockStatusDropDownList(object selectedStockStatus = null)
+        {
+            var stockStatusTypes = new List<object>();
+            stockStatusTypes.Add(new { id = 0, name = "有货" });
+            stockStatusTypes.Add(new { id = 1, name = "无货" });
+            ViewBag.StockStatusTypes = new SelectList(stockStatusTypes, "id", "name", selectedStockStatus);
+        }
+
 
         public string GetMapClassName(string index)
         {
@@ -138,11 +160,11 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         public string ConvertToChinese(ClassType classType)
         {
-            var ret =string.Empty;
+            var ret = string.Empty;
             switch (classType)
             {
                 case ClassType.yuexiangmeiwei:
-                    ret ="悦享生活";
+                    ret = "悦享生活";
                     break;
                 case ClassType.jujiahaowu:
                     ret = "居家好物";
@@ -160,7 +182,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         public ClassType ChineseConvertToEnum(string chineseTypeName)
         {
-            ClassType ret = ClassType.unknown  ;
+            ClassType ret = ClassType.unknown;
             switch (chineseTypeName)
             {
                 case "悦享生活":
@@ -180,6 +202,84 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
 
         }
+        #endregion
+
+        #region 商品状态枚举
+
+        public string EnumConvertToChinese(ProductStatusType productStatus)
+        {
+            var ret = string.Empty;
+            switch (productStatus)
+            {
+                case ProductStatusType.On:
+                    ret = "上架";
+                    break;
+                case ProductStatusType.Down:
+                    ret = "下架";
+                    break;
+            }
+            return ret;
+        }
+
+        public ProductStatusType GetProductStatusMap(string index)
+        {
+            ProductStatusType ret = ProductStatusType.Unknown;
+            switch (index)
+            {
+                case "0":
+                    ret = ProductStatusType.On;
+                    break;
+                case "1":
+                    ret = ProductStatusType.Down;
+                    break;
+                default:
+                    ret = ProductStatusType.Unknown;
+                    break;
+            }
+            return ret;
+
+        }
+
+        public StockStatusType GetStockStatusMap(string index)
+        {
+            StockStatusType ret = StockStatusType.Unknown;
+            switch (index)
+            {
+                case "0":
+                    ret = StockStatusType.Yes;
+                    break;
+                case "1":
+                    ret = StockStatusType.No;
+                    break;
+                default:
+                    ret = StockStatusType.Unknown;
+                    break;
+            }
+            return ret;
+        }
+
+
+        #endregion
+
+        #region 商品库存状态
+
+        public string EnumStockStatusConvertToChinese(StockStatusType stockStatus)
+        {
+            var ret = string.Empty;
+            switch (stockStatus)
+            {
+                case StockStatusType.Yes:
+                    ret = "有";
+                    break;
+                case StockStatusType.No:
+                    ret = "没有";
+                    break;
+            }
+            return ret;
+        }
+
+
+        #endregion
 
 
 

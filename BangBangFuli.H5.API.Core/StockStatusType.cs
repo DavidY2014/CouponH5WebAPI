@@ -4,9 +4,10 @@ using System.Text;
 
 namespace BangBangFuli.H5.API.Core
 {
-    public enum ProductStatus
+   public enum StockStatusType
     {
-        On=0,
-        Down=1
+        Yes=0,
+        No=1,
+        Unknown
     }
 }
