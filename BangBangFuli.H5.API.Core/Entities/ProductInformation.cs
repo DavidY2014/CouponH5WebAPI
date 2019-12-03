@@ -17,9 +17,9 @@ namespace BangBangFuli.H5.API.Core.Entities
 
         public string Description { get; set; }
 
-        public ProductStatus Status { get; set; }
+        public ProductStatusType ProductStatus { get; set; }
 
-        public StockStatus StockType { get; set; }
+        public StockStatusType StockType { get; set; }
 
         public ClassType Type { get; set; }
 
