@@ -6,14 +6,8 @@ using BangBangFuli.Utils.ORM.Interface;
 
 namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 {
-    public interface IBannerRepository : IBaseRepository<Banner>
+    public interface IBannerDetailRepository : IBaseRepository<BannerDetail>
     {
-        void CreateNew(Banner banner);
-        int GetMax();
-
-        List<Banner> GetAll();
-
-        Banner GetBannerById(int Id);
-
+        List<BannerDetail> GetDetailsByBannerId(int bannerId);
     }
 }

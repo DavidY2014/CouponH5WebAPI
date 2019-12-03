@@ -25,14 +25,14 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             return _bannerRepository.GetMax();
         }
 
-        public List<string> GetUniquePhotoNamesByBatchCode(string batchCode)
-        {
-            return _bannerRepository.GetUniquePhotoNamesByBatchCode(batchCode);
-        }
-
         public List<Banner> GetAll()
         {
             return _bannerRepository.GetAll();
+        }
+
+        public Banner GetBannerById(int Id)
+        {
+           return  _bannerRepository.GetBannerById(Id);
         }
 
     }

@@ -49,10 +49,10 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("/api/v{version:apiVersion}/BasicData/Banner/{batchCode}")]
-        public ResponseOutput GetBannerByBatchCode(string batchCode)
+        [Route("/api/v{version:apiVersion}/BasicData/Banner/{batchId}")]
+        public ResponseOutput GetBannerByBatchId(int batchId)
         {
-            var photoUniqueNames = _bannerService.GetUniquePhotoNamesByBatchCode(batchCode);
+            var photoUniqueNames = _bannerService.GetUniquePhotoNamesByBatchId(batchId);
             return new ResponseOutput(photoUniqueNames, HttpContext.TraceIdentifier);
         }
 
@@ -152,13 +152,29 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         public ResponseOutput GetProductDetailByProductId(int productId)
         {
             ProductInformation product= _productService.GetProductById(productId);
+            //图片详情
+            var productDetails = _productDetailService.GetDetailsByProductId(product.Id);
+
+            List<ProductDetailOutputDto> detailDtos = new List<ProductDetailOutputDto>();
+            if (productDetails!=null)
+            {
+                foreach (var productDetail in productDetails)
+                {
+                    detailDtos.Add(new ProductDetailOutputDto()
+                    {
+                        PhotoPath = productDetail.PhotoPath
+                    });
+                }
+            }
+
             ProductDto dto = new ProductDto
             {
                 Code = product.ProductCode,
                 Name = product.ProductName,
                 Description = product.Description,
-         
-                IsInStock = Enum.GetName(typeof(StockStatus), product.StockType)
+                TypeName = Enum.GetName(typeof(ClassType), product.Type),
+                IsInStock = Enum.GetName(typeof(StockStatus), product.StockType),
+                Photos = detailDtos.Select(item => item.PhotoPath).ToList()
             };
             return new ResponseOutput(dto, HttpContext.TraceIdentifier);
         }

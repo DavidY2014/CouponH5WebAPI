@@ -5,13 +5,8 @@ using BangBangFuli.H5.API.Core.Entities;
 
 namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
-    public interface IBannerService : IAppService
+    public interface IBannerDetailService:IAppService
     {
-        void Save(Banner banner);
-        int GetMax();
-
-        List<Banner> GetAll();
-        Banner GetBannerById(int Id);
-
+        List<BannerDetail> GetDetailsByBannerId(int bannerId);
     }
 }

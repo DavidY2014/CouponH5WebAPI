@@ -26,15 +26,17 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Banners.ToList().Count();
         }
 
-        public List<string> GetUniquePhotoNamesByBatchCode(string batchCode)
-        {
-            var items = Master.Banners.Where(item => item.BatchCode == batchCode).Select(item => item.Photo).ToList();
-            return items;
-        }
 
         public List<Banner> GetAll()
         {
             return Master.Banners.ToList();
         }
+
+        public Banner GetBannerById(int Id)
+        {
+            return Master.Banners.Find(Id);
+        }
+
+
     }
 }

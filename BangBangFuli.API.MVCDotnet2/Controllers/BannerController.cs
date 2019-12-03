@@ -16,11 +16,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
     {
         private readonly IBannerService _bannerService;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IBannerDetailService _bannerDetailService;
 
-        public BannerController(IBannerService bannerService, IHostingEnvironment hostingEnvironment)
+        public BannerController(IBannerService bannerService, IHostingEnvironment hostingEnvironment,IBannerDetailService bannerDetailService)
         {
             _bannerService = bannerService;
             _hostingEnvironment = hostingEnvironment;
+            _bannerDetailService = bannerDetailService;
         }
 
         public IActionResult Index()
@@ -31,7 +33,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             {
                 bannerViewModels.Add(new BannerViewModel
                 {
-                    BatchCode = banner.BatchCode,
+                    BatchId = banner.BatchId,
                     CreateTime = banner.CreateTime
                 });
             }
@@ -54,6 +56,22 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View();
         }
 
+        //详情界面，图片渲染
+        public IActionResult Details(int id)
+        {
+            List<BannerDetailViewModel> vmdetails = new List<BannerDetailViewModel>();
+            List<BannerDetail> details = _bannerDetailService.GetDetailsByBannerId(id);
+            foreach (var detail in details)
+            {
+                vmdetails.Add(new BannerDetailViewModel()
+                {
+                    PhotoPath = detail.PhotoPath
+                });
+            }
+
+            return View(vmdetails);
+        }
+
 
         [HttpPost]
         public IActionResult CreateSave(BannerViewModel model)
@@ -66,20 +84,25 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 if (model.Photos != null && model.Photos.Count > 0)
                 {
                     uniqueFileNameList = ProcessUploadedFile(model);
-
                 }
+                var details = new List<BannerDetail>();
                 foreach (var uniqueFileName in uniqueFileNameList)
                 {
-                    Banner banner = new Banner
+                    details.Add(new BannerDetail
                     {
-                        BatchCode = model.BatchCode,
-                        CreateTime = DateTime.Now,
-                        Photo = uniqueFileName
-                    };
-                    _bannerService.Save(banner);
+                        PhotoPath = uniqueFileName
+                    });
                 }
 
-                return RedirectToAction("Detail", new { });
+                Banner banner = new Banner
+                {
+                    BatchId = model.BatchId,
+                    CreateTime = DateTime.Now,
+                    BannerDetails = details
+                };
+                _bannerService.Save(banner);
+
+                return RedirectToAction(nameof(Index));
             }
             return View();
         }
