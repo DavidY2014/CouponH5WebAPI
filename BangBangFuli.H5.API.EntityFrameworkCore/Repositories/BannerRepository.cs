@@ -48,6 +48,12 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Banners.Where(item => item.BatchId == batchId).ToList();
         }
 
+        public void RemoveBannerById(int bannerId)
+        {
+            Banner banner = Master.Banners.Find(bannerId);
+            Master.Banners.Remove(banner);
+            Master.SaveChanges();
+        }
 
     }
 }

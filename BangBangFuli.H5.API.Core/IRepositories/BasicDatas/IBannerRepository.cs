@@ -19,5 +19,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 
         List<Banner> GetBannersByBatchId(int batchId);
 
+        void RemoveBannerById(int bannerId);
+
     }
 }

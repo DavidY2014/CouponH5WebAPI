@@ -57,6 +57,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 model = new BannerViewModel
                 {
                     BannerId = banner.Id,
+                    Name = banner.Name,
                     BatchId = banner.BatchId.ToString()
                 };
             }
@@ -98,6 +99,16 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View();
+        }
+
+        //删除
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+                return NotFound();
+            _bannerService.RemoveBannerById((int)id);
+            //图片删除由自动任务实现，不然会影响性能
+            return RedirectToAction(nameof(Index));
         }
 
 

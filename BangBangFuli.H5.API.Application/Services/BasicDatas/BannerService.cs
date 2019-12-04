@@ -45,5 +45,9 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             return _bannerRepository.GetBannersByBatchId(batchId);
         }
 
+        public void RemoveBannerById(int bannerId)
+        {
+            _bannerRepository.RemoveBannerById(bannerId);
+        }
     }
 }
