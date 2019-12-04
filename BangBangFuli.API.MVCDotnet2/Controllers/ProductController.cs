@@ -65,7 +65,16 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         /// 新增编辑界面
         /// </summary>
         /// <returns></returns>
-        public IActionResult Create(int? id)
+        public IActionResult Create()
+        {
+            ProductInformationViewModel model = new ProductInformationViewModel();
+            PopulateClassDropDownList();
+            PopulateProductStatusDropDownList();
+            PopulateStockStatusDropDownList();
+            return View(model);
+        }
+
+        public IActionResult Edit(int? id)
         {
             ProductInformationViewModel model = new ProductInformationViewModel();
             //编辑界面
@@ -74,6 +83,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 ProductInformation product = _productInformationService.GetProductById((int)id);
                 model = new ProductInformationViewModel
                 {
+                    ProductId = product.Id,
                     ProductCode = product.ProductCode,
                     ProductName = product.ProductName,
                     ProductStatusName = Enum.GetName(typeof(ProductStatusType), product.ProductStatus),
@@ -87,6 +97,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             PopulateStockStatusDropDownList();
             return View(model);
         }
+
+
 
         //删除
         public IActionResult Delete(int? id)
@@ -136,6 +148,48 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             }
             return View(model);
         }
+
+
+
+        [HttpPost]
+        public IActionResult EditSave(ProductInformationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                List<string> uniqueFileNameList = null;
+
+                if (model.Photos != null && model.Photos.Count > 0)
+                {
+                    uniqueFileNameList = ProcessUploadedFile(model);
+
+                }
+                var details = new List<ProductDetail>();
+                if (uniqueFileNameList != null)
+                {
+                    foreach (var uniqueFileName in uniqueFileNameList)
+                    {
+                        details.Add(new ProductDetail { PhotoPath = uniqueFileName });
+                    }
+                }
+                ProductInformation product = new ProductInformation
+                {
+                    Id= model.ProductId,
+                    ProductCode = model.ProductCode,
+                    ProductName = model.ProductName,
+                    StockType = GetStockStatusMap(model.StockStatusName),
+                    ProductStatus = GetProductStatusMap(model.ProductStatusName),
+                    Type = ChineseConvertToEnum(GetMapClassName(model.ChineseTypeName)),
+                    BatchId = model.BatchId,
+                    Details = details
+                };
+
+                _productInformationService.UpdateProduct(product);
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
+
 
         #region 分类枚举
         private void PopulateClassDropDownList(object selectedClass = null)

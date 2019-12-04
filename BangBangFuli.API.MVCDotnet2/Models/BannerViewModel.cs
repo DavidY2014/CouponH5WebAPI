@@ -11,7 +11,7 @@ namespace BangBangFuli.API.MVCDotnet2.Models
     {
         public int BannerId { get; set; }
 
-        [Required(ErrorMessage = "请输入批次号"), MaxLength(50, ErrorMessage = "名字的长度不能超过50个字符")]
+        [Required(ErrorMessage = "请输入批次号"), MaxLength(8, ErrorMessage = "批次号的长度不能超过8个字符")]
         [Display(Name = "批次号")]
         public string BatchId { get; set; }
 

@@ -10,6 +10,9 @@
     <thead>
         <tr>
             <th>
+                商品Id
+            </th>
+            <th>
                 商品编码
             </th>
             <th>
@@ -37,6 +40,9 @@
         {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => product.ProductId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => product.ProductCode)
             </td>
             <td>
@@ -55,7 +61,7 @@
                 @Html.DisplayFor(modelItem => product.BatchId)
             </td>
             <td>
-                <a asp-action="Create" asp-route-id="@product.ProductId" class="btn btn-primary m-1">编辑</a> |
+                <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary m-1">编辑</a> |
                 <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary m-1">详情</a> |
                 <a asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-primary m-1">删除</a>
             </td>

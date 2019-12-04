@@ -10,6 +10,9 @@
     <thead>
         <tr>
             <th>
+                BannerId
+            </th>
+            <th>
                 Banner批次号
             </th>
             <th>
@@ -27,6 +30,9 @@
         @foreach (var item in Model)
         {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BannerId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BatchId)
             </td>

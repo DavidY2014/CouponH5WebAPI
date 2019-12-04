@@ -13,7 +13,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
         void Save(ProductInformation product);
 
         List<ProductInformation> GetProductsByClassType(ClassType type);
-
+        void UpdateProduct(ProductInformation product);
         ProductInformation GetProductById(int ProductId);
         List<ProductInformation> GetProductsByBatchId(int batchId);
 

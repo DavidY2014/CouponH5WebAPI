@@ -15,6 +15,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 
         List<ProductInformation> GetProductsByClassType(ClassType type);
 
+        void UpdateProduct(ProductInformation product);
         ProductInformation GetProductById(int ProductId);
 
         List<ProductInformation> GetProductsByBatchId(int batchId);

@@ -25,6 +25,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _productRepository.Save(product);
         }
 
+        public void UpdateProduct(ProductInformation product)
+        {
+            _productRepository.UpdateProduct(product);
+        }
+
         public List<ProductInformation> GetProductsByClassType(ClassType type)
         {
             return _productRepository.GetProductsByClassType(type);

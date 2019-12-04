@@ -29,6 +29,12 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             Master.SaveChanges();
         }
 
+        public void UpdateProduct(ProductInformation product)
+        {
+            Master.ProductInformations.Update(product);
+            Master.SaveChanges();
+        }
+
         public List<ProductInformation> GetProductsByClassType (ClassType type)
         {
            return  Master.ProductInformations.Where(item => item.Type == type).ToList();

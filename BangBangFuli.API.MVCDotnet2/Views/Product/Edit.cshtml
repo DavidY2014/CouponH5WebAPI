@@ -1,7 +1,112 @@
-﻿
+﻿@model ProductInformationViewModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "编辑商品";
 }
+<h4>商品信息</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditSave" enctype="multipart/form-data" asp-controller="Product" method="post" class="mt-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
 
-<h1>Edit</h1>
 
+            <div class="form-group">
+                <label asp-for="ProductCode" class="control-label"></label>
+                <input asp-for="ProductCode" class="form-control" value=@Model.ProductCode />
+                <span asp-validation-for="ProductCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" value=@Model.ProductName />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" value=@Model.Description />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchId" class="control-label"></label>
+                <input asp-for="BatchId" class="form-control" value=@Model.BatchId />
+                <span asp-validation-for="BatchId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ChineseTypeName" class="control-label"></label>
+                <select asp-for="ChineseTypeName" class="form-control" asp-items="ViewBag.Catelogs">
+                    <option value="">-- 选择类型 --</option>
+                </select>
+                <span asp-validation-for="ChineseTypeName" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="ProductStatusName" class="control-label"></label>
+                <select asp-for="ProductStatusName" class="form-control" asp-items="ViewBag.ProductStatusTypes">
+                    <option value="">-- 选择状态 --</option>
+                </select>
+                <span asp-validation-for="ProductStatusName" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="StockStatusName" class="control-label"></label>
+                <select asp-for="StockStatusName" class="form-control" asp-items="ViewBag.StockStatusTypes">
+                    <option value="">-- 选择库存状态 --</option>
+                </select>
+                <span asp-validation-for="StockStatusName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Photos" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <div class="custom-file">
+                        <input asp-for="Photos" multiple class="form-control custom-file-input">
+                        <label class="custom-file-label">请选择照片....</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="更新" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-default">返回列表</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+                $('.custom-file-input').on("change", function () {
+
+                    console.log($(this));
+                    //var fileName = $(this).val().split("\\").pop();
+                    //$(this).next(".custom-file-label").html(fileName);
+
+
+                    var fileLabel = $(this).next(".custom-file-label");
+
+                    var files = $(this)[0].files;
+
+                    if (files.length > 1) {
+
+                        fileLabel.html("您已经选择了" + files.length + "个文件");
+                    } else {
+                        fileLabel.html(files[0].name);
+                    }
+
+
+
+
+                });
+
+
+            });</script>
+}
