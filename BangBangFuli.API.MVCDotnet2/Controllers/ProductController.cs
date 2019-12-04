@@ -139,6 +139,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductStatus = GetProductStatusMap(model.ProductStatusName),
                     Type = ChineseConvertToEnum(GetMapClassName(model.ChineseTypeName)),
                     BatchId = model.BatchId,
+                    Description = model.Description,
                     Details = details
                 };
 
