@@ -37,6 +37,11 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Banners.Find(Id);
         }
 
+        public List<Banner> GetBannersByBatchId(int batchId)
+        {
+            return Master.Banners.Where(item => item.BatchId == batchId).ToList();
+        }
+
 
     }
 }

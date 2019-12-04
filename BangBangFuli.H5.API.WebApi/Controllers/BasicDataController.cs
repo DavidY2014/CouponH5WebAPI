@@ -52,7 +52,16 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         [Route("/api/v{version:apiVersion}/BasicData/Banner/{batchId}")]
         public ResponseOutput GetBannerByBatchId(int batchId)
         {
-            var photoUniqueNames = _bannerService.GetUniquePhotoNamesByBatchId(batchId);
+            var photoUniqueNames = new List<string>();
+            List<Banner> banners = _bannerService.GetBannersByBatchId(batchId);
+            foreach (var item in banners)
+            {
+                var bannerDetails = item.BannerDetails;
+                if (bannerDetails!=null)
+                {
+                    photoUniqueNames.AddRange(bannerDetails.Select(s => s.PhotoPath).ToList());
+                }
+            }
             return new ResponseOutput(photoUniqueNames, HttpContext.TraceIdentifier);
         }
 
@@ -173,7 +182,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 Name = product.ProductName,
                 Description = product.Description,
                 TypeName = Enum.GetName(typeof(ClassType), product.Type),
-                IsInStock = Enum.GetName(typeof(StockStatus), product.StockType),
+                IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
                 Photos = detailDtos.Select(item => item.PhotoPath).ToList()
             };
             return new ResponseOutput(dto, HttpContext.TraceIdentifier);

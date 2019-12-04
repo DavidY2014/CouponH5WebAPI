@@ -33,7 +33,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             {
                 bannerViewModels.Add(new BannerViewModel
                 {
-                    BatchId = banner.BatchId,
+                    BannerId = banner.Id,
+                    BatchId = banner.BatchId.ToString(),
                     CreateTime = banner.CreateTime
                 });
             }
@@ -96,7 +97,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
                 Banner banner = new Banner
                 {
-                    BatchId = model.BatchId,
+                    BatchId = int.Parse(model.BatchId),
                     CreateTime = DateTime.Now,
                     BannerDetails = details
                 };

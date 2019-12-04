@@ -39,17 +39,17 @@ namespace BangBangFuli.H5.API.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             #region CodeFirst 用
-            //services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
+            services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
             #endregion
 
-            services.AddScoped<IDbContextManager<CouponSystemDBContext>>(s =>
-            {
-                return new DbContextManager<CouponSystemDBContext>(new ConnectionOption()
-                {
-                    Master = Configuration.GetConnectionString("H5BasicData"),
-                    SqlProvider = SqlProvider.SqlServer
-                });
-            });
+            //services.AddScoped<IDbContextManager<CouponSystemDBContext>>(s =>
+            //{
+            //    return new DbContextManager<CouponSystemDBContext>(new ConnectionOption()
+            //    {
+            //        Master = Configuration.GetConnectionString("H5BasicData"),
+            //        SqlProvider = SqlProvider.SqlServer
+            //    });
+            //});
 
 
             services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");
