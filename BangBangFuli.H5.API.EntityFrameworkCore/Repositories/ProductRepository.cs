@@ -43,6 +43,15 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         {
             return Master.ProductInformations.Where(item => item.BatchId == batchId).ToList();
         }
+
+        public void RemoveProductById(int productId)
+        {
+            ProductInformation product =  GetProductById(productId);
+            Master.ProductInformations.Remove(product);
+            Master.SaveChanges();
+        }
+
+
   
     }
 }

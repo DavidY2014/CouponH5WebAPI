@@ -16,5 +16,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 
         ProductInformation GetProductById(int ProductId);
         List<ProductInformation> GetProductsByBatchId(int batchId);
+
+        void RemoveProductById(int productId);
     }
 }

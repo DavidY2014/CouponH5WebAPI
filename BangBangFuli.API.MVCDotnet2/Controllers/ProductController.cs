@@ -70,6 +70,15 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View();
         }
 
+        //删除
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+                return NotFound();
+            _productInformationService.RemoveProductById((int)id);
+            return RedirectToAction(nameof(Index));
+        }
+
 
         [HttpPost]
         public IActionResult CreateSave(ProductInformationViewModel model)

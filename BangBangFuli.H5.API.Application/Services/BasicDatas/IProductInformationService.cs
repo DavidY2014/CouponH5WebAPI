@@ -18,6 +18,8 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         ProductInformation GetProductById(int ProductId);
 
         List<ProductInformation> GetProductsByBatchId(int batchId);
+
+        void RemoveProductById(int productId);
     }
 
 
