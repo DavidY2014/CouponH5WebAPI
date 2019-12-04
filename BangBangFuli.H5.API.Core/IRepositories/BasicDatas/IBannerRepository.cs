@@ -13,6 +13,8 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 
         List<Banner> GetAll();
 
+        void UpdateBanner(Banner banner);
+
         Banner GetBannerById(int Id);
 
         List<Banner> GetBannersByBatchId(int batchId);

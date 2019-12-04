@@ -15,6 +15,9 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         [Display(Name = "批次号")]
         public string BatchId { get; set; }
 
+        [Display(Name = "批次名称")]
+        public string Name { get; set; }
+
         [Display(Name = "图片")]
         public List<IFormFile> Photos { get; set; }
 

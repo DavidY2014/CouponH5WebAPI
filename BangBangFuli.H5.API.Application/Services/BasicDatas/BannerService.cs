@@ -20,6 +20,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _bannerRepository.CreateNew(banner);
         }
 
+        public void UpdateBanner(Banner banner)
+        {
+            _bannerRepository.UpdateBanner(banner);
+        }
+
         public int GetMax()
         {
             return _bannerRepository.GetMax();

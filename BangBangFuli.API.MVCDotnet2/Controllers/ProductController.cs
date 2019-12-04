@@ -61,13 +61,31 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View(detailViewModels);
         }
 
-
-        public IActionResult Create()
+        /// <summary>
+        /// 新增编辑界面
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Create(int? id)
         {
+            ProductInformationViewModel model = new ProductInformationViewModel();
+            //编辑界面
+            if (id != null)
+            {
+                ProductInformation product = _productInformationService.GetProductById((int)id);
+                model = new ProductInformationViewModel
+                {
+                    ProductCode = product.ProductCode,
+                    ProductName = product.ProductName,
+                    ProductStatusName = Enum.GetName(typeof(ProductStatusType), product.ProductStatus),
+                    Description = product.Description,
+                    StockStatusName = Enum.GetName(typeof(StockStatusType), product.StockType),
+                    ChineseTypeName = Enum.GetName(typeof(ClassType), product.Type),
+                };
+            }
             PopulateClassDropDownList();
             PopulateProductStatusDropDownList();
             PopulateStockStatusDropDownList();
-            return View();
+            return View(model);
         }
 
         //删除
@@ -76,6 +94,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             if (id == null)
                 return NotFound();
             _productInformationService.RemoveProductById((int)id);
+            //图片删除由自动任务实现，不然会影响性能
             return RedirectToAction(nameof(Index));
         }
 
@@ -85,7 +104,6 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 List<string> uniqueFileNameList = null;
 
                 if (model.Photos != null && model.Photos.Count > 0)
@@ -94,11 +112,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
                 }
                 var details = new List<ProductDetail>();
-                foreach (var uniqueFileName in uniqueFileNameList)
+                if (uniqueFileNameList!=null)
                 {
-                    details.Add(new ProductDetail { PhotoPath = uniqueFileName });
+                    foreach (var uniqueFileName in uniqueFileNameList)
+                    {
+                        details.Add(new ProductDetail { PhotoPath = uniqueFileName });
+                    }
                 }
-
                 ProductInformation product = new ProductInformation
                 {
                     ProductCode = model.ProductCode,

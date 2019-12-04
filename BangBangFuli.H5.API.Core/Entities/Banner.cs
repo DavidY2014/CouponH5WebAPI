@@ -13,6 +13,8 @@ namespace BangBangFuli.H5.API.Core.Entities
 
         public int BatchId { get; set; }
 
+        public string Name { get; set; }
+
         public DateTime CreateTime { get; set; }
 
         public List<BannerDetail> BannerDetails { get; set; }

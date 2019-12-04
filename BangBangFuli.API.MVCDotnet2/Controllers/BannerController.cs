@@ -35,22 +35,71 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     BannerId = banner.Id,
                     BatchId = banner.BatchId.ToString(),
+                    Name = banner.Name,
                     CreateTime = banner.CreateTime
                 });
             }
             return View(bannerViewModels);
         }
 
-
         /// <summary>
-        /// 创建banner新建视图
+        /// banner编辑视图
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Edit(int? id)
         {
+            BannerViewModel model = new BannerViewModel();
+            if (id != null)
+            {
+                Banner banner = _bannerService.GetBannerById((int)id);
+                model = new BannerViewModel
+                {
+                    BannerId = banner.Id,
+                    BatchId = banner.BatchId.ToString()
+                };
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditSave(BannerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                List<string> uniqueFileNameList = null;
+
+                if (model.Photos != null && model.Photos.Count > 0)
+                {
+                    uniqueFileNameList = ProcessUploadedFile(model);
+                }
+                var details = new List<BannerDetail>();
+                if (uniqueFileNameList != null && uniqueFileNameList.Count > 0)
+                {
+                    foreach (var uniqueFileName in uniqueFileNameList)
+                    {
+                        details.Add(new BannerDetail
+                        {
+                            PhotoPath = uniqueFileName
+                        });
+                    }
+                }
+                Banner banner = new Banner
+                {
+                    Id = model.BannerId,
+                    BatchId = int.Parse(model.BatchId),
+                    Name = model.Name,
+                    CreateTime = DateTime.Now,
+                    BannerDetails = details
+                };
+                _bannerService.UpdateBanner(banner);
+
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
+
 
         public ActionResult Detail()
         {
@@ -74,12 +123,22 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         }
 
 
+        /// <summary>
+        /// 创建banner新建视图
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public IActionResult CreateSave(BannerViewModel model)
         {
             if (ModelState.IsValid)
             {
-
                 List<string> uniqueFileNameList = null;
 
                 if (model.Photos != null && model.Photos.Count > 0)
@@ -87,17 +146,20 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     uniqueFileNameList = ProcessUploadedFile(model);
                 }
                 var details = new List<BannerDetail>();
-                foreach (var uniqueFileName in uniqueFileNameList)
+                if (uniqueFileNameList!=null && uniqueFileNameList.Count>0)
                 {
-                    details.Add(new BannerDetail
+                    foreach (var uniqueFileName in uniqueFileNameList)
                     {
-                        PhotoPath = uniqueFileName
-                    });
+                        details.Add(new BannerDetail
+                        {
+                            PhotoPath = uniqueFileName
+                        });
+                    }
                 }
-
                 Banner banner = new Banner
                 {
                     BatchId = int.Parse(model.BatchId),
+                    Name = model.Name,
                     CreateTime = DateTime.Now,
                     BannerDetails = details
                 };

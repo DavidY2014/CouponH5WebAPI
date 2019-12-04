@@ -26,6 +26,12 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Banners.ToList().Count();
         }
 
+        public void UpdateBanner(Banner banner)
+        {
+            Master.Banners.Update(banner);
+            Master.SaveChanges();
+        }
+
 
         public List<Banner> GetAll()
         {
