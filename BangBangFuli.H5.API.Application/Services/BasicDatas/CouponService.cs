@@ -14,10 +14,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
     public class CouponService : ICouponService
     {
         private readonly ICouponRepository _couponRepository;
-
-        public CouponService(ICouponRepository couponRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public CouponService(ICouponRepository couponRepository,IUnitOfWork unitOfWork)
         {
             _couponRepository = couponRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public bool VerifyCoupon(string code, string password)
@@ -38,6 +39,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         public void AddNew(Coupon coupon)
         {
             _couponRepository.CreateNew(coupon);
+            _unitOfWork.SaveChanges();
         }
 
     }

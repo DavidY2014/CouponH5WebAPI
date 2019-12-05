@@ -10,9 +10,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
     public class BannerDetailRepository: BaseRepository<CouponSystemDBContext, BannerDetail> , IBannerDetailRepository
     {
-        public BannerDetailRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
-: base(dbContextManager)
+        //        public BannerDetailRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
+        //: base(dbContextManager)
+        //        {
+        //        }
+
+        public BannerDetailRepository(CouponSystemDBContext dbContext):base(dbContext)
         {
+
         }
 
         public List<BannerDetail> GetDetailsByBannerId(int bannerId)

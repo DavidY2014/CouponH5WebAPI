@@ -10,9 +10,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
     public class SupplierRepository: BaseRepository<CouponSystemDBContext, Supplier>, ISupplierRepository
     {
-        public SupplierRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
-: base(dbContextManager)
+        //        public SupplierRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
+        //: base(dbContextManager)
+        //        {
+        //        }
+
+        public SupplierRepository(CouponSystemDBContext dbContext):base(dbContext)
         {
+
         }
 
         public List<Supplier> GetAll()

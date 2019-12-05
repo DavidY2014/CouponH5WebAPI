@@ -5,6 +5,7 @@ using AutoMapper;
 using BangBangFuli.H5.API.Application;
 using BangBangFuli.H5.API.Application.Services.BasicDatas;
 using BangBangFuli.H5.API.Application.Services.Redis;
+using BangBangFuli.H5.API.Core;
 using BangBangFuli.H5.API.EntityFrameworkCore;
 using BangBangFuli.H5.API.WebAPI.AOP;
 using BangBangFuli.H5.API.WebAPI.Extensions;
@@ -38,19 +39,18 @@ namespace BangBangFuli.H5.API.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            #region CodeFirst 用
-            //services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
-            #endregion
+            //services.AddScoped<IDbContextManager<CouponSystemDBContext>>(s =>
+            //{
+            //    return new DbContextManager<CouponSystemDBContext>(new ConnectionOption()
+            //    {
+            //        Master = Configuration.GetConnectionString("H5BasicData"),
+            //        SqlProvider = SqlProvider.SqlServer
+            //    });
+            //});
 
-            services.AddScoped<IDbContextManager<CouponSystemDBContext>>(s =>
-            {
-                return new DbContextManager<CouponSystemDBContext>(new ConnectionOption()
-                {
-                    Master = Configuration.GetConnectionString("H5BasicData"),
-                    SqlProvider = SqlProvider.SqlServer
-                });
-            });
 
+            services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
+            services.AddScoped<IUnitOfWork, H5.API.EntityFrameworkCore.UnitOfWork<CouponSystemDBContext>>();//注入UOW依赖，确保每次请求都是同一个对象
 
             services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");
             services.AddByAssembly("BangBangFuli.H5.API.Application", "IAppService");

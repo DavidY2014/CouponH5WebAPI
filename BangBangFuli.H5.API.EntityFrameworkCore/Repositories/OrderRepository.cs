@@ -10,15 +10,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
    public  class OrderRepository : BaseRepository<CouponSystemDBContext, Order>, IOrderRepository
     {
-        public OrderRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
-: base(dbContextManager)
+        public OrderRepository(CouponSystemDBContext dbContext):base(dbContext)
         {
+
         }
 
         public void CreateNewOrder(Order order)
         {
             Master.Orders.Add(order);
-            Master.SaveChanges();
         }
 
         public List<Order> GetAll()

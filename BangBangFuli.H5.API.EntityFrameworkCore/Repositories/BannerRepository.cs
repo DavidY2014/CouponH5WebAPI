@@ -10,15 +10,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
     public class BannerRepository : BaseRepository<CouponSystemDBContext, Banner>, IBannerRepository
     {
-        public BannerRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
-: base(dbContextManager)
+        public BannerRepository(CouponSystemDBContext dbContext):base(dbContext)
         {
+
         }
 
         public void CreateNew(Banner banner)
         {
             Master.Add(banner);
-            Master.SaveChanges();
         }
 
         public int GetMax()
@@ -29,7 +28,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         public void UpdateBanner(Banner banner)
         {
             Master.Banners.Update(banner);
-            Master.SaveChanges();
         }
 
 
@@ -52,7 +50,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         {
             Banner banner = Master.Banners.Find(bannerId);
             Master.Banners.Remove(banner);
-            Master.SaveChanges();
         }
 
     }

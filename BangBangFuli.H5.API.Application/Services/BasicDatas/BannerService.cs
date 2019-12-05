@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BangBangFuli.H5.API.Core;
 using BangBangFuli.H5.API.Core.Entities;
 using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 
@@ -9,20 +10,24 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
     public class BannerService : IBannerService
     {
         private readonly IBannerRepository _bannerRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public BannerService(IBannerRepository bannerRepository)
+        public BannerService(IBannerRepository bannerRepository,IUnitOfWork unitOfWork)
         {
             _bannerRepository = bannerRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public void Save(Banner banner)
         {
             _bannerRepository.CreateNew(banner);
+            _unitOfWork.SaveChanges();
         }
 
         public void UpdateBanner(Banner banner)
         {
             _bannerRepository.UpdateBanner(banner);
+            _unitOfWork.SaveChanges();
         }
 
         public int GetMax()
@@ -48,6 +53,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         public void RemoveBannerById(int bannerId)
         {
             _bannerRepository.RemoveBannerById(bannerId);
+            _unitOfWork.SaveChanges();
         }
     }
 }

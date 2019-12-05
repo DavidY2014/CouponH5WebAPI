@@ -10,9 +10,9 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
     public class CouponRepository : BaseRepository<CouponSystemDBContext, Coupon>, ICouponRepository
     {
-        public CouponRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
-  : base(dbContextManager)
+        public CouponRepository(CouponSystemDBContext dbContext):base(dbContext)
         {
+
         }
 
         public List<Coupon> GetAll()
@@ -40,7 +40,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         public void CreateNew(Coupon coupon)
         {
             Master.Coupons.Add(coupon);
-            Master.SaveChanges();
         }
 
 

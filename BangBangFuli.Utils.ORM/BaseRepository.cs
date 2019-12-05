@@ -23,19 +23,25 @@ namespace BangBangFuli.Utils.ORM.Imp
         protected TDbContext Master { get; }
         protected TDbContext Slave { get; }
 
-        public BaseRepository(IDbContextManager<TDbContext> dbContextManager)
-        {
-            if (dbContextManager == null)
-            {
-                throw new ArgumentNullException("dbContextManager");
-            }
+        //public BaseRepository(IDbContextManager<TDbContext> dbContextManager)
+        //{
+        //    if (dbContextManager == null)
+        //    {
+        //        throw new ArgumentNullException("dbContextManager");
+        //    }
 
-            this.dbContextManager = dbContextManager;
-            Master = this.dbContextManager.Master;
-            Slave = this.dbContextManager.Slave;
-            MasterSet = Master.Set<TEntity>();
-            SlaveSet = Slave.Set<TEntity>();
+        //    this.dbContextManager = dbContextManager;
+        //    Master = this.dbContextManager.Master;
+        //    Slave = this.dbContextManager.Slave;
+        //    MasterSet = Master.Set<TEntity>();
+        //    SlaveSet = Slave.Set<TEntity>();
+        //}
+
+        public BaseRepository(TDbContext dbContext)
+        {
+            Master = dbContext;
         }
+
 
         public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate = null)
         {

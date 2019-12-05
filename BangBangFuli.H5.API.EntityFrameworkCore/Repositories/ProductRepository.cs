@@ -13,9 +13,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
     public class ProductRepository : BaseRepository<CouponSystemDBContext, ProductInformation>, IProductRepository
     {
-        public ProductRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
-: base(dbContextManager)
+        //        public ProductRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
+        //: base(dbContextManager)
+        //        {
+        //        }
+
+        public ProductRepository(CouponSystemDBContext dbContext):base(dbContext)
         {
+
         }
 
         public  List<ProductInformation> GetAll()
