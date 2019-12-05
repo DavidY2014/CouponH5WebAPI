@@ -13,11 +13,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
     public class ProductRepository : BaseRepository<CouponSystemDBContext, ProductInformation>, IProductRepository
     {
-        //        public ProductRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
-        //: base(dbContextManager)
-        //        {
-        //        }
-
         public ProductRepository(CouponSystemDBContext dbContext):base(dbContext)
         {
 
@@ -31,13 +26,11 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         public void Save(ProductInformation product)
         {
             Master.ProductInformations.Add(product);
-            Master.SaveChanges();
         }
 
         public void UpdateProduct(ProductInformation product)
         {
             Master.ProductInformations.Update(product);
-            Master.SaveChanges();
         }
 
         public List<ProductInformation> GetProductsByClassType (ClassType type)
@@ -59,7 +52,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         {
             ProductInformation product =  GetProductById(productId);
             Master.ProductInformations.Remove(product);
-            Master.SaveChanges();
         }
 
 

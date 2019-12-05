@@ -1,4 +1,5 @@
-﻿using BangBangFuli.H5.API.Core.Entities;
+﻿using BangBangFuli.H5.API.Core;
+using BangBangFuli.H5.API.Core.Entities;
 using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,12 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
     public class SupplierService: ISupplierService
     {
         private readonly ISupplierRepository _supplierRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public SupplierService(ISupplierRepository supplierRepository)
+        public SupplierService(ISupplierRepository supplierRepository,IUnitOfWork unitOfWork)
         {
             _supplierRepository = supplierRepository;
+            _unitOfWork = unitOfWork;
         }
         public List<Supplier> GetAll()
         {
@@ -27,6 +30,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         public void CreateNew(Supplier  supplier)
         {
             _supplierRepository.CreateNew(supplier);
+            _unitOfWork.SaveChanges();
         }
     }
 }

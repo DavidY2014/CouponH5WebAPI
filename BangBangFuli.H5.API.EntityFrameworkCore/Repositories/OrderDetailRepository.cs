@@ -10,10 +10,13 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 {
     public class OrderDetailRepository: BaseRepository<CouponSystemDBContext, OrderDetail>, IOrderDetailRepository
     {
+        #region old version
         //        public OrderDetailRepository(IDbContextManager<CouponSystemDBContext> dbContextManager)
         //: base(dbContextManager)
         //        {
         //        }
+        #endregion
+
 
         public OrderDetailRepository(CouponSystemDBContext dbContext):base(dbContext)
         {

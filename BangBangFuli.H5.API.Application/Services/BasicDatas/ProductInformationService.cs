@@ -52,6 +52,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         public void RemoveProductById(int productId)
         {
             _productRepository.RemoveProductById(productId);
+            _unitOfWork.SaveChanges();
         }
     }
 }
