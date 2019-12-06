@@ -35,5 +35,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore
         public DbSet<BannerDetail> BannerDetails { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<BatchInformation> BatchInformations { get; set; }
     }
 }
