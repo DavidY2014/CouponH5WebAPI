@@ -146,6 +146,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Description = product.Description,
                     IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
                     TypeName = Enum.GetName(typeof(ClassType), product.Type),
+                    ProductStatus = Enum.GetName(typeof(ProductStatusType),product.ProductStatus)
                 }) ;
             }
             return new ResponseOutput(productDtos, HttpContext.TraceIdentifier);
@@ -183,6 +184,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 Description = product.Description,
                 TypeName = Enum.GetName(typeof(ClassType), product.Type),
                 IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
+                ProductStatus = Enum.GetName(typeof(ProductStatusType),product.ProductStatus),
                 Photos = detailDtos.Select(item => item.PhotoPath).ToList()
             };
             return new ResponseOutput(dto, HttpContext.TraceIdentifier);
@@ -220,6 +222,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Description = product.Description,
                     TypeName = Enum.GetName(typeof(ClassType), product.Type),
                     IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
+                    ProductStatus = Enum.GetName(typeof(ProductStatusType),product.ProductStatus),
                     Photos = detailDtos.Select(item => item.PhotoPath).ToList()
                 });
             }

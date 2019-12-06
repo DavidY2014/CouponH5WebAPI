@@ -12,6 +12,8 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
         
         public string Name { get; set; }
 
+        public string ProductStatus { get; set; }
+
         public string IsInStock { get; set; }
 
         public string TypeName { get; set; }

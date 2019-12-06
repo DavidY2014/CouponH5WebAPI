@@ -13,7 +13,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;
-        private SignInManager<User> _signInManager;
+        private readonly SignInManager<User> _signInManager;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
