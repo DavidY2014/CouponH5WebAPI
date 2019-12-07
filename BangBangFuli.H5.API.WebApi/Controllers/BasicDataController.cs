@@ -136,8 +136,23 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         {
             List<ProductDto> productDtos = new List<ProductDto>();
             List<ProductInformation> products = _productService.GetProductsByBatchId(batchId);
+
             foreach (var product in products)
             {
+                //图片详情
+                var productDetails = _productDetailService.GetDetailsByProductId(product.Id);
+                List<ProductDetailOutputDto> detailDtos = new List<ProductDetailOutputDto>();
+                if (productDetails != null)
+                {
+                    foreach (var productDetail in productDetails)
+                    {
+                        detailDtos.Add(new ProductDetailOutputDto()
+                        {
+                            PhotoPath = productDetail.PhotoPath
+                        });
+                    }
+                }
+
                 productDtos.Add(new ProductDto
                 {
                     Id=product.Id,
@@ -146,7 +161,9 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Description = product.Description,
                     IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
                     TypeName = Enum.GetName(typeof(ClassType), product.Type),
-                    ProductStatus = Enum.GetName(typeof(ProductStatusType),product.ProductStatus)
+                    ProductStatus = Enum.GetName(typeof(ProductStatusType),product.ProductStatus),
+                    Photos = detailDtos.Select(item => item.PhotoPath).ToList()
+
                 }) ;
             }
             return new ResponseOutput(productDtos, HttpContext.TraceIdentifier);
@@ -162,9 +179,9 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         public ResponseOutput GetProductDetailByProductId(int productId)
         {
             ProductInformation product= _productService.GetProductById(productId);
+            
             //图片详情
             var productDetails = _productDetailService.GetDetailsByProductId(product.Id);
-
             List<ProductDetailOutputDto> detailDtos = new List<ProductDetailOutputDto>();
             if (productDetails!=null)
             {
@@ -204,8 +221,8 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
             var products = _productService.GetProductsByClassType(classType);
             foreach (var product in products)
             {
+                //图片详情
                 var productDetails = _productDetailService.GetDetailsByProductId(product.Id);
-
                 List<ProductDetailOutputDto> detailDtos = new List<ProductDetailOutputDto>();
                 foreach (var productDetail in productDetails)
                 {
