@@ -35,15 +35,20 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             var products = _productInformationService.GetAll();
             foreach (var product in products)
             {
+                BatchInformation batchInfo = _batchInformationService.GetBatchInfoByBatchId(product.BatchId);
                 productViewModelList.Add(new ProductInformationViewModel
                 {
                     ProductId = product.Id,
                     ProductCode = product.ProductCode,
                     ProductName = product.ProductName,
-                    StockStatusName = EnumStockStatusConvertToChinese(product.StockType),
-                    ProductStatusName = EnumConvertToChinese(product.ProductStatus),
-                    ChineseTypeName = ConvertToChinese(product.Type),
-                    BatchId = product.BatchId
+                    StockStatusName = GetClassTypeDisplayName((int)product.StockType),
+                    ProductStatusName = GetProductStatusDisplayName((int)product.ProductStatus),
+                    ClassTypeName = GetClassTypeDisplayName((int)product.Type),
+                    StockStatus = (int)product.StockType,
+                    ProductStatus = (int)product.ProductStatus,
+                    ClassType = (int)product.Type,
+                    BatchId = product.BatchId,
+                    BatchName = batchInfo.Name
                 }) ;
             }
             return View(productViewModelList);
@@ -89,10 +94,11 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductId = product.Id,
                     ProductCode = product.ProductCode,
                     ProductName = product.ProductName,
-                    ProductStatusName = Enum.GetName(typeof(ProductStatusType), product.ProductStatus),
+                    ProductStatus = (int)product.ProductStatus,
+                    StockStatus=(int)product.StockType,
+                    ClassType = (int)product.Type,
                     Description = product.Description,
-                    StockStatusName = Enum.GetName(typeof(StockStatusType), product.StockType),
-                    ChineseTypeName = Enum.GetName(typeof(ClassType), product.Type),
+                    BatchId = product.BatchId
                 };
             }
             PopulateClassDropDownList();
@@ -139,9 +145,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
-                    StockType = GetStockStatusMap(model.StockStatusName),
-                    ProductStatus = GetProductStatusMap(model.ProductStatusName),
-                    Type = ChineseConvertToEnum(GetMapClassName(model.ChineseTypeName)),
+                    ProductStatus =  GetProductStatusMap(model.ProductStatus),
+                    StockType = GetStockStatusMap(model.StockStatus),
+                    Type = GetClassTypeMap(model.ClassType),
                     BatchId = model.BatchId,
                     Description = model.Description,
                     Details = details
@@ -181,9 +187,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     Id= model.ProductId,
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
-                    StockType = GetStockStatusMap(model.StockStatusName),
-                    ProductStatus = GetProductStatusMap(model.ProductStatusName),
-                    Type = ChineseConvertToEnum(GetMapClassName(model.ChineseTypeName)),
+                    StockType = GetStockStatusMap(model.StockStatus),
+                    ProductStatus = GetProductStatusMap(model.ProductStatus),
+                    Type = GetClassTypeMap(model.ClassType),
                     BatchId = model.BatchId,
                     Details = details
                 };
@@ -236,64 +242,76 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         }
 
 
-        public string GetMapClassName(string index)
+        public string GetClassTypeDisplayName(int index)
         {
             var ret = string.Empty;
             switch (index)
             {
-                case "0":
+                case 0:
                     ret = "悦享生活";
                     break;
-                case "1":
+                case 1:
                     ret = "居家好物";
                     break;
-                case "2":
+                case 2:
                     ret = "品质生活";
                     break;
-                case "3":
+                case 3:
                     ret = "厨房甄选";
                     break;
             }
             return ret;
         }
 
-        public string ConvertToChinese(ClassType classType)
+        public string GetProductStatusDisplayName(int index)
         {
             var ret = string.Empty;
-            switch (classType)
+            switch (index)
             {
-                case ClassType.yuexiangmeiwei:
-                    ret = "悦享生活";
+                case 0:
+                    ret = "下架";
                     break;
-                case ClassType.jujiahaowu:
-                    ret = "居家好物";
-                    break;
-                case ClassType.pingzhishenghuo:
-                    ret = "品质生活";
-                    break;
-                case ClassType.chufangzhengxuan:
-                    ret = "厨房甄选";
+                case 1:
+                    ret = "上架";
                     break;
             }
             return ret;
-
         }
 
-        public ClassType ChineseConvertToEnum(string chineseTypeName)
+        public string GetStockStatusDisplayName(int index)
+        {
+            var ret = string.Empty;
+            switch (index)
+            {
+                case 0:
+                    ret = "无货";
+                    break;
+                case 1:
+                    ret = "有货";
+                    break;
+            }
+            return ret;
+        }
+
+        #endregion
+
+        #region 商品状态枚举
+
+        public ClassType GetClassTypeMap(int index)
         {
             ClassType ret = ClassType.unknown;
-            switch (chineseTypeName)
+            switch (index)
             {
-                case "悦享生活":
+                case 0:
                     ret = ClassType.yuexiangmeiwei;
                     break;
-                case "居家好物":
+                case 1:
                     ret = ClassType.jujiahaowu;
                     break;
-                case "品质生活":
+                case 2:
                     ret = ClassType.pingzhishenghuo;
                     break;
-                case "厨房甄选":
+                case 3:
                     ret = ClassType.chufangzhengxuan;
                     break;
             }
@@ -301,34 +319,16 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
 
         }
-        #endregion
 
-        #region 商品状态枚举
-
-        public string EnumConvertToChinese(ProductStatusType productStatus)
-        {
-            var ret = string.Empty;
-            switch (productStatus)
-            {
-                case ProductStatusType.On:
-                    ret = "上架";
-                    break;
-                case ProductStatusType.Down:
-                    ret = "下架";
-                    break;
-            }
-            return ret;
-        }
-
-        public ProductStatusType GetProductStatusMap(string index)
+        public ProductStatusType GetProductStatusMap(int index)
         {
             ProductStatusType ret = ProductStatusType.Unknown;
             switch (index)
             {
-                case "0":
+                case 0:
                     ret = ProductStatusType.Down;
                     break;
-                case "1":
+                case 1:
                     ret = ProductStatusType.On;
                     break;
                 default:
@@ -339,15 +339,15 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         }
 
-        public StockStatusType GetStockStatusMap(string index)
+        public StockStatusType GetStockStatusMap(int index)
         {
             StockStatusType ret = StockStatusType.Unknown;
             switch (index)
             {
-                case "0":
+                case 0:
                     ret = StockStatusType.No;
                     break;
-                case "1":
+                case 1:
                     ret = StockStatusType.Yes;
                     break;
                 default:
@@ -360,25 +360,6 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         #endregion
 
-        #region 商品库存状态
-
-        public string EnumStockStatusConvertToChinese(StockStatusType stockStatus)
-        {
-            var ret = string.Empty;
-            switch (stockStatus)
-            {
-                case StockStatusType.Yes:
-                    ret = "有货";
-                    break;
-                case StockStatusType.No:
-                    ret = "无货";
-                    break;
-            }
-            return ret;
-        }
-
-
-        #endregion
 
 
 

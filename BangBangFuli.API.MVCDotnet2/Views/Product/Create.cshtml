@@ -32,29 +32,29 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="ChineseTypeName" class="control-label"></label>
-                <select asp-for="ChineseTypeName" class="form-control" asp-items="ViewBag.Catelogs">
+                <label asp-for="ClassType" class="control-label"></label>
+                <select asp-for="ClassType" class="form-control" asp-items="ViewBag.Catelogs">
                     <option value="">-- 选择类型 --</option>
                 </select>
-                <span asp-validation-for="ChineseTypeName" class="text-danger"></span>
+                <span asp-validation-for="ClassType" class="text-danger"></span>
             </div>
 
 
             <div class="form-group">
-                <label asp-for="ProductStatusName" class="control-label"></label>
-                <select asp-for="ProductStatusName" class="form-control" asp-items="ViewBag.ProductStatusTypes">
+                <label asp-for="ProductStatus" class="control-label"></label>
+                <select asp-for="ProductStatus" class="form-control" asp-items="ViewBag.ProductStatusTypes">
                     <option value="">-- 选择状态 --</option>
                 </select>
-                <span asp-validation-for="ProductStatusName" class="text-danger"></span>
+                <span asp-validation-for="ProductStatus" class="text-danger"></span>
             </div>
 
 
             <div class="form-group">
-                <label asp-for="StockStatusName" class="control-label"></label>
-                <select asp-for="StockStatusName" class="form-control" asp-items="ViewBag.StockStatusTypes">
+                <label asp-for="StockStatus" class="control-label"></label>
+                <select asp-for="StockStatus" class="form-control" asp-items="ViewBag.StockStatusTypes">
                     <option value="">-- 选择库存状态 --</option>
                 </select>
-                <span asp-validation-for="StockStatusName" class="text-danger"></span>
+                <span asp-validation-for="StockStatus" class="text-danger"></span>
             </div>
 
             <div class="form-group row">

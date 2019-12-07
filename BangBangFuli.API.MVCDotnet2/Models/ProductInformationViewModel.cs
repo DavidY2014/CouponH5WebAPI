@@ -22,17 +22,24 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         [DisplayName("商品描述")]
         public string Description { get; set; }
 
-        [DisplayName("商品状态")]
+        #region 名称
         public string ProductStatusName { get; set; }
-
-        [DisplayName("是否有库存")]
         public string StockStatusName { get; set; }
+        public string ClassTypeName { get; set; }
+        #endregion
 
-        [DisplayName("类型")]
-        public string ChineseTypeName { get; set; }
+        [DisplayName("商品状态")]
+        public int ProductStatus { get; set; }
+        [DisplayName("库存状态")]
+        public int StockStatus { get; set; }
+        [DisplayName("商品大类别")]
+        public int ClassType { get; set; }
 
         [DisplayName("批次号")]
         public string BatchId { get; set; }
+
+        [DisplayName("批次名称")]
+        public string BatchName { get; set; }
 
         [Display(Name = "图片")]
         public List<IFormFile> Photos { get; set; }
