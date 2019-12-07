@@ -32,7 +32,7 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         public string ChineseTypeName { get; set; }
 
         [DisplayName("批次号")]
-        public int BatchId { get; set; }
+        public string BatchId { get; set; }
 
         [Display(Name = "图片")]
         public List<IFormFile> Photos { get; set; }

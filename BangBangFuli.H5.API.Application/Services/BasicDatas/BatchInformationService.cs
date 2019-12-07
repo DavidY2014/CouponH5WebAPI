@@ -28,6 +28,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _unitOfWork.SaveChanges();
         }
 
+        public BatchInformation GetBatchInfoByBatchId(string batchId)
+        {
+            return _batchInformationRepository.GetBatchInfoByBatchId(batchId);
+        }
+
         public BatchInformation GetBatchInfoById(int Id)
         {
             return _batchInformationRepository.GetBatchInfoById(Id);
@@ -36,6 +41,12 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         public void RemoveBatchById(int Id)
         {
             _batchInformationRepository.RemoveBatchById(Id);
+            _unitOfWork.SaveChanges();
+        }
+
+        public void UpdateBatchInfo(BatchInformation batchInfo)
+        {
+            _batchInformationRepository.UpdateBatchInfo(batchInfo);
             _unitOfWork.SaveChanges();
         }
 

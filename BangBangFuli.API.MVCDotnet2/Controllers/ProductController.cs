@@ -19,13 +19,15 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         private readonly IProductInformationService _productInformationService;
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IProductDetailService _productDetailService;
+        private readonly IBatchInformationService _batchInformationService;
 
         public ProductController(IProductInformationService productInformationService ,IHostingEnvironment hostingEnvironment
-            ,IProductDetailService productDetailService)
+            ,IProductDetailService productDetailService, IBatchInformationService batchInformationService)
         {
             _productInformationService = productInformationService;
             _hostingEnvironment = hostingEnvironment;
             _productDetailService = productDetailService;
+            _batchInformationService = batchInformationService;
         }
         public IActionResult Index()
         {
@@ -71,6 +73,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             PopulateClassDropDownList();
             PopulateProductStatusDropDownList();
             PopulateStockStatusDropDownList();
+            PopulateBatchDropDownList();
             return View(model);
         }
 
@@ -95,6 +98,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             PopulateClassDropDownList();
             PopulateProductStatusDropDownList();
             PopulateStockStatusDropDownList();
+            PopulateBatchDropDownList();
             return View(model);
         }
 
@@ -218,6 +222,17 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             stockStatusTypes.Add(new { id = 0, name = "有货" });
             stockStatusTypes.Add(new { id = 1, name = "无货" });
             ViewBag.StockStatusTypes = new SelectList(stockStatusTypes, "id", "name", selectedStockStatus);
+        }
+
+        private void PopulateBatchDropDownList(object selectedBatch = null)
+        {
+            var batchs = new List<object>();
+            List<BatchInformation> batchInfos = _batchInformationService.GetAll();
+            foreach (var batch in batchInfos)
+            {
+                batchs.Add(new { id = batch.BatchId, name = batch.Name });
+            }
+            ViewBag.BatchIds = new SelectList(batchs, "id", "name", selectedBatch);
         }
 
 

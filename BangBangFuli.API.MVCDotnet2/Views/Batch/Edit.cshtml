@@ -2,11 +2,11 @@
 @{
     ViewBag.Title = "编辑批次信息";
 }
-<h4>Banner信息</h4>
+<h4>批次信息</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="editsave" enctype="multipart/form-data" asp-controller="Banner" method="post" class="mt-3">
+        <form asp-action="editsave" enctype="multipart/form-data" asp-controller="Batch" method="post" class="mt-3">
             <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 

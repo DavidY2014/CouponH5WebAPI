@@ -25,7 +25,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="BatchId" class="control-label"></label>
-                <input asp-for="BatchId" class="form-control" />
+                <select asp-for="BatchId" class="form-control" asp-items="ViewBag.BatchIds">
+                    <option value="">-- 选择批次 --</option>
+                </select>
                 <span asp-validation-for="BatchId" class="text-danger"></span>
             </div>
 

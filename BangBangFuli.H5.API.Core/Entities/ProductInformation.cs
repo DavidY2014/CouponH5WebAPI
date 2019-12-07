@@ -23,7 +23,7 @@ namespace BangBangFuli.H5.API.Core.Entities
 
         public ClassType Type { get; set; }
 
-        public int BatchId { get; set; }
+        public string BatchId { get; set; }
         public List<ProductDetail> Details { get; set; }
 
     }

@@ -80,6 +80,22 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public IActionResult EditSave(BatchViewModel model)
+        {
+
+            BatchInformation batchInfo = new BatchInformation
+            {
+                Id = model.Id,
+                Name = model.Name,
+                BatchId = model.BatchId,
+            };
+
+            _batchInformationService.UpdateBatchInfo(batchInfo);
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         public ActionResult Delete(int? id)
         {

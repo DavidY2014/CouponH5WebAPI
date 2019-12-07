@@ -50,7 +50,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("/api/v{version:apiVersion}/BasicData/Banner/{batchId}")]
-        public ResponseOutput GetBannerByBatchId(int batchId)
+        public ResponseOutput GetBannerByBatchId(string batchId)
         {
             var photoUniqueNames = new List<string>();
             List<Banner> banners = _bannerService.GetBannersByBatchId(batchId);
@@ -132,7 +132,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("/api/v{version:apiVersion}/BasicData/BatchProducts/{batchId}")]
-        public ResponseOutput GetProductsByBatchId(int batchId)
+        public ResponseOutput GetProductsByBatchId(string batchId)
         {
             List<ProductDto> productDtos = new List<ProductDto>();
             List<ProductInformation> products = _productService.GetProductsByBatchId(batchId);

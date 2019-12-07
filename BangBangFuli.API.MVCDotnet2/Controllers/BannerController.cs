@@ -36,7 +36,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 bannerViewModels.Add(new BannerViewModel
                 {
                     BannerId = banner.Id,
-                    BatchId = banner.BatchId.ToString(),
+                    BatchId =banner.BatchId.ToString(),
                     Name = banner.Name,
                     CreateTime = banner.CreateTime
                 });
@@ -70,38 +70,36 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpPost]
         public IActionResult EditSave(BannerViewModel model)
         {
-            if (ModelState.IsValid)
+
+            List<string> uniqueFileNameList = null;
+
+            if (model.Photos != null && model.Photos.Count > 0)
             {
-                List<string> uniqueFileNameList = null;
-
-                if (model.Photos != null && model.Photos.Count > 0)
-                {
-                    uniqueFileNameList = ProcessUploadedFile(model);
-                }
-                var details = new List<BannerDetail>();
-                if (uniqueFileNameList != null && uniqueFileNameList.Count > 0)
-                {
-                    foreach (var uniqueFileName in uniqueFileNameList)
-                    {
-                        details.Add(new BannerDetail
-                        {
-                            PhotoPath = uniqueFileName
-                        });
-                    }
-                }
-                Banner banner = new Banner
-                {
-                    Id = model.BannerId,
-                    BatchId = int.Parse(model.BatchId),
-                    Name = model.Name,
-                    CreateTime = DateTime.Now,
-                    BannerDetails = details
-                };
-                _bannerService.UpdateBanner(banner);
-
-                return RedirectToAction(nameof(Index));
+                uniqueFileNameList = ProcessUploadedFile(model);
             }
-            return View();
+            var details = new List<BannerDetail>();
+            if (uniqueFileNameList != null && uniqueFileNameList.Count > 0)
+            {
+                foreach (var uniqueFileName in uniqueFileNameList)
+                {
+                    details.Add(new BannerDetail
+                    {
+                        PhotoPath = uniqueFileName
+                    });
+                }
+            }
+            Banner banner = new Banner
+            {
+                Id = model.BannerId,
+                BatchId = model.BatchId,
+                Name = model.Name,
+                CreateTime = DateTime.Now,
+                BannerDetails = details
+            };
+            _bannerService.UpdateBanner(banner);
+
+            return RedirectToAction(nameof(Index));
+
         }
 
         //删除
@@ -152,40 +150,37 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpPost]
         public IActionResult CreateSave(BannerViewModel model)
         {
-            if (ModelState.IsValid)
+            List<string> uniqueFileNameList = null;
+
+            if (model.Photos != null && model.Photos.Count > 0)
             {
-                List<string> uniqueFileNameList = null;
-
-                if (model.Photos != null && model.Photos.Count > 0)
-                {
-                    uniqueFileNameList = ProcessUploadedFile(model);
-                }
-                var details = new List<BannerDetail>();
-                if (uniqueFileNameList!=null && uniqueFileNameList.Count>0)
-                {
-                    foreach (var uniqueFileName in uniqueFileNameList)
-                    {
-                        details.Add(new BannerDetail
-                        {
-                            PhotoPath = uniqueFileName
-                        });
-                    }
-                }
-
-               var bannerInfo=  _batchInformationService.GetBatchInfoById(int.Parse(model.BatchId));
-
-                Banner banner = new Banner
-                {
-                    BatchId = int.Parse(model.BatchId),
-                    Name = bannerInfo.Name,
-                    CreateTime = DateTime.Now,
-                    BannerDetails = details
-                };
-                _bannerService.Save(banner);
-
-                return RedirectToAction(nameof(Index));
+                uniqueFileNameList = ProcessUploadedFile(model);
             }
-            return View();
+            var details = new List<BannerDetail>();
+            if (uniqueFileNameList != null && uniqueFileNameList.Count > 0)
+            {
+                foreach (var uniqueFileName in uniqueFileNameList)
+                {
+                    details.Add(new BannerDetail
+                    {
+                        PhotoPath = uniqueFileName
+                    });
+                }
+            }
+
+            var bannerInfo = _batchInformationService.GetBatchInfoByBatchId(model.BatchId);
+
+            Banner banner = new Banner
+            {
+                BatchId = model.BatchId,
+                Name = bannerInfo.Name,
+                CreateTime = DateTime.Now,
+                BannerDetails = details
+            };
+            _bannerService.Save(banner);
+
+            return RedirectToAction(nameof(Index));
+
         }
 
         /// <summary>
@@ -231,9 +226,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         {
             var batchs = new List<object>();
             List<BatchInformation> batchInfos =  _batchInformationService.GetAll();
-            for (var i=0;i<batchInfos.Count();i++)
+            foreach (var batch in batchInfos)
             {
-                batchs.Add(new { id = i, name = batchInfos[i].BatchId });
+                batchs.Add(new { id = batch.BatchId, name = batch.Name});
             }
             ViewBag.BatchIds = new SelectList(batchs, "id", "name", selectedBatch);
         }
