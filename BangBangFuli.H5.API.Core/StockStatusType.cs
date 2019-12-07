@@ -6,8 +6,8 @@ namespace BangBangFuli.H5.API.Core
 {
    public enum StockStatusType
     {
-        Yes=0,
-        No=1,
+        No=0,
+        Yes=1,
         Unknown
     }
 }

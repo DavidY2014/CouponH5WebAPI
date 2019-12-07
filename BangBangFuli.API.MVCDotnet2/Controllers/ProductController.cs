@@ -211,16 +211,16 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         private void PopulateProductStatusDropDownList(object selectedProductStatus= null)
         {
             var productStatusTypes = new List<object>();
-            productStatusTypes.Add(new { id = 0, name = "上架" });
-            productStatusTypes.Add(new { id = 1, name = "下架" });
+            productStatusTypes.Add(new { id = 0, name = "下架" });
+            productStatusTypes.Add(new { id = 1, name = "上架" });
             ViewBag.ProductStatusTypes = new SelectList(productStatusTypes, "id", "name", selectedProductStatus);
         }
 
         private void PopulateStockStatusDropDownList(object selectedStockStatus = null)
         {
             var stockStatusTypes = new List<object>();
-            stockStatusTypes.Add(new { id = 0, name = "有货" });
-            stockStatusTypes.Add(new { id = 1, name = "无货" });
+            stockStatusTypes.Add(new { id = 0, name = "无货" });
+            stockStatusTypes.Add(new { id = 1, name = "有货" });
             ViewBag.StockStatusTypes = new SelectList(stockStatusTypes, "id", "name", selectedStockStatus);
         }
 
@@ -326,10 +326,10 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             switch (index)
             {
                 case "0":
-                    ret = ProductStatusType.On;
+                    ret = ProductStatusType.Down;
                     break;
                 case "1":
-                    ret = ProductStatusType.Down;
+                    ret = ProductStatusType.On;
                     break;
                 default:
                     ret = ProductStatusType.Unknown;
@@ -345,10 +345,10 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             switch (index)
             {
                 case "0":
-                    ret = StockStatusType.Yes;
+                    ret = StockStatusType.No;
                     break;
                 case "1":
-                    ret = StockStatusType.No;
+                    ret = StockStatusType.Yes;
                     break;
                 default:
                     ret = StockStatusType.Unknown;
@@ -368,10 +368,10 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             switch (stockStatus)
             {
                 case StockStatusType.Yes:
-                    ret = "有";
+                    ret = "有货";
                     break;
                 case StockStatusType.No:
-                    ret = "没有";
+                    ret = "无货";
                     break;
             }
             return ret;

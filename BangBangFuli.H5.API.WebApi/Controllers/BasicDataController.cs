@@ -126,7 +126,25 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         }
 
         /// <summary>
-        /// 4,通过批次号获取下面所有商品
+        /// 4,通过批次号获取下面所有商品,枚举备注
+        /// ClassType:商品大类       
+        /// yuexiangmeiwei=0, 悦享美味
+        /// jujiahaowu=1,  居家好物
+        /// pingzhishenghuo=2, 品质生活
+        /// chufangzhengxuan=3,  厨房甑选
+        /// unknown=4 ,未知类别
+        /// -----------------------
+        /// StockStatus:库存状态
+        /// No=0,  没有货
+        /// Yes=1,  有货
+        /// Unknown=2，未知状态
+        /// -----------------------
+        /// ProductStatus:商品状态
+        /// Down=0, 未上架
+        /// On=1, 上架
+        /// Unknown=2，未知状态 
+        /// 
+        /// 
         /// </summary>
         /// <param name="batchId"></param>
         /// <returns></returns>
@@ -159,11 +177,10 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Code = product.ProductCode,
                     Name = product.ProductName,
                     Description = product.Description,
-                    IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
-                    TypeName = Enum.GetName(typeof(ClassType), product.Type),
-                    ProductStatus = Enum.GetName(typeof(ProductStatusType),product.ProductStatus),
+                    StockStatus = (int)product.StockType,
+                    ClassType =(int)product.Type,
+                    ProductStatus = (int)product.ProductStatus,
                     Photos = detailDtos.Select(item => item.PhotoPath).ToList()
-
                 }) ;
             }
             return new ResponseOutput(productDtos, HttpContext.TraceIdentifier);
@@ -199,9 +216,9 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                 Code = product.ProductCode,
                 Name = product.ProductName,
                 Description = product.Description,
-                TypeName = Enum.GetName(typeof(ClassType), product.Type),
-                IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
-                ProductStatus = Enum.GetName(typeof(ProductStatusType),product.ProductStatus),
+                ClassType = (int) product.Type,
+                StockStatus = (int) product.StockType,
+                ProductStatus = (int)product.ProductStatus,
                 Photos = detailDtos.Select(item => item.PhotoPath).ToList()
             };
             return new ResponseOutput(dto, HttpContext.TraceIdentifier);
@@ -237,9 +254,9 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
                     Code = product.ProductCode,
                     Name = product.ProductName,
                     Description = product.Description,
-                    TypeName = Enum.GetName(typeof(ClassType), product.Type),
-                    IsInStock = Enum.GetName(typeof(StockStatusType), product.StockType),
-                    ProductStatus = Enum.GetName(typeof(ProductStatusType),product.ProductStatus),
+                    ClassType = (int) product.Type,
+                    StockStatus = (int)product.StockType,
+                    ProductStatus = (int)product.ProductStatus,
                     Photos = detailDtos.Select(item => item.PhotoPath).ToList()
                 });
             }

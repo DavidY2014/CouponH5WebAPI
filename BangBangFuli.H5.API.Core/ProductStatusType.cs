@@ -6,8 +6,8 @@ namespace BangBangFuli.H5.API.Core
 {
     public enum ProductStatusType
     {
-        On=0,
-        Down=1,
+        Down=0,
+        On=1,
         Unknown
     }
 }
