@@ -41,7 +41,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductId = product.Id,
                     ProductCode = product.ProductCode,
                     ProductName = product.ProductName,
-                    StockStatusName = GetClassTypeDisplayName((int)product.StockType),
+                    StockStatusName = GetStockStatusDisplayName((int)product.StockType),
                     ProductStatusName = GetProductStatusDisplayName((int)product.ProductStatus),
                     ClassTypeName = GetClassTypeDisplayName((int)product.Type),
                     StockStatus = (int)product.StockType,
