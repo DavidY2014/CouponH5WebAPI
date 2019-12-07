@@ -20,6 +20,21 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.BatchInformations.ToList();
         }
 
+        public void CreateNew(BatchInformation batchInfo)
+        {
+            Master.BatchInformations.Add(batchInfo);
+        }
+
+        public BatchInformation GetBatchInfoById(int Id)
+        {
+            return Master.BatchInformations.Find(Id);
+        }
+
+        public void RemoveBatchById(int Id)
+        {
+            BatchInformation batchInfo = Master.BatchInformations.Find(Id);
+            Master.BatchInformations.Remove(batchInfo);
+        }
 
     }
 }

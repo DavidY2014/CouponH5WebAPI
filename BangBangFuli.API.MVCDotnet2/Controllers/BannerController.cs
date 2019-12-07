@@ -9,6 +9,7 @@ using BangBangFuli.H5.API.Core.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BangBangFuli.API.MVCDotnet2.Controllers
 {
@@ -17,12 +18,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         private readonly IBannerService _bannerService;
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IBannerDetailService _bannerDetailService;
-
-        public BannerController(IBannerService bannerService, IHostingEnvironment hostingEnvironment,IBannerDetailService bannerDetailService)
+        private readonly IBatchInformationService _batchInformationService;
+        public BannerController(IBannerService bannerService, IHostingEnvironment hostingEnvironment,IBannerDetailService bannerDetailService, IBatchInformationService batchInformationService)
         {
             _bannerService = bannerService;
             _hostingEnvironment = hostingEnvironment;
             _bannerDetailService = bannerDetailService;
+            _batchInformationService = batchInformationService;
         }
 
         public IActionResult Index()
@@ -50,6 +52,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
+            PopulateBatchDropDownList();
             BannerViewModel model = new BannerViewModel();
             if (id != null)
             {
@@ -141,6 +144,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            PopulateBatchDropDownList();
             return View();
         }
 
@@ -167,10 +171,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                         });
                     }
                 }
+
+               var bannerInfo=  _batchInformationService.GetBatchInfoById(int.Parse(model.BatchId));
+
                 Banner banner = new Banner
                 {
                     BatchId = int.Parse(model.BatchId),
-                    Name = model.Name,
+                    Name = bannerInfo.Name,
                     CreateTime = DateTime.Now,
                     BannerDetails = details
                 };
@@ -218,6 +225,20 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         }
 
+
+        #region 批次号下拉列表
+        private void PopulateBatchDropDownList(object selectedBatch = null)
+        {
+            var batchs = new List<object>();
+            List<BatchInformation> batchInfos =  _batchInformationService.GetAll();
+            for (var i=0;i<batchInfos.Count();i++)
+            {
+                batchs.Add(new { id = i, name = batchInfos[i].BatchId });
+            }
+            ViewBag.BatchIds = new SelectList(batchs, "id", "name", selectedBatch);
+        }
+
+        #endregion
 
     }
 }

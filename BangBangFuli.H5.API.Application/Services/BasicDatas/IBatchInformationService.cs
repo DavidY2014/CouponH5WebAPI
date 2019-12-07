@@ -8,5 +8,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
     public interface IBatchInformationService:IAppService
     {
         List<BatchInformation> GetAll();
+
+        void CreateNew(BatchInformation batchInfo);
+
+        BatchInformation GetBatchInfoById(int Id);
+
+        void RemoveBatchById(int Id);
     }
 }

@@ -9,5 +9,10 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
     public interface IBatchInformationRepository: IBaseRepository<BatchInformation>
     {
         List<BatchInformation> GetAll();
+
+        void CreateNew(BatchInformation batchInfo);
+        BatchInformation GetBatchInfoById(int Id);
+
+        void RemoveBatchById(int Id);
     }
 }
