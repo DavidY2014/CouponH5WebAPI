@@ -26,6 +26,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             return _couponRepository.VerifyCoupon(code, password);
         }
 
+        public bool CheckIfCouponAlreadyExist(string code)
+        {
+            return _couponRepository.CheckIfCouponAlreadyExist(code);
+        }
+
         public Coupon GetCouponByCode(string code)
         {
             return _couponRepository.GetCouponByCode(code);
@@ -42,5 +47,10 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _unitOfWork.SaveChanges();
         }
 
+        public void UpdateCoupon(Coupon coupon)
+        {
+            _couponRepository.UpdateCoupon(coupon);
+            _unitOfWork.SaveChanges();
+        }
     }
 }

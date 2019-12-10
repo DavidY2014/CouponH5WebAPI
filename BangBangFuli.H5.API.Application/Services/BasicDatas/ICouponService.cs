@@ -12,9 +12,13 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 
         Coupon GetCouponByCode(string code);
 
+        bool CheckIfCouponAlreadyExist(string code);
+
         List<Coupon> GetAll();
 
         void AddNew(Coupon coupon);
+
+        void UpdateCoupon(Coupon coupon);
 
     }
 }

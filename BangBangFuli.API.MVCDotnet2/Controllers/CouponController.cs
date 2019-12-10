@@ -29,6 +29,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                  Code=item.Code.ToString(),
                  Password = item.Password,
                  ValidityDate = item.ValidityDate,
+                 AvaliableCount = item.AvaliableCount,
                  TotalCount = item.TotalCount
                 });
             }
@@ -41,16 +42,27 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View();
         }
 
+        public IActionResult CheckResult()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult CreateSave(CouponViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var checkRet = _couponService.CheckIfCouponAlreadyExist(model.Code);
+                if (checkRet)
+                {
+                    return RedirectToAction(nameof(CheckResult));
+                }
                 Coupon coupon = new Coupon
                 {
                     Code = model.Code,
                     Password = model.Password,
                     ValidityDate = model.ValidityDate,
+                    AvaliableCount = model.AvaliableCount,
                     TotalCount = model.TotalCount
                 };
                 _couponService.AddNew(coupon);

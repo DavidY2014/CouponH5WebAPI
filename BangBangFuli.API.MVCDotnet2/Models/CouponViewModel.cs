@@ -20,6 +20,11 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         [Display(Name = "有效期")]
         public DateTime ValidityDate { get; set; }
 
+
+        [Required]
+        [Display(Name = "可用次数")]
+        public int AvaliableCount { get; set; }
+
         [Required]
         [Display(Name = "总次数")]
         public int TotalCount { get; set; }

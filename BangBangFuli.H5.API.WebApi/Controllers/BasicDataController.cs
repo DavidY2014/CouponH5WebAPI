@@ -106,18 +106,27 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         public ResponseOutput ExchangeCoupon(CouponInputDto couponInputDto )
         {
             CouponDto dto = new CouponDto();
+            //先判断券是否有效
             var ret = _couponService.VerifyCoupon(couponInputDto.Code,couponInputDto.Password);
             if (ret)
             {
                 var coupon = _couponService.GetCouponByCode(couponInputDto.Code);
+                if (coupon.AvaliableCount <= 0)
+                { 
+                    return new ResponseOutput(dto, "-2", "此券次数已用完", HttpContext.TraceIdentifier);
+                }
+                int updateCount = coupon.AvaliableCount - 1;
                 dto = new CouponDto
                 {
                     Code = coupon.Code,
                     ValidityDate = coupon.ValidityDate,
-                    AvaliableCount = coupon.AvaliableCount,
+                    AvaliableCount = updateCount,
                     TotalCount = coupon.TotalCount
                 };
-                return new ResponseOutput(dto,"0","兑换成功", HttpContext.TraceIdentifier);
+                //更新券的信息
+                coupon.AvaliableCount = updateCount;
+                _couponService.UpdateCoupon(coupon);
+                return new ResponseOutput(dto,"0","兑换成功，可用次数为"+ coupon.AvaliableCount--, HttpContext.TraceIdentifier);
             }
             else
             {

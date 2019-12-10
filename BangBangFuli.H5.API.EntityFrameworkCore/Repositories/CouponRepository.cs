@@ -26,6 +26,16 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return coupon;
         }
 
+        public bool CheckIfCouponAlreadyExist(string code)
+        {
+            var coupon = Master.Coupons.Where(item => item.Code == code).FirstOrDefault();
+            if (coupon == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
 
         public bool VerifyCoupon(string code ,string password)
         {
@@ -42,6 +52,10 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             Master.Coupons.Add(coupon);
         }
 
+        public void UpdateCoupon(Coupon coupon)
+        {
+            Master.Coupons.Update(coupon);
+        }
 
     }
 }
