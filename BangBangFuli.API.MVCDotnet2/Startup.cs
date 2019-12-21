@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using UEditorNetCore;
 
 namespace BangBangFuli.API.MVCDotnet2
 {
@@ -59,7 +60,9 @@ namespace BangBangFuli.API.MVCDotnet2
                     .AllowCredentials();//指定处理cookie
                 });
             });
+            services.AddUEditorService();
             services.AddMvc();
+
 
 
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

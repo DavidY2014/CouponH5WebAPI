@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using UEditorNetCore;
 
 namespace BangBangFuli.API.MVCDotnet2.Controllers
 {
@@ -52,6 +53,16 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 }) ;
             }
             return View(productViewModelList);
+        }
+
+
+        /// <summary>
+        /// 富文本界面
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult NewEdit()
+        {
+            return View();
         }
 
         public IActionResult Details(int id)
@@ -118,6 +129,14 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             _productInformationService.RemoveProductById((int)id);
             //图片删除由自动任务实现，不然会影响性能
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult SaveProductDescription(string description)
+        {
+
+
+            return null;
         }
 
 
