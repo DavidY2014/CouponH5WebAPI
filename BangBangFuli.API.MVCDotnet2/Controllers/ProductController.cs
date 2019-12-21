@@ -60,8 +60,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         /// 富文本界面
         /// </summary>
         /// <returns></returns>
-        public IActionResult NewEdit()
+        public IActionResult NewEdit(int productId)
         {
+            ViewBag.productId = productId ;
             return View();
         }
 
@@ -131,12 +132,21 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// 商品描述信息
+        /// </summary>
+        /// <param name="description"></param>
+        /// <returns></returns>
         [HttpPost]
-        public IActionResult SaveProductDescription(string description)
+        public IActionResult SaveProductDescription(string description,int productId)
         {
-
-
-            return null;
+            if (productId>0)
+            {
+                ProductInformation product = _productInformationService.GetProductById(productId);
+                product.Description = description;
+                _productInformationService.UpdateProduct(product);
+            }
+            return View();
         }
 
 
@@ -168,13 +178,11 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     StockType = GetStockStatusMap(model.StockStatus),
                     Type = GetClassTypeMap(model.ClassType),
                     BatchId = model.BatchId,
-                    Description = model.Description,
                     Details = details
                 };
 
                 _productInformationService.Save(product);
-
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(NewEdit),new { productId=product.Id});
             }
             return View(model);
         }
