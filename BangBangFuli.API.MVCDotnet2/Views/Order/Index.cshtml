@@ -7,6 +7,9 @@
     <thead>
         <tr>
             <th>
+                订单号
+            </th>
+            <th>
                 券码
             </th>
             <th>
@@ -31,6 +34,9 @@
         @foreach (var item in Model)
         {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderCode)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CouponCode)
             </td>

@@ -128,7 +128,7 @@ namespace BangBangFuli.H5.API.WebAPI
         {
             string verifyCode = string.Empty;
             Random random = new Random();
-            int length = random.Next(4, 6);
+            int length = random.Next(4, 4);
             switch (type)
             {
                 case VerifyCodeType.NumberVerifyCode:

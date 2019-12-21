@@ -7,6 +7,8 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
 {
     public class OrderOutputDto
     {
+        //订单号
+        public string OrderCode { get; set; }
         public string CouponCode { get; set; }
 
         public string Contactor { get; set; }
@@ -26,7 +28,10 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
 
         public string Telephone { get; set; }
 
-        public DateTime CreateTime { get; set; }
+        public string CreateTime { get; set; }
+
+        //物流单号
+        public string DeliveryNumber { get; set; }
         public List<OrderDetailOutputDto> Details { get; set; }
     }
 }

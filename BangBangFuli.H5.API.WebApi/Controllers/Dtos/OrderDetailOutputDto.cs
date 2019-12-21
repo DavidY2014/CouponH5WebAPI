@@ -7,6 +7,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers.Dtos
 {
     public class OrderDetailOutputDto
     {
+        public int ProductId { get; set; }
         public string ProductCode { get; set; }
 
         public string ProductName { get; set; }

@@ -14,6 +14,13 @@ namespace BangBangFuli.H5.API.Core.Entities
         public int Id { get; set; }
 
         /// <summary>
+        /// 订单号
+        /// </summary>
+        [Required]
+        [MaxLength(20)]
+        public string OrderCode { get; set; }
+
+        /// <summary>
         /// 生成的每个订单都要关联当前的券号
         /// </summary>
         [Required]

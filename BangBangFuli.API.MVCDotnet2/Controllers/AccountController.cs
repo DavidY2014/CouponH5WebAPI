@@ -33,26 +33,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = new User
-                {
-                    UserName = model.Email,
-                    Email = model.Email,
-                };
-
-                var result =  await _userManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-
-                    return RedirectToAction("Index", "Home");
-                }
-
-                foreach (var error in result.Errors)
-                {
-
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                return View();
             }
 
             return View(model);
@@ -64,18 +45,6 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         public IActionResult IsEmailInUse(string email)
         {
 
-            //var user = await userManager.FindByEmailAsync(email);
-
-            //if (user == null)
-            //{
-            //    return Json(true);
-            //}
-            //else
-            //{
-
-            //    return Json($"邮箱：{email}已经被注册使用了。");
-
-            //}
             return null;
 
         }

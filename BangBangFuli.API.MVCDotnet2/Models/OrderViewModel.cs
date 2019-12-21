@@ -10,6 +10,9 @@ namespace BangBangFuli.API.MVCDotnet2.Models
     {
         public int OrderId { get; set; }
 
+        [Display(Name = "订单号")]
+        public string OrderCode { get; set; }
+
         [Display(Name = "券号")]
         public string CouponCode { get; set; }
 

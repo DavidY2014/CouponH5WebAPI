@@ -1,5 +1,4 @@
 ﻿using BangBangFuli.H5.API.Core.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
@@ -34,7 +33,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore
 
         public DbSet<BannerDetail> BannerDetails { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
 
         public DbSet<BatchInformation> BatchInformations { get; set; }
     }

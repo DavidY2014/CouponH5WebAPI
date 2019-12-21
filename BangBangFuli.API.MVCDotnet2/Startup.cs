@@ -42,8 +42,8 @@ namespace BangBangFuli.API.MVCDotnet2
             services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
             services.AddScoped<IUnitOfWork, H5.API.EntityFrameworkCore.UnitOfWork<CouponSystemDBContext>>();//注入UOW依赖，确保每次请求都是同一个对象
             //权限关联
-            services.AddIdentity<User, IdentityRole>()
-                 .AddEntityFrameworkStores<CouponSystemDBContext>();
+            //services.AddIdentity<User, IdentityRole>()
+            //     .AddEntityFrameworkStores<CouponSystemDBContext>();
 
             //services.AddControllersWithViews();
             services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");

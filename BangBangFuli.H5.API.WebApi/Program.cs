@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace BangBangFuli.H5.API.WebAPI
 {
@@ -51,6 +52,12 @@ namespace BangBangFuli.H5.API.WebAPI
                 //.UseUrls("http://localhost:5001", "http://106.54.112.131:9001")
                 //.UseIISIntegration()
                 .UseUrls("http://*:5000")
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .ConfigureLogging(logging =>
+                 {
+                     logging.ClearProviders(); //移除已经注册的其他日志处理程序
+                     logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace); //设置最小的日志级别
+                 })
+                .UseNLog();
     }
 }

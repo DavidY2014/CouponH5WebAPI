@@ -10,17 +10,18 @@ using BangBangFuli.H5.API.EntityFrameworkCore;
 using BangBangFuli.H5.API.WebAPI.AOP;
 using BangBangFuli.H5.API.WebAPI.Extensions;
 using BangBangFuli.Utils.ORM.Imp;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using NLog.Extensions.Logging;
+using NLog.Web;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -73,12 +74,7 @@ namespace BangBangFuli.H5.API.WebAPI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc(options =>
-            {
-                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            }
-                ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             services.AddApiVersioning(options =>
             {
@@ -148,7 +144,7 @@ namespace BangBangFuli.H5.API.WebAPI
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -167,6 +163,8 @@ namespace BangBangFuli.H5.API.WebAPI
             });
 
             app.UseStaticFiles();
+            loggerFactory.AddNLog();
+            env.ConfigureNLog("nlog.config");
             app.UseCors("allow_all");
             app.UseMvc(routes =>
             {
