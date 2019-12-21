@@ -9,6 +9,7 @@ using BangBangFuli.H5.API.Application.Services.Redis;
 using BangBangFuli.H5.API.Core;
 using BangBangFuli.H5.API.Core.Entities;
 using BangBangFuli.H5.API.WebAPI;
+using BangBangFuli.H5.API.WebAPI.AOP;
 using BangBangFuli.H5.API.WebAPI.Controllers.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +51,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("/api/v{version:apiVersion}/BasicData/Banner/{batchId}")]
+        [ValidController(allowedDomain: "52abp.com", ErrorMessage = "电子邮件后缀必须是52abp.com")]
         public ResponseOutput GetBannerByBatchId(string batchId)
         {
             var photoUniqueNames = new List<string>();
