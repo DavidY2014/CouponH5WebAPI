@@ -4,14 +4,16 @@ using BangBangFuli.H5.API.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CouponSystemDBContext))]
-    partial class CouponSystemDBContextModelSnapshot : ModelSnapshot
+    [Migration("20191222075502_adduserinfo")]
+    partial class adduserinfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,20 +95,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Coupons");
-                });
-
-            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.ModuleInfo", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(64);
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ModuleInfos");
                 });
 
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.Order", b =>
@@ -296,31 +284,6 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserInfos");
-                });
-
-            modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.UserRoleJurisdiction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsAdd");
-
-                    b.Property<bool>("IsAssignment");
-
-                    b.Property<bool>("IsDelete");
-
-                    b.Property<bool>("IsEdit");
-
-                    b.Property<bool>("IsQuery");
-
-                    b.Property<int>("ModuleID");
-
-                    b.Property<int>("UserRoleID");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserRoleJurisdictions");
                 });
 
             modelBuilder.Entity("BangBangFuli.H5.API.Core.Entities.BannerDetail", b =>

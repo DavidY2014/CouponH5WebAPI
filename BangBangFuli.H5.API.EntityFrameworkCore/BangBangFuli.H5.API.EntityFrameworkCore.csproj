@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BangBangFuli.Common\BangBangFuli.Common.csproj" />
     <ProjectReference Include="..\BangBangFuli.Utils.ORM\BangBangFuli.Utils.ORM.Imp.csproj" />
     <ProjectReference Include="..\BangBangFuli.H5.API.Core\BangBangFuli.H5.API.Core.csproj" />
     <ProjectReference Include="..\BangBangFuli.H5.API.Extensions\BangBangFuli.H5.API.Extensions.csproj" />

@@ -61,6 +61,7 @@ namespace BangBangFuli.API.MVCDotnet2
                 });
             });
             services.AddUEditorService();
+            services.AddSession();
             services.AddMvc();
 
 
@@ -79,13 +80,14 @@ namespace BangBangFuli.API.MVCDotnet2
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+ 
             app.UseStaticFiles();
             app.UseCookiePolicy();
             //启用认证
             app.UseAuthentication();
 
             app.UseCors("allow_all");
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

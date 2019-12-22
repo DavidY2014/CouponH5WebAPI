@@ -3,51 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BangBangFuli.API.MVCDotnet2.Models;
+using BangBangFuli.Common;
+using BangBangFuli.H5.API.Application.Services.BasicDatas;
 using BangBangFuli.H5.API.Core.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace BangBangFuli.API.MVCDotnet2.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly IUserService _userService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(IUserService userService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _userService = userService;
         }
 
-        [HttpGet]
-        public IActionResult Register()
+        /// <summary>
+        /// 登录页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public IActionResult Login()
         {
-
-            if (ModelState.IsValid)
+            string username = Request.Form["username"].TryToString();
+            string password = Request.Form["password"].TryToString();
+            UserInfo user = _userService.UserLogin(username,password);
+            if (user != null)
             {
-                return View();
+
+                HttpContext.Session.SetString("user", JsonSerializerHelper.Serialize(user));
+                return Json(new { code = 1, msg = "OK" });
             }
-
-            return View(model);
+            return Json(new { code = 0, msg = "登录失败" });
         }
 
-
-
-        [AcceptVerbs("Get", "Post")]
-        public IActionResult IsEmailInUse(string email)
-        {
-
-            return null;
-
-        }
 
 
 
