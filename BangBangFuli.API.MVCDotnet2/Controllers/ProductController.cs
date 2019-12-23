@@ -36,7 +36,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             var products = _productInformationService.GetAll();
             foreach (var product in products)
             {
-                BatchInformation batchInfo = _batchInformationService.GetBatchInfoByBatchId(product.BatchId);
+                BatchInformation batchInfo = _batchInformationService.GetBatchInfoById(product.BatchId);
                 productViewModelList.Add(new ProductInformationViewModel
                 {
                     ProductId = product.Id,
@@ -263,10 +263,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             List<BatchInformation> batchInfos = _batchInformationService.GetAll();
             foreach (var batch in batchInfos)
             {
-                batchs.Add(new { id = batch.BatchId, name = batch.Name });
+                batchs.Add(new { id = batch.Id, name = batch.Name });
             }
             ViewBag.BatchIds = new SelectList(batchs, "id", "name", selectedBatch);
-
         }
 
 

@@ -11,7 +11,7 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         public int Id { get; set; }
 
         [Display(Name = "批次号")]
-        public string BatchId { get; set; }
+        public int BatchId { get; set; }
 
         [Display(Name = "批次名称")]
         public string Name { get; set; }

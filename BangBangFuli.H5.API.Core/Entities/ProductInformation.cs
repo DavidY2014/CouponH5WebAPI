@@ -10,6 +10,8 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Key]
         public int Id { get; set; }
 
+        public int BatchId { get; set; }
+
         [Required]
         public string ProductName { get; set; }
 
@@ -23,7 +25,6 @@ namespace BangBangFuli.H5.API.Core.Entities
 
         public ClassTypeEnum Type { get; set; }
 
-        public string BatchId { get; set; }
         public List<ProductDetail> Details { get; set; }
 
     }

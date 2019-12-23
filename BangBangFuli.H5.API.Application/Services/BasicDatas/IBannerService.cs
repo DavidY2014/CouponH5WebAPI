@@ -13,7 +13,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         List<Banner> GetAll();
         Banner GetBannerById(int Id);
 
-        List<Banner> GetBannersByBatchId(string batchId);
+        List<Banner> GetBannersByBatchId(int batchId);
 
         void RemoveBannerById(int bannerId);
     }

@@ -36,7 +36,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 bannerViewModels.Add(new BannerViewModel
                 {
                     BannerId = banner.Id,
-                    BatchId =banner.BatchId.ToString(),
+                    BatchId =banner.BatchId,
                     Name = banner.Name,
                     CreateTime = banner.CreateTime
                 });
@@ -61,7 +61,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     BannerId = banner.Id,
                     Name = banner.Name,
-                    BatchId = banner.BatchId.ToString()
+                    BatchId = banner.BatchId
                 };
             }
             return View(model);
@@ -168,7 +168,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 }
             }
 
-            var bannerInfo = _batchInformationService.GetBatchInfoByBatchId(model.BatchId);
+            var bannerInfo = _batchInformationService.GetBatchInfoById(model.BatchId);
 
             Banner banner = new Banner
             {
@@ -228,7 +228,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             List<BatchInformation> batchInfos =  _batchInformationService.GetAll();
             foreach (var batch in batchInfos)
             {
-                batchs.Add(new { id = batch.BatchId, name = batch.Name});
+                batchs.Add(new { id = batch.Id, name = batch.Name});
             }
             ViewBag.BatchIds = new SelectList(batchs, "id", "name", selectedBatch);
         }

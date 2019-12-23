@@ -11,8 +11,6 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 
         void CreateNew(BatchInformation batchInfo);
 
-        BatchInformation GetBatchInfoByBatchId(string batchId);
-
         BatchInformation GetBatchInfoById(int Id);
 
         void RemoveBatchById(int Id);

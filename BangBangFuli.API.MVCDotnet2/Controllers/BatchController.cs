@@ -28,7 +28,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 batchViewModels.Add(new BatchViewModel
                 {
                     Id = batch.Id,
-                    BatchId = batch.BatchId,
+                    BatchId = batch.Id,
                     Name = batch.Name,
                     CreateTime = batch.CreateTime
                 });
@@ -50,7 +50,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             {
                 BatchInformation batchInfo = new BatchInformation
                 {
-                    BatchId = model.BatchId,
+                    Id = model.BatchId,
                     Name = model.Name,
                     CreateTime = DateTime.Now,
                 };
@@ -74,7 +74,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     Id = batchInfo.Id,
                     Name = batchInfo.Name,
-                    BatchId = batchInfo.BatchId
+                    BatchId = batchInfo.Id
                 };
             }
             return View(model);
@@ -83,12 +83,10 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpPost]
         public IActionResult EditSave(BatchViewModel model)
         {
-
             BatchInformation batchInfo = new BatchInformation
             {
                 Id = model.Id,
-                Name = model.Name,
-                BatchId = model.BatchId,
+                Name = model.Name
             };
 
             _batchInformationService.UpdateBatchInfo(batchInfo);

@@ -35,7 +35,7 @@ namespace BangBangFuli.API.MVCDotnet2.Models
         public ClassTypeEnum ClassType { get; set; }
 
 
-        public string BatchId { get; set; }
+        public int BatchId { get; set; }
 
 
         public string BatchName { get; set; }

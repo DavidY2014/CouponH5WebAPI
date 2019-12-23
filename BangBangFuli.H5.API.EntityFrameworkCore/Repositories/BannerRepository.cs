@@ -41,7 +41,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Banners.Find(Id);
         }
 
-        public List<Banner> GetBannersByBatchId(string batchId)
+        public List<Banner> GetBannersByBatchId(int batchId)
         {
             var banners =  Master.Banners.Where(item => item.BatchId == batchId).ToList();
             foreach (var banner in banners)

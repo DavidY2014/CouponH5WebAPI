@@ -17,7 +17,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 
         Banner GetBannerById(int Id);
 
-        List<Banner> GetBannersByBatchId(string batchId);
+        List<Banner> GetBannersByBatchId(int batchId);
 
         void RemoveBannerById(int bannerId);
 

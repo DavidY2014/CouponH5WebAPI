@@ -15,7 +15,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
         List<ProductInformation> GetProductsByClassType(ClassTypeEnum type);
         void UpdateProduct(ProductInformation product);
         ProductInformation GetProductById(int ProductId);
-        List<ProductInformation> GetProductsByBatchId(string batchId);
+        List<ProductInformation> GetProductsByBatchId(int batchId);
 
         void RemoveProductById(int productId);
     }

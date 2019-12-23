@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using BangBangFuli.API.MVCDotnet2.Filter;
 using BangBangFuli.API.MVCDotnet2.Models;
@@ -26,14 +27,20 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         private readonly IProductInformationService _productInformationService;
         private readonly IHostingEnvironment _hostingEnvironment;
 
+        private readonly IBannerService _bannerService;
+        private readonly IBannerDetailService _bannerDetailService;
+
         public EnterCustomController(IUserRoleJurisdictionService userRoleJurisdictionService, IModuleInfoService moduleInfoService , 
-            IProductInformationService productInformationService, IBatchInformationService batchInformationService, IHostingEnvironment hostingEnvironment)
+            IProductInformationService productInformationService, IBatchInformationService batchInformationService, IHostingEnvironment hostingEnvironment,
+            IBannerService bannerService , IBannerDetailService bannerDetailService)
         {
             _hostingEnvironment = hostingEnvironment;
             _userRoleJurisdictionService = userRoleJurisdictionService;
             _moduleInfoService = moduleInfoService;
             _productInformationService = productInformationService;
             _batchInformationService = batchInformationService;
+            _bannerService = bannerService;
+            _bannerDetailService = bannerDetailService;
         }
 
         /// <summary>
@@ -59,6 +66,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View();
         }
 
+        #region 商品
 
         /// <summary>
         /// 商品页面
@@ -70,7 +78,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             var products = _productInformationService.GetAll();
             foreach (var product in products)
             {
-                BatchInformation batchInfo = _batchInformationService.GetBatchInfoByBatchId(product.BatchId);
+                BatchInformation batchInfo = _batchInformationService.GetBatchInfoById(product.BatchId);
                 productViewModelList.Add(new ProductInformationViewModel
                 {
                     ProductId = product.Id,
@@ -94,9 +102,6 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         public IActionResult AddNewProduct()
         {
             ProductInformationViewModel model = new ProductInformationViewModel();
-            PopulateClassDropDownList();
-            PopulateProductStatusDropDownList();
-            PopulateStockStatusDropDownList();
             PopulateBatchDropDownList();
             return View(model);
         }
@@ -108,12 +113,6 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             if (ModelState.IsValid)
             {
                 List<string> uniqueFileNameList = null;
-
-                //if (model.Photos != null && model.Photos.Count > 0)
-                //{
-                //    uniqueFileNameList = ProcessUploadedFile(model);
-
-                //}
                 var details = new List<ProductDetail>();
                 if (uniqueFileNameList != null)
                 {
@@ -126,16 +125,15 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
-                    //ProductStatus = GetProductStatusMap(model.ProductStatus),
-                    //StockType = GetStockStatusMap(model.StockStatus),
+                    ProductStatus = model.ProductStatusType,
+                    StockType = model.StockStatusType,
                     Type = model.ClassType,
                     BatchId = model.BatchId,
-                    Details = details
+                    //Details = details
                 };
 
-                //_productInformationService.Save(product);
-                //return RedirectToAction(nameof(NewEdit), new { productId = product.Id });
-                return View();
+                _productInformationService.Save(product);
+                return RedirectToAction(nameof(QueryProductList), new { productId = product.Id });
             }
             return View(model);
         }
@@ -143,63 +141,91 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpPost]
         public IActionResult Uploadattachment()
         {
+            #region 文件上传
             var imgFile = Request.Form.Files[0];
-            return View();
+            if (imgFile != null && !string.IsNullOrEmpty(imgFile.FileName))
+            {
+                string uniqueFileName = null;
+                var filename = ContentDispositionHeaderValue
+                     .Parse(imgFile.ContentDisposition)
+                     .FileName
+                     .Trim('"');
+                string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + filename;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (FileStream fs = System.IO.File.Create(filePath))
+                {
+                    imgFile.CopyTo(fs);
+                    fs.Flush();
+                }
+                return Json(new { code = 0, msg = "上传成功", data = new { src = $"/images/{filePath}", title = "图片标题" } });
+            }
+            return Json(new { code = 1, msg = "上传失败", });
+            #endregion
         }
-
-
-        #region 上传图片文件到wwwroot目录
-
-        /// <summary>
-        /// 将照片保存到指定的路径中，并返回唯一的文件名
-        /// </summary>
-        /// <returns></returns>
-        //private List<string> ProcessUploadedFile(ProductInformationViewModel model)
-        //{
-        //    var photoFileNameList = new List<string>();
-
-        //    if (model.Photos.Count > 0)
-        //    {
-        //        foreach (var photo in model.Photos)
-        //        {
-        //            string uniqueFileName = null;
-        //            //必须将图像上传到wwwroot中的images文件夹
-        //            //而要获取wwwroot文件夹的路径，我们需要注入 ASP.NET Core提供的HostingEnvironment服务
-        //            //通过HostingEnvironment服务去获取wwwroot文件夹的路径
-        //            string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
-        //            //为了确保文件名是唯一的，我们在文件名后附加一个新的GUID值和一个下划线
-
-        //            uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-        //            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-        //            //因为使用了非托管资源，所以需要手动进行释放
-        //            using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //            {
-        //                //使用IFormFile接口提供的CopyTo()方法将文件复制到wwwroot/images文件夹
-        //                photo.CopyTo(fileStream);
-        //            }
-
-        //            photoFileNameList.Add(uniqueFileName);
-        //        }
-        //    }
-        //    return photoFileNameList;
-
-        //}
 
         #endregion
 
 
+        #region banner
 
         /// <summary>
         /// banner 页面
         /// </summary>
         /// <returns></returns>
-
         public IActionResult QueryBannerList()
         {
+            List<BannerViewModel> bannerViewModels = new List<BannerViewModel>();
+            List<Banner> banners = _bannerService.GetAll();
+            foreach (var banner in banners)
+            {
+                bannerViewModels.Add(new BannerViewModel
+                {
+                    BannerId = banner.Id,
+                    BatchId = banner.BatchId,
+                    Name = banner.Name,
+                    CreateTime = banner.CreateTime
+                });
+            }
+            return View(bannerViewModels);
+        }
 
+        /// <summary>
+        /// 新建banner视图
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AddNewBanner()
+        {
+            PopulateBatchDropDownList();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult CreateBannerSave(BannerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var bannerInfo = _batchInformationService.GetBatchInfoById(model.BatchId);
+
+                Banner banner = new Banner
+                {
+                    BatchId = model.BatchId,
+                    Name = bannerInfo.Name,
+                    CreateTime = DateTime.Now,
+                    //BannerDetails = details
+                };
+                _bannerService.Save(banner);
+
+                return RedirectToAction(nameof(QueryBannerList));
+            }
+            return View(model);
+        }
+
+
+
+        #endregion
+
+
 
 
 

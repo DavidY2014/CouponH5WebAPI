@@ -11,7 +11,7 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Key]
         public int Id { get; set; }
 
-        public string BatchId { get; set; }
+        public int BatchId { get; set; }
 
         public string Name { get; set; }
 
