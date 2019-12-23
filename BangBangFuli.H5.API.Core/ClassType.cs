@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BangBangFuli.H5.API.Core
 {
-    public enum ClassType
+    public enum ClassTypeEnum
     {
         yuexiangmeiwei=0,
         jujiahaowu=1,

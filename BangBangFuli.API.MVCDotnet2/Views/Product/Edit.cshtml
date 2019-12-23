@@ -47,7 +47,7 @@
             <div class="form-group">
                 <label asp-for="ProductStatus" class="control-label"></label>
                 <select asp-for="ProductStatus" class="form-control" asp-items="ViewBag.ProductStatusTypes">
-                    <option value=@Model.ProductStatus>-- 选择状态 --</option>
+                    <option value=@Model.ProductStatusType>-- 选择状态 --</option>
                 </select>
                 <span asp-validation-for="ProductStatus" class="text-danger"></span>
             </div>
@@ -56,7 +56,7 @@
             <div class="form-group">
                 <label asp-for="StockStatus" class="control-label"></label>
                 <select asp-for="StockStatus" class="form-control" asp-items="ViewBag.StockStatusTypes">
-                    <option value=@Model.StockStatus>-- 选择库存状态 --</option>
+                    <option value=@Model.StockStatusType>-- 选择库存状态 --</option>
                 </select>
                 <span asp-validation-for="StockStatus" class="text-danger"></span>
             </div>

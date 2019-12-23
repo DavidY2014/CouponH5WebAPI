@@ -53,7 +53,7 @@
                             var module1_jur = userrolejurlist.FirstOrDefault(x => x.ModuleID == module1.ID && x.IsQuery);
                             if (module1_jur != null)
                             {
-                                <li class="layui-nav-item"><a href="/Product/Index">商品管理</a></li>
+                                <li class="layui-nav-item"><a href="/EnterCustom/QueryProductList">商品管理</a></li>
                             }
                         }
                         if (module2 != null)
@@ -61,7 +61,7 @@
                             var module2_jur = userrolejurlist.FirstOrDefault(x => x.ModuleID == module2.ID && x.IsQuery);
                             if (module2_jur != null)
                             {
-                                <li class="layui-nav-item"><a href="/EnterCustom/BannerIndex">头图管理</a></li>
+                                <li class="layui-nav-item"><a href="/EnterCustom/QueryBannerList">头图管理</a></li>
                             }
 
                         }

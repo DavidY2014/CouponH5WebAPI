@@ -261,7 +261,7 @@ namespace BangBangFuli.H5.API.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("/api/v{version:apiVersion}/BasicData/ClassTypeProducts/{classType}")]
-        public ResponseOutput GetProductsByCatelog(ClassType classType)
+        public ResponseOutput GetProductsByCatelog(ClassTypeEnum classType)
         {
             var productDtos = new List<ProductDto>();
             try

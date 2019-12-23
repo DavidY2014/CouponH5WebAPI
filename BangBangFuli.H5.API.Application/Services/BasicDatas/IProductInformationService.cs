@@ -13,7 +13,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 
         void Save(ProductInformation product);
 
-        List<ProductInformation> GetProductsByClassType(ClassType type);
+        List<ProductInformation> GetProductsByClassType(ClassTypeEnum type);
 
         void UpdateProduct(ProductInformation product);
         ProductInformation GetProductById(int ProductId);

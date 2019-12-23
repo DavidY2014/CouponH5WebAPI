@@ -23,10 +23,10 @@
 
 
   <ItemGroup>
-    <Folder Include="Pages\EnterCustom\" />
+    <Folder Include="BasePages\EnterCustom\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="upload\" />
-    <Folder Include="Pages\" />
+    <Folder Include="BasePages\" />
   </ItemGroup>
 
 </Project>

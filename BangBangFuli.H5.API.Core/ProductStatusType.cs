@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BangBangFuli.H5.API.Core
 {
-    public enum ProductStatusType
+    public enum ProductStatusTypeEnum
     {
         Down=0,
         On=1,

@@ -34,7 +34,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _unitOfWork.SaveChanges();
         }
 
-        public List<ProductInformation> GetProductsByClassType(ClassType type)
+        public List<ProductInformation> GetProductsByClassType(ClassTypeEnum type)
         {
             return _productRepository.GetProductsByClassType(type);
         }

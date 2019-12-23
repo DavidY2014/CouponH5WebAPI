@@ -45,9 +45,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     StockStatusName = GetStockStatusDisplayName((int)product.StockType),
                     ProductStatusName = GetProductStatusDisplayName((int)product.ProductStatus),
                     ClassTypeName = GetClassTypeDisplayName((int)product.Type),
-                    StockStatus = (int)product.StockType,
-                    ProductStatus = (int)product.ProductStatus,
-                    ClassType = (int)product.Type,
+                    StockStatusType = product.StockType,
+                    ProductStatusType = product.ProductStatus,
+                    ClassType = product.Type,
                     BatchId = product.BatchId,
                     BatchName = batchInfo.Name
                 }) ;
@@ -106,9 +106,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductId = product.Id,
                     ProductCode = product.ProductCode,
                     ProductName = product.ProductName,
-                    ProductStatus = (int)product.ProductStatus,
-                    StockStatus=(int)product.StockType,
-                    ClassType = (int)product.Type,
+                    ProductStatusType = product.ProductStatus,
+                    StockStatusType=product.StockType,
+                    ClassType = product.Type,
                     Description = product.Description,
                     BatchId = product.BatchId
                 };
@@ -174,9 +174,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 {
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
-                    ProductStatus =  GetProductStatusMap(model.ProductStatus),
-                    StockType = GetStockStatusMap(model.StockStatus),
-                    Type = GetClassTypeMap(model.ClassType),
+                    ProductStatus =  model.ProductStatusType,
+                    StockType = model.StockStatusType,
+                    Type = model.ClassType,
                     BatchId = model.BatchId,
                     Details = details
                 };
@@ -214,9 +214,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     Id= model.ProductId,
                     ProductCode = model.ProductCode,
                     ProductName = model.ProductName,
-                    StockType = GetStockStatusMap(model.StockStatus),
-                    ProductStatus = GetProductStatusMap(model.ProductStatus),
-                    Type = GetClassTypeMap(model.ClassType),
+                    StockType = model.StockStatusType,
+                    ProductStatus = model.ProductStatusType,
+                    Type = model.ClassType,
                     BatchId = model.BatchId,
                     Details = details
                 };
@@ -266,6 +266,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 batchs.Add(new { id = batch.BatchId, name = batch.Name });
             }
             ViewBag.BatchIds = new SelectList(batchs, "id", "name", selectedBatch);
+
         }
 
 
@@ -324,22 +325,22 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         #region 商品状态枚举
 
-        public ClassType GetClassTypeMap(int index)
+        public ClassTypeEnum GetClassTypeMap(int index)
         {
-            ClassType ret = ClassType.unknown;
+            ClassTypeEnum ret = ClassTypeEnum.unknown;
             switch (index)
             {
                 case 0:
-                    ret = ClassType.yuexiangmeiwei;
+                    ret = ClassTypeEnum.yuexiangmeiwei;
                     break;
                 case 1:
-                    ret = ClassType.jujiahaowu;
+                    ret = ClassTypeEnum.jujiahaowu;
                     break;
                 case 2:
-                    ret = ClassType.pingzhishenghuo;
+                    ret = ClassTypeEnum.pingzhishenghuo;
                     break;
                 case 3:
-                    ret = ClassType.chufangzhengxuan;
+                    ret = ClassTypeEnum.chufangzhengxuan;
                     break;
             }
             return ret;
@@ -347,38 +348,38 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         }
 
-        public ProductStatusType GetProductStatusMap(int index)
+        public ProductStatusTypeEnum GetProductStatusMap(int index)
         {
-            ProductStatusType ret = ProductStatusType.Unknown;
+            ProductStatusTypeEnum ret = ProductStatusTypeEnum.Unknown;
             switch (index)
             {
                 case 0:
-                    ret = ProductStatusType.Down;
+                    ret = ProductStatusTypeEnum.Down;
                     break;
                 case 1:
-                    ret = ProductStatusType.On;
+                    ret = ProductStatusTypeEnum.On;
                     break;
                 default:
-                    ret = ProductStatusType.Unknown;
+                    ret = ProductStatusTypeEnum.Unknown;
                     break;
             }
             return ret;
 
         }
 
-        public StockStatusType GetStockStatusMap(int index)
+        public StockStatusTypeEnum GetStockStatusMap(int index)
         {
-            StockStatusType ret = StockStatusType.Unknown;
+            StockStatusTypeEnum ret = StockStatusTypeEnum.Unknown;
             switch (index)
             {
                 case 0:
-                    ret = StockStatusType.No;
+                    ret = StockStatusTypeEnum.No;
                     break;
                 case 1:
-                    ret = StockStatusType.Yes;
+                    ret = StockStatusTypeEnum.Yes;
                     break;
                 default:
-                    ret = StockStatusType.Unknown;
+                    ret = StockStatusTypeEnum.Unknown;
                     break;
             }
             return ret;

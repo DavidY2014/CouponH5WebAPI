@@ -33,7 +33,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             Master.ProductInformations.Update(product);
         }
 
-        public List<ProductInformation> GetProductsByClassType (ClassType type)
+        public List<ProductInformation> GetProductsByClassType (ClassTypeEnum type)
         {
            return  Master.ProductInformations.Where(item => item.Type == type).ToList();
         }
