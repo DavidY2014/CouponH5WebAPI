@@ -1,0 +1,49 @@
+﻿@model BatchViewModel
+@{
+    ViewData["Title"] = "添加Banner";
+    Layout = "~/BasePages/_Layout.cshtml";
+}
+<blockquote class="layui-elem-quote">
+    添加批次信息
+</blockquote>
+<div class="manage-form-container">
+    <form class="layui-form" method="post" action="/EnterCustom/CreateBatchSave">
+        <div class="layui-form-item">
+            <label class="layui-form-label">批次名称</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input layui-form-text" name="Name" id="Name"  placeholder="请输入批次名称" autocomplete="off" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/layui/jquery.validate.js"></script>
+    <script src="~/layui/jquery.form.js"></script>
+    <script type="text/javascript">
+        layui.use(['form', 'element', 'layer'], function () {
+            var layer = layui.layer
+            var form = layui.form
+            form.on('submit(demo1)', function (data) {
+                $.ajax({
+                    url: '../EnterCustom/CreateBatchSave',
+                    data: data.field,
+                    success: function (data) {
+                        layer.msg("提交成功")
+                    }
+
+
+                });
+            })
+        })
+
+    </script>
+}

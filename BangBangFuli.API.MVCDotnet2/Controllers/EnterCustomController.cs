@@ -30,10 +30,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         private readonly IBannerService _bannerService;
         private readonly IBannerDetailService _bannerDetailService;
         private readonly ICouponService _couponService;
+        private readonly IOrderService _orderService;
+        private readonly IOrderDetailService _orderDetailService;
 
         public EnterCustomController(IUserRoleJurisdictionService userRoleJurisdictionService, IModuleInfoService moduleInfoService , 
             IProductInformationService productInformationService, IBatchInformationService batchInformationService, IHostingEnvironment hostingEnvironment,
-            IBannerService bannerService , IBannerDetailService bannerDetailService,ICouponService couponService)
+            IBannerService bannerService , IBannerDetailService bannerDetailService,ICouponService couponService,
+            IOrderService orderService,IOrderDetailService orderDetailService)
         {
             _hostingEnvironment = hostingEnvironment;
             _userRoleJurisdictionService = userRoleJurisdictionService;
@@ -43,6 +46,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             _bannerService = bannerService;
             _bannerDetailService = bannerDetailService;
             _couponService = couponService;
+            _orderService = orderService;
+            _orderDetailService = orderDetailService;
         }
 
         /// <summary>
@@ -292,6 +297,107 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         #endregion
 
+        #region 订单
+
+        /// <summary>
+        /// 订单页面
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult QueryOrderList()
+        {
+            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
+            var orders = _orderService.GetAll();
+            foreach (var order in orders)
+            {
+                orderViewModels.Add(new OrderViewModel
+                {
+                    OrderId = order.Id,
+                    OrderCode = order.OrderCode,
+                    CouponCode = order.CouponCode,
+                    Contactor = order.Contactor,
+                    MobilePhone = order.MobilePhone,
+                    Address = order.Address,
+                    ZipCode = order.ZipCode,
+                    Telephone = order.Telephone
+                });
+            }
+
+            return View(orderViewModels);
+        }
+
+
+
+
+        #endregion
+
+        #region 批次
+
+        /// <summary>
+        /// 批次列表页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult QueryBatchList()
+        {
+            List<BatchViewModel> batchViewModels = new List<BatchViewModel>();
+            List<BatchInformation> batchInfos = _batchInformationService.GetAll();
+            foreach (var batch in batchInfos)
+            {
+                batchViewModels.Add(new BatchViewModel
+                {
+                    Id = batch.Id,
+                    BatchId = batch.Id,
+                    Name = batch.Name,
+                    CreateTime = batch.CreateTime
+                });
+            }
+            return View(batchViewModels);
+        }
+
+        /// <summary>
+        /// 新增界面
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AddNewBatch()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateBatchSave(BatchViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                BatchInformation batchInfo = new BatchInformation
+                {
+                    Id = model.BatchId,
+                    Name = model.Name,
+                    CreateTime = DateTime.Now,
+                };
+                _batchInformationService.CreateNew(batchInfo);
+
+                return RedirectToAction(nameof(QueryBatchList));
+            }
+            return View();
+        }
+
+
+
+        #endregion
+
+
+        #region 供应商
+
+        /// <summary>
+        /// 供应商列表页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult QuerySupplierList()
+        {
+            return View();
+        }
+
+
+        #endregion
 
 
 
