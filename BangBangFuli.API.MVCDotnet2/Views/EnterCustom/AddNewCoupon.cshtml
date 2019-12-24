@@ -1,0 +1,73 @@
+﻿@model CouponViewModel
+@{
+    ViewData["Title"] = "添加券";
+    Layout = "~/BasePages/_Layout.cshtml";
+}
+<blockquote class="layui-elem-quote">
+    添加券码信息
+</blockquote>
+<div class="manage-form-container">
+    <form class="layui-form" method="post" action="/EnterCustom/CreateCouponSave">
+        <div class="layui-form-item">
+            <label class="layui-form-label">编号</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input layui-form-text" name="Code" id="Code" value="@(Model!=null?Model.Code:"")" placeholder="请输入券编号" autocomplete="off" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">券密码</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input layui-form-text" name="Password" id="Password" value="@(Model!=null?Model.Password:"")" placeholder="请输入券密码" autocomplete="off" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">有效时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="ValidityDate" id="ValidityDate" lay-verify="ValidityDate" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">总次数</label>
+            <div class="layui-input-block">
+                <input type="text" name="TotalCount" lay-verify="TotalCount" autocomplete="off" placeholder="请输入总次数" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/layui/jquery.validate.js"></script>
+    <script src="~/layui/jquery.form.js"></script>
+    <script type="text/javascript">
+        layui.use(['form', 'element', 'layer','layedit', 'laydate'], function () {
+            var layer = layui.layer
+            var form = layui.form
+                , laydate = layui.laydate;
+            //日期
+            laydate.render({
+                elem: '#ValidityDate'
+            });
+
+            form.on('submit(demo1)', function (data) {
+                $.ajax({
+                    url: '../EnterCustom/CreateCouponSave',
+                    data: data.field,
+                    success: function (data) {
+                        layer.msg("提交成功")
+                    }
+
+
+                });
+            })
+        })
+
+
+
+    </script>
+}

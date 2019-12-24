@@ -29,10 +29,11 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         private readonly IBannerService _bannerService;
         private readonly IBannerDetailService _bannerDetailService;
+        private readonly ICouponService _couponService;
 
         public EnterCustomController(IUserRoleJurisdictionService userRoleJurisdictionService, IModuleInfoService moduleInfoService , 
             IProductInformationService productInformationService, IBatchInformationService batchInformationService, IHostingEnvironment hostingEnvironment,
-            IBannerService bannerService , IBannerDetailService bannerDetailService)
+            IBannerService bannerService , IBannerDetailService bannerDetailService,ICouponService couponService)
         {
             _hostingEnvironment = hostingEnvironment;
             _userRoleJurisdictionService = userRoleJurisdictionService;
@@ -41,6 +42,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             _batchInformationService = batchInformationService;
             _bannerService = bannerService;
             _bannerDetailService = bannerDetailService;
+            _couponService = couponService;
         }
 
         /// <summary>
@@ -196,8 +198,9 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         /// <returns></returns>
         public IActionResult AddNewBanner()
         {
+            BannerViewModel model = new BannerViewModel();
             PopulateBatchDropDownList();
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -205,12 +208,10 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var bannerInfo = _batchInformationService.GetBatchInfoById(model.BatchId);
-
                 Banner banner = new Banner
                 {
                     BatchId = model.BatchId,
-                    Name = bannerInfo.Name,
+                    Name = model.Name,
                     CreateTime = DateTime.Now,
                     //BannerDetails = details
                 };
@@ -222,11 +223,74 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         }
 
 
-
         #endregion
 
 
+        #region 提货券管理
 
+        /// <summary>
+        /// 券列表页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult QueryCouponList()
+        {
+            var couponViewModelList = new List<CouponViewModel>();
+            var coupons = _couponService.GetAll();
+            foreach (var item in coupons)
+            {
+                couponViewModelList.Add(new CouponViewModel
+                {
+                    Code = item.Code,
+                    Password = item.Password,
+                    ValidityDate = item.ValidityDate,
+                    AvaliableCount = item.AvaliableCount,
+                    TotalCount = item.TotalCount
+                });
+            }
+
+            return View(couponViewModelList);
+        }
+
+        /// <summary>
+        /// 券新增页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AddNewCoupon()
+        {
+            return View();
+        }
+
+        public IActionResult CheckResult()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCouponSave(CouponViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var checkRet = _couponService.CheckIfCouponAlreadyExist(model.Code);
+                if (checkRet)
+                {
+                    return RedirectToAction(nameof(CheckResult));
+                }
+                Coupon coupon = new Coupon
+                {
+                    Code = model.Code,
+                    Password = model.Password,
+                    ValidityDate = model.ValidityDate,
+                    AvaliableCount = model.AvaliableCount,
+                    TotalCount = model.TotalCount
+                };
+                _couponService.AddNew(coupon);
+
+                return RedirectToAction(nameof(QueryCouponList));
+            }
+            return View(model);
+        }
+
+        #endregion
 
 
 

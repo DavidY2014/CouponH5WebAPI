@@ -1,8 +1,8 @@
 ﻿@using BangBangFuli.H5.API.Core.Entities
 @using BangBangFuli.H5.API.Core
-@model ProductInformationViewModel
+@model BangBangFuli.API.MVCDotnet2.Models.BannerViewModel
 @{
-    ViewData["Title"] = "添加商品";
+    ViewData["Title"] = "添加Banner";
     Layout = "~/BasePages/_Layout.cshtml";
     List<BatchInformation> BatchInfoList = ViewBag.BatchInfos;
 }
@@ -10,19 +10,7 @@
     添加商品信息
 </blockquote>
 <div class="manage-form-container">
-    <form class="layui-form" method="post" action="/EnterCustom/CreateSave">
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品编号</label>
-            <div class="layui-input-block">
-                <input type="text" class="layui-input layui-form-text" name="ProductCode" id="ProductCode" value="@(Model!=null?Model.ProductCode:"")" placeholder="请输入商品编号" autocomplete="off" />
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品名称</label>
-            <div class="layui-input-block">
-                <input type="text" class="layui-input layui-form-text" name="ProductName" id="ProductName" value="@(Model!=null?Model.ProductName:"")" placeholder="请输入商品名称" autocomplete="off" />
-            </div>
-        </div>
+    <form class="layui-form" method="post" action="/EnterCustom/CreateBannerSave">
         <div class="layui-form-item">
             <label class="layui-form-label">批次</label>
             <div class="layui-input-block">
@@ -39,38 +27,11 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">类型</label>
+            <label class="layui-form-label">Banner名称</label>
             <div class="layui-input-block">
-                <select class="layui-form-select" name="ClassType">
-                    <option value=""></option>
-                    <option value="1" @(Model != null && Model.ClassType == ClassTypeEnum.yuexiangmeiwei ? "selected" : "")>悦享生活</option>
-                    <option value="2" @(Model != null && Model.ClassType == ClassTypeEnum.jujiahaowu ? "selected" : "")>居家好物</option>
-                    <option value="3" @(Model != null && Model.ClassType == ClassTypeEnum.pingzhishenghuo ? "selected" : "")>品质生活</option>
-                    <option value="4" @(Model != null && Model.ClassType == ClassTypeEnum.chufangzhengxuan ? "selected" : "")>厨房甄选</option>
-                </select>
+                <input type="text" class="layui-input layui-form-text" name="Name" id="Name" value="@(Model!=null?Model.Name:"")" placeholder="请输入Banner名称" autocomplete="off" />
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品状态</label>
-            <div class="layui-input-block">
-                <select class="layui-form-select" name="ProductStatusType">
-                    <option value=""></option>
-                    <option value="1" @(Model != null && Model.ProductStatusType == ProductStatusTypeEnum.On ? "selected" : "")>上架</option>
-                    <option value="2" @(Model != null && Model.ProductStatusType == ProductStatusTypeEnum.Down ? "selected" : "")>下架</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">库存状态</label>
-            <div class="layui-input-block">
-                <select class="layui-form-select" name="StockStatusType">
-                    <option value=""></option>
-                    <option value="1" @(Model != null && Model.StockStatusType == StockStatusTypeEnum.Yes ? "selected" : "")>有库存</option>
-                    <option value="2" @(Model != null && Model.StockStatusType == StockStatusTypeEnum.No ? "selected" : "")>无库存</option>
-                </select>
-            </div>
-        </div>
-
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
@@ -107,7 +68,7 @@
             var form = layui.form
             form.on('submit(demo1)', function (data) {
                 $.ajax({
-                    url: '../EnterCustom/CreateSave',
+                    url: '../EnterCustom/CreateBannerSave',
                     data: data.field,
                     success: function (data) {
                         layer.msg("提交成功")
