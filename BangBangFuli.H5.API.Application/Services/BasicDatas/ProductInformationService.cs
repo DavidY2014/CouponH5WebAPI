@@ -28,6 +28,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _unitOfWork.SaveChanges();
         }
 
+        public int AddProduct(ProductInformation productInfo)
+        {
+            return _productRepository.AddProduct(productInfo);
+        }
+
         public void UpdateProduct(ProductInformation product)
         {
             _productRepository.UpdateProduct(product);

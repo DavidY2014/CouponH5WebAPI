@@ -8,6 +8,7 @@ using BangBangFuli.API.MVCDotnet2.Filter;
 using BangBangFuli.API.MVCDotnet2.Models;
 using BangBangFuli.Common;
 using BangBangFuli.H5.API.Application.Services.BasicDatas;
+using BangBangFuli.H5.API.Core;
 using BangBangFuli.H5.API.Core.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -106,49 +107,80 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IActionResult AddNewProduct()
+        public IActionResult AddNewProduct(int id)
         {
-            ProductInformationViewModel model = new ProductInformationViewModel();
-            PopulateBatchDropDownList();
-            return View(model);
-        }
-
-
-        [HttpPost]
-        public IActionResult CreateSave(ProductInformationViewModel model)
-        {
-            if (ModelState.IsValid)
+            ProductInformation productInfo = new ProductInformation();
+            if (id>0)
             {
-                List<string> uniqueFileNameList = null;
-                var details = new List<ProductDetail>();
-                if (uniqueFileNameList != null)
-                {
-                    foreach (var uniqueFileName in uniqueFileNameList)
-                    {
-                        details.Add(new ProductDetail { PhotoPath = uniqueFileName });
-                    }
-                }
-                ProductInformation product = new ProductInformation
-                {
-                    ProductCode = model.ProductCode,
-                    ProductName = model.ProductName,
-                    ProductStatus = model.ProductStatusType,
-                    StockType = model.StockStatusType,
-                    Type = model.ClassType,
-                    BatchId = model.BatchId,
-                    //Details = details
-                };
-
-                _productInformationService.Save(product);
-                return RedirectToAction(nameof(QueryProductList), new { productId = product.Id });
+                productInfo = _productInformationService.GetProductById(id);
             }
-            return View(model);
+            List<BatchInformation> batchInfos = _batchInformationService.GetAll();
+            ViewBag.BatchInfos = batchInfos;
+            return View(productInfo);
         }
 
+
         [HttpPost]
-        public IActionResult Uploadattachment()
+        public IActionResult SaveProduct()
+        {
+            int id = Request.Form["ID"].TryToInt(0);
+            if (id > 0)
+            {
+                var info = _productInformationService.GetProductById(id);
+                info.ProductCode = Request.Form["ProductCode"].TryToString();
+                info.ProductName = Request.Form["ProductName"].TryToString();
+                info.BatchId = Request.Form["BatchId"].TryToInt(0);
+                info.Type = (ClassTypeEnum)Request.Form["ClassType"].TryToInt(0);
+                info.ProductStatus = (ProductStatusTypeEnum)Request.Form["ProductStatusType"].TryToInt(0);
+                info.StockType = (StockStatusTypeEnum)Request.Form["StockStatusType"].TryToInt(0);
+                _productInformationService.UpdateProduct(info);
+                return Json(new { code = 1, msg = "OK", id = info.Id });
+            }
+            else
+            {
+                ProductInformation productInfo = new ProductInformation();
+                productInfo.ProductCode = Request.Form["ProductCode"].TryToString();
+                productInfo.ProductName = Request.Form["ProductName"].TryToString();
+                productInfo.BatchId = Request.Form["BatchId"].TryToInt(0);
+                productInfo.Type = (ClassTypeEnum)Request.Form["ClassType"].TryToInt(0);
+                productInfo.ProductStatus = (ProductStatusTypeEnum)Request.Form["ProductStatusType"].TryToInt(0);
+                productInfo.StockType = (StockStatusTypeEnum)Request.Form["StockStatusType"].TryToInt(0);
+                id = _productInformationService.AddProduct(productInfo);
+                if (id > 0)
+                {
+                    return Json(new { code = 1, msg = "OK", id = id });
+                }
+                else
+                {
+                    return Json(new { code = 0, msg = "保存失败" });
+                }
+            }
+        }
+
+        /// <summary>
+        /// 商品图片页面
+        /// </summary>
+        /// <param name="ProductId"></param>
+        /// <returns></returns>
+        public IActionResult AddProductPhotos(int ProductId)
+        {
+            var productInfo = _productInformationService.GetProductById(ProductId);
+            return View(productInfo);
+        }
+
+        /// <summary>
+        /// 图片关联
+        /// </summary>
+        /// <param name="ProductId"></param>
+        /// <returns></returns>
+
+        [HttpPost]
+        public IActionResult Uploadattachment(int ProductId)
         {
             #region 文件上传
+
+
+
             var imgFile = Request.Form.Files[0];
             if (imgFile != null && !string.IsNullOrEmpty(imgFile.FileName))
             {

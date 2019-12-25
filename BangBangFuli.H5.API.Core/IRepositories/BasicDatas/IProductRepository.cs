@@ -3,6 +3,7 @@ using BangBangFuli.Utils.ORM.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 {
@@ -11,6 +12,8 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
         List<ProductInformation> GetAll();
 
         void Save(ProductInformation product);
+
+        int AddProduct(ProductInformation productInfo);
 
         List<ProductInformation> GetProductsByClassType(ClassTypeEnum type);
         void UpdateProduct(ProductInformation product);

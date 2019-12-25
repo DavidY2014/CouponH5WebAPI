@@ -32,6 +32,20 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         {
             Master.ProductInformations.Update(product);
         }
+        public int AddProduct(ProductInformation productInfo)
+        {
+            int id = 0;
+            try
+            {
+                var entity = Master.ProductInformations.Add(productInfo);
+                Master.SaveChanges();
+                id = entity.Entity.Id;
+            }
+            catch (Exception ex)
+            {
+            }
+            return id;
+        }
 
         public List<ProductInformation> GetProductsByClassType (ClassTypeEnum type)
         {
