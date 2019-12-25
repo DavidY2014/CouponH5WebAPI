@@ -27,6 +27,15 @@
     </div>
 </div>
 
+<form class="layui-form" method="post" id="addform" action="/EnterCustom/SaveProduct">
+    <input type="hidden" name="ID" value="@(Model!=null ? Model.Id:0)" id="ID" />
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+        </div>
+    </div>
+</form>
+
 @section Scripts{
     <script src="~/layui/jquery.validate.js"></script>
     <script src="~/layui/jquery.form.js"></script>
@@ -34,8 +43,24 @@
          layui.use(['form', 'element', 'layer'], function () {
             var layer = layui.layer
             var form = layui.form
+         })
+
+        $('#addform').validate({
+            ignore:"",
+            submitHandler: function (form) {
+                layer.load(0, { shade: false })
+                $(form).ajaxSubmit(function (res) {
+                    if (res.code == 1) {
+                        layer.msg('保存成功', { icon: 6 });
+                        window.location = '/EnterCustom/AddProductDescription?ProductId=' + res.id
+                    } else {
+                        layer.msg('保存失败', { icon: 5 });
+                    }
+                })
+            }
         })
-        
+
+
         layui.use('upload', function () {
             var $ = layui.jquery
                 , upload = layui.upload;

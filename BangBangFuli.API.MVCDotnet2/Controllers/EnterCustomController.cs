@@ -96,7 +96,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     ProductStatusType = product.ProductStatus,
                     ClassType = product.Type,
                     BatchId = product.BatchId,
-                    BatchName = batchInfo.Name
+                    BatchName =batchInfo!=null?batchInfo.Name:string.Empty
                 });
             }
             return View(productViewModelList);
@@ -178,9 +178,6 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         public IActionResult Uploadattachment(int ProductId)
         {
             #region 文件上传
-
-
-
             var imgFile = Request.Form.Files[0];
             if (imgFile != null && !string.IsNullOrEmpty(imgFile.FileName))
             {
@@ -197,10 +194,39 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     imgFile.CopyTo(fs);
                     fs.Flush();
                 }
+
+                var productInfo = _productInformationService.GetProductById(ProductId);
+                var details = new List<ProductDetail>();
+                details.Add(new ProductDetail()
+                {
+                    ProductInformationId = ProductId,
+                    PhotoPath = uniqueFileName
+                });
+                productInfo.Details = details;
+
+                _productInformationService.UpdateProduct(productInfo);
+
                 return Json(new { code = 0, msg = "上传成功", data = new { src = $"/images/{filePath}", title = "图片标题" } });
             }
             return Json(new { code = 1, msg = "上传失败", });
             #endregion
+        }
+
+        [HttpPost]
+        public IActionResult SavePhotos()
+        {
+            int id = Request.Form["ID"].TryToInt(0);
+            return Json(new { code = 1, msg = "OK", id = id });
+        }
+
+        /// <summary>
+        /// 商品描述页面
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AddProductDescription(int ProductId)
+        {
+            var productInfo = _productInformationService.GetProductById(ProductId);
+            return View(productInfo);
         }
 
         #endregion
