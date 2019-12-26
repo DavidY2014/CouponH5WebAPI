@@ -430,6 +430,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             {
                 couponViewModelList.Add(new CouponViewModel
                 {
+                    Id = item.Id,
                     Code = item.Code,
                     Password = item.Password,
                     ValidityDate = item.ValidityDate,
@@ -445,9 +446,14 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         /// 券新增页
         /// </summary>
         /// <returns></returns>
-        public IActionResult AddNewCoupon()
+        public IActionResult AddNewCoupon(int id)
         {
-            return View();
+            Coupon couponInfo = new Coupon();
+            if (id > 0)
+            {
+                couponInfo = _couponService.GetCouponById(id);
+            }
+            return View(couponInfo);
         }
 
         public IActionResult CheckResult()
@@ -456,28 +462,59 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCouponSave(CouponViewModel model)
+        public IActionResult SaveCoupon()
         {
-            if (ModelState.IsValid)
+            int id = Request.Form["ID"].TryToInt(0);
+            if (id > 0)
             {
-                var checkRet = _couponService.CheckIfCouponAlreadyExist(model.Code);
-                if (checkRet)
-                {
-                    return RedirectToAction(nameof(CheckResult));
-                }
-                Coupon coupon = new Coupon
-                {
-                    Code = model.Code,
-                    Password = model.Password,
-                    ValidityDate = model.ValidityDate,
-                    AvaliableCount = model.AvaliableCount,
-                    TotalCount = model.TotalCount
-                };
-                _couponService.AddNew(coupon);
-
-                return RedirectToAction(nameof(QueryCouponList));
+                var info = _couponService.GetCouponById(id);
+                info.Code = Request.Form["Code"].TryToString();
+                info.Password = Request.Form["Password"].TryToString();
+                info.ValidityDate = Request.Form["ValidityDate"].TryToDateTime();
+                info.TotalCount = Request.Form["TotalCount"].TryToInt();
+                info.UpdateTime = DateTime.Now;
+                _couponService.UpdateCoupon(info);
+                return Json(new { code = 1, msg = "OK", id = info.Id });
             }
-            return View(model);
+            else
+            {
+                Coupon couponInfo = new Coupon();
+                couponInfo.Code = Request.Form["Code"].TryToString();
+                var ret = _couponService.CheckIfCouponAlreadyExist(couponInfo.Code);
+                if (ret)
+                {
+                    return Json(new { code = -1, msg = "券已存在" });
+                }
+                couponInfo.Password = Request.Form["Password"].TryToString();
+                couponInfo.ValidityDate = Request.Form["ValidityDate"].TryToDateTime();
+                couponInfo.TotalCount = Request.Form["TotalCount"].TryToInt();
+                couponInfo.CreateTime = DateTime.Now;
+                id = _couponService.AddCoupon(couponInfo);
+                if (id > 0)
+                {
+                    return Json(new { code = 1, msg = "OK", id = id });
+                }
+                else
+                {
+                    return Json(new { code = 0, msg = "保存失败" });
+                }
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult DelCoupon(int id)
+        {
+            try
+            {
+                var couponInfo = _couponService.GetCouponById(id);
+                _couponService.RemoveCoupon(couponInfo);
+                return Json(new { code = 1, msg = "OK" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 0, msg = "OK" });
+            }
         }
 
         #endregion

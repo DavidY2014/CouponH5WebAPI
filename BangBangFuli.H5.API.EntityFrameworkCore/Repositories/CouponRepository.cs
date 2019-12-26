@@ -20,6 +20,26 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             return Master.Coupons.ToList();
         }
 
+
+        public int AddCoupon(Coupon couponInfo)
+        {
+            int id = 0;
+            try
+            {
+                var entity = Master.Coupons.Add(couponInfo);
+                Master.SaveChanges();
+                id = entity.Entity.Id;
+            }
+            catch (Exception ex)
+            {
+            }
+            return id;
+        }
+
+        public Coupon GetCouponById(int id)
+        {
+            return Master.Coupons.Find(id);
+        }
         public Coupon GetCouponByCode(string code)
         {
             var coupon = Master.Coupons.Where(item => item.Code == code).FirstOrDefault();
@@ -55,6 +75,11 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
         public void UpdateCoupon(Coupon coupon)
         {
             Master.Coupons.Update(coupon);
+        }
+
+        public void RemoveCoupon(Coupon coupon)
+        {
+            Master.Coupons.Remove(coupon);
         }
 
     }

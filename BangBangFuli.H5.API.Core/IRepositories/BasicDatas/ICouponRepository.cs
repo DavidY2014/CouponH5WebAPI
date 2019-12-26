@@ -10,6 +10,7 @@ namespace BangBangFuli.H5.API.Core.IRepositories
 
         Coupon GetCouponByCode(string code);
 
+        int AddCoupon(Coupon couponInfo);
         bool VerifyCoupon(string code, string password);
 
         bool CheckIfCouponAlreadyExist(string code);
@@ -17,6 +18,10 @@ namespace BangBangFuli.H5.API.Core.IRepositories
         void CreateNew(Coupon coupon);
 
         void UpdateCoupon(Coupon coupon);
+
+        void RemoveCoupon(Coupon coupon);
+
+        Coupon GetCouponById(int id);
 
     }
 }

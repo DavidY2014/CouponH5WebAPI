@@ -15,7 +15,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
     {
         private readonly ICouponRepository _couponRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public CouponService(ICouponRepository couponRepository,IUnitOfWork unitOfWork)
+        public CouponService(ICouponRepository couponRepository, IUnitOfWork unitOfWork)
         {
             _couponRepository = couponRepository;
             _unitOfWork = unitOfWork;
@@ -36,6 +36,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             return _couponRepository.GetCouponByCode(code);
         }
 
+        public Coupon GetCouponById(int id)
+        {
+            return _couponRepository.GetCouponById(id);
+        }
+
         public List<Coupon> GetAll()
         {
             return _couponRepository.GetAll();
@@ -47,9 +52,20 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _unitOfWork.SaveChanges();
         }
 
+        public int AddCoupon(Coupon couponInfo)
+        {
+            return _couponRepository.AddCoupon(couponInfo);
+        }
+
         public void UpdateCoupon(Coupon coupon)
         {
             _couponRepository.UpdateCoupon(coupon);
+            _unitOfWork.SaveChanges();
+        }
+
+        public void RemoveCoupon(Coupon coupon)
+        {
+            _couponRepository.RemoveCoupon(coupon);
             _unitOfWork.SaveChanges();
         }
     }

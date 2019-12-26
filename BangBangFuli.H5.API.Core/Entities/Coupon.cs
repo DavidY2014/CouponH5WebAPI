@@ -35,5 +35,8 @@ namespace BangBangFuli.H5.API.Core.Entities
         [Display(Name = "总次数")]
         public int TotalCount { get; set; }
 
+        public DateTime CreateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
+
     }
 }

@@ -16,9 +16,15 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 
         List<Coupon> GetAll();
 
+        int AddCoupon(Coupon couponInfo);
+
         void AddNew(Coupon coupon);
 
         void UpdateCoupon(Coupon coupon);
+
+        void RemoveCoupon(Coupon coupon);
+
+        Coupon GetCouponById(int id);
 
     }
 }
