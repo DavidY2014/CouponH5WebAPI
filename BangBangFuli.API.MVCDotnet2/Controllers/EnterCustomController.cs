@@ -304,7 +304,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             }
             List<BatchInformation> batchInfos = _batchInformationService.GetAll();
             ViewBag.BatchInfos = batchInfos;
-            ViewBag.SelectedBatchInfo = _batchInformationService.GetBatchInfoById(bannerInfo.BatchId);
+            //ViewBag.SelectedBatchInfo = _batchInformationService.GetBatchInfoById(bannerInfo.BatchId);
             return View(bannerInfo);
         }
 

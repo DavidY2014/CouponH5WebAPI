@@ -46,6 +46,11 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return Json(new { code = 0, msg = "登录失败" });
         }
 
+        public IActionResult LoginOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
+        }
 
 
 

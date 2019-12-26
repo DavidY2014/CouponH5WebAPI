@@ -92,7 +92,8 @@ namespace BangBangFuli.API.MVCDotnet2
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=EnterCustom}/{action=ConsoleIndex}/{id?}");
+                    //template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

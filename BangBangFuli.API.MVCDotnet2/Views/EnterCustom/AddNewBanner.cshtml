@@ -4,7 +4,7 @@
     ViewData["Title"] = "添加头图 ";
     Layout = "~/BasePages/_Layout.cshtml";
     List<BatchInformation> BatchInfoList = ViewBag.BatchInfos;
-    BatchInformation batchInfo = ViewBag.SelectedBatchInfo;
+    //BatchInformation batchInfo = ViewBag.SelectedBatchInfo;
 }
 <blockquote class="layui-elem-quote">
     添加商品信息
@@ -15,7 +15,7 @@
             <label class="layui-form-label">批次</label>
             <div class="layui-input-block">
                 <select class="layui-form-select" name="BatchId" lay-filter="BatchId" lay-search>
-                    <option value="@batchInfo.Id">@batchInfo.Name</option>
+                    <option value=""></option>
                     @if (BatchInfoList != null && BatchInfoList.Count > 0)
                     {
                         foreach (var info in BatchInfoList)

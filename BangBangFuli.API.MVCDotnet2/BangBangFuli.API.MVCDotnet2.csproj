@@ -27,6 +27,7 @@
     <Folder Include="wwwroot\images\" />
     <Folder Include="upload\" />
     <Folder Include="BasePages\" />
+    <Folder Include="wwwroot\banners\" />
   </ItemGroup>
 
 </Project>
