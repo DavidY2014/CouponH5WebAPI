@@ -229,6 +229,23 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View(productInfo);
         }
 
+
+        /// <summary>
+        ///  保存描述内容
+        /// </summary>
+        /// <returns></returns>
+
+        [HttpPost]
+        public  IActionResult SaveProductDescriptionLog(int ProductId)
+        {
+            var productInfo = _productInformationService.GetProductById(ProductId);
+            productInfo.Description = Request.Form["Rem"].TryToString();
+            _productInformationService.UpdateProduct(productInfo);
+            return Json(new { code = 1, msg = "OK" });
+        }
+
+
+
         #endregion
 
 
@@ -284,6 +301,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             }
             return View(model);
         }
+
+
 
 
         #endregion

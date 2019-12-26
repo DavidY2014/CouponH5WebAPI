@@ -39,24 +39,16 @@
                 layedit.sync(editIndex)
                 data.field.Rem = layedit.getContent(editIndex);
 
-                $.post("/EnterCustom/SaveEnterCustPhaseLog", data.field, function (res) {
+                $.post("/EnterCustom/SaveProductDescriptionLog?ProductId=@Model.Id", data.field, function (res) {
                     if (res.code == 1) {
                         layer.msg('保存成功', { icon: 6 });
-                        var types = Number($("#types").val());
-                        if (types === 0) {
-                            console.log("关闭所有弹窗");
-                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                            parent.layer.close(index); //再执行关闭
-                        } else {
-                            window.location = '/EnterCustom/Index';
-                        }
+                        window.location = '/EnterCustom/QueryProductList';
                     } else {
                         layer.msg('保存失败', { icon: 5 });
                     }
                 })
                 return false;
             });
-
             form.verify({
                 Rem: function (value, item) { //value：表单的值、item：表单的DOM对象
                     layedit.sync(editIndex);
