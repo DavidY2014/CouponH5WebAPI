@@ -13,6 +13,8 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
         List<Order> GetAll();
 
         Order GetOrderById(int orderId);
+
+        void RemoveOrder(Order order);
         List<Order> GetOrdersByCoupon(string couponCode);
     }
 }

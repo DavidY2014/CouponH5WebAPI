@@ -547,7 +547,20 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View(orderViewModels);
         }
 
-
+        [HttpGet]
+        public IActionResult DelOrder(int id)
+        {
+            try
+            {
+                var orderInfo = _orderService.GetOrderById(id);
+                _orderService.RemoveOrder(orderInfo);
+                return Json(new { code = 1, msg = "OK" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 0, msg = "OK" });
+            }
+        }
 
 
         #endregion
@@ -579,29 +592,57 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         /// 新增界面
         /// </summary>
         /// <returns></returns>
-        public IActionResult AddNewBatch()
+        public IActionResult AddNewBatch(int id)
         {
-            return View();
+            BatchInformation batchInfo = new BatchInformation();
+            if (id > 0)
+            {
+                batchInfo = _batchInformationService.GetBatchInfoById(id);
+            }
+            return View(batchInfo);
         }
 
         [HttpPost]
-        public IActionResult CreateBatchSave(BatchViewModel model)
+        public IActionResult SaveBatch()
         {
-            if (ModelState.IsValid)
+            int id = Request.Form["ID"].TryToInt(0);
+            if (id > 0)
             {
-                BatchInformation batchInfo = new BatchInformation
-                {
-                    Id = model.BatchId,
-                    Name = model.Name,
-                    CreateTime = DateTime.Now,
-                };
-                _batchInformationService.CreateNew(batchInfo);
-
-                return RedirectToAction(nameof(QueryBatchList));
+                var info = _batchInformationService.GetBatchInfoById(id);
+                info.Name = Request.Form["Name"].TryToString();
+                _batchInformationService.UpdateBatchInfo(info);
+                return Json(new { code = 1, msg = "OK", id = info.Id });
             }
-            return View();
+            else
+            {
+                BatchInformation batchInfo = new BatchInformation();
+                batchInfo.Name = Request.Form["Name"].TryToString();
+                batchInfo.CreateTime = DateTime.Now;
+                id = _batchInformationService.AddBatchInfo(batchInfo);
+                if (id > 0)
+                {
+                    return Json(new { code = 1, msg = "OK", id = id });
+                }
+                else
+                {
+                    return Json(new { code = 0, msg = "保存失败" });
+                }
+            }
         }
 
+        [HttpGet]
+        public IActionResult DelBatch(int id)
+        {
+            try
+            {
+                _batchInformationService.RemoveBatchById(id);
+                return Json(new { code = 1, msg = "OK" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 0, msg = "OK" });
+            }
+        }
 
 
         #endregion

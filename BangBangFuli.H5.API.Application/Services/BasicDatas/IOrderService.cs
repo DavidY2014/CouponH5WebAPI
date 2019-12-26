@@ -12,6 +12,8 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         List<Order> GetAll();
 
         Order GetOrderById(int orderId);
+
+        void RemoveOrder(Order order);
         List<Order> GetOrdersByCoupon(string couponCode);
     }
 }

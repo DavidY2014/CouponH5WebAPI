@@ -34,6 +34,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             return _orderRepository.GetOrderById(orderId);
         }
 
+        public void RemoveOrder(Order order)
+        {
+            _orderRepository.RemoveOrder(order);
+            _unitOfWork.SaveChanges();
+        }
         public List<Order> GetOrdersByCoupon(string couponCode)
         {
             return _orderRepository.GetOrdersByCoupon(couponCode);

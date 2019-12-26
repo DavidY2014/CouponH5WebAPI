@@ -28,6 +28,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _unitOfWork.SaveChanges();
         }
 
+        public int AddBatchInfo(BatchInformation batchInfo)
+        {
+            return _batchInformationRepository.AddBatchInfo(batchInfo);
+        }
+
         public BatchInformation GetBatchInfoById(int Id)
         {
             return _batchInformationRepository.GetBatchInfoById(Id);

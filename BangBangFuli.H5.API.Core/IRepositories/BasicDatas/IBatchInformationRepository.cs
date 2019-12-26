@@ -15,6 +15,8 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 
         void RemoveBatchById(int Id);
 
+        int AddBatchInfo(BatchInformation batchInfo);
+
         void UpdateBatchInfo(BatchInformation batchInfo);
     }
 }

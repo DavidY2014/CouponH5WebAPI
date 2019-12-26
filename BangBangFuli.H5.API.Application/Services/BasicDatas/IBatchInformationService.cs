@@ -13,6 +13,7 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 
         BatchInformation GetBatchInfoById(int Id);
 
+        int AddBatchInfo(BatchInformation batchInfo);
         void RemoveBatchById(int Id);
 
         void UpdateBatchInfo(BatchInformation batchInfo);
