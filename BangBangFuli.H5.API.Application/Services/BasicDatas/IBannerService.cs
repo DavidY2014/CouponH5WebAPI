@@ -9,6 +9,8 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
     {
         void Save(Banner banner);
         int GetMax();
+
+        int AddBanner(Banner bannerInfo);
         void UpdateBanner(Banner banner);
         List<Banner> GetAll();
         Banner GetBannerById(int Id);

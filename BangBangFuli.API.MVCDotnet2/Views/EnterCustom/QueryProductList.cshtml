@@ -74,9 +74,8 @@
                                 @Html.DisplayFor(modelItem => product.BatchName)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary m-1">编辑</a> |
-                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary m-1">详情</a> |
-                                <a asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-primary m-1">删除</a>
+                                <a href="/EnterCustom/AddNewProduct?id=@(product.ProductId)" class="layui-btn layui-btn-small">编辑</a>
+                                <a href="javascript:;" class="layui-btn layui-btn-danger layui-btn-small" onclick="del('@(product.ProductId)')">删除</a>
                             </td>
                         </tr>
                     }
@@ -86,4 +85,29 @@
         <div id="page"></div>
     </div>
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        var layer, form
+        layui.use(['form', 'element', 'layer', 'laypage', 'upload', 'table'], function () {
+            form = layui.form
+            layer = layui.layer
+            del = function (id) {
+                layer.confirm('是否删除？', { icon: 3, title: '删除提示' }, function (index) {
+                    $.get('/EnterCustom/DelProduct?id=' + id, function (res) {
+                        if (res.code == 1) {
+                            layer.msg('成功', { icon: 6 });
+                            window.location = '/EnterCustom/QueryProductList'
+                        } else {
+                            layer.msg('失败', { icon: 5 });
+                        }
+                    })
+                    layer.close(index);
+                });
+            }
+
+        });
+    </script>
+}
+
 

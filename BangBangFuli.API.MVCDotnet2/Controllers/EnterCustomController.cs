@@ -119,6 +119,25 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return View(productInfo);
         }
 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult DelProduct(int id)
+        {
+            try
+            {
+                _productInformationService.RemoveProductById(id);
+                return Json(new { code = 1, msg = "OK" });
+            }
+            catch (Exception ex)
+            {
+               return  Json(new { code = 0, msg = "OK" });
+            }
+        }
+
 
         [HttpPost]
         public IActionResult SaveProduct()
@@ -200,7 +219,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                 details.Add(new ProductDetail()
                 {
                     ProductInformationId = ProductId,
-                    PhotoPath = uniqueFileName
+                    PhotoPath = Path.Combine("img",uniqueFileName)
                 });
                 productInfo.Details = details;
 
@@ -252,7 +271,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         #region banner
 
         /// <summary>
-        /// banner 页面
+        /// banner 列表页面
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryBannerList()
@@ -276,32 +295,121 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         /// 新建banner视图
         /// </summary>
         /// <returns></returns>
-        public IActionResult AddNewBanner()
+        public IActionResult AddNewBanner(int id)
         {
-            BannerViewModel model = new BannerViewModel();
-            PopulateBatchDropDownList();
-            return View(model);
+            Banner bannerInfo = new Banner();
+            if (id > 0)
+            {
+                bannerInfo = _bannerService.GetBannerById(id);
+            }
+            List<BatchInformation> batchInfos = _batchInformationService.GetAll();
+            ViewBag.BatchInfos = batchInfos;
+            ViewBag.SelectedBatchInfo = _batchInformationService.GetBatchInfoById(bannerInfo.BatchId);
+            return View(bannerInfo);
         }
 
         [HttpPost]
-        public IActionResult CreateBannerSave(BannerViewModel model)
+        public IActionResult SaveBanner()
         {
-            if (ModelState.IsValid)
+            int id = Request.Form["ID"].TryToInt(0);
+            if (id > 0)
             {
-                Banner banner = new Banner
-                {
-                    BatchId = model.BatchId,
-                    Name = model.Name,
-                    CreateTime = DateTime.Now,
-                    //BannerDetails = details
-                };
-                _bannerService.Save(banner);
-
-                return RedirectToAction(nameof(QueryBannerList));
+                var info = _bannerService.GetBannerById(id);
+                info.Name = Request.Form["Name"].TryToString();
+                info.BatchId = Request.Form["BatchId"].TryToInt(0);
+                _bannerService.UpdateBanner(info);
+                return Json(new { code = 1, msg = "OK", id = info.Id });
             }
-            return View(model);
+            else
+            {
+                Banner bannerInfo = new Banner();
+                bannerInfo.Name = Request.Form["Name"].TryToString();
+                bannerInfo.BatchId = Request.Form["BatchId"].TryToInt(0);
+                bannerInfo.CreateTime = DateTime.Now;
+                id = _bannerService.AddBanner(bannerInfo);
+                if (id > 0)
+                {
+                    return Json(new { code = 1, msg = "OK", id = id });
+                }
+                else
+                {
+                    return Json(new { code = 0, msg = "保存失败" });
+                }
+            }
         }
 
+        /// <summary>
+        /// banner 图片上传页面
+        /// </summary>
+        /// <param name="bannerId"></param>
+        /// <returns></returns>
+        public IActionResult AddBannerPhotos(int BannerId)
+        {
+            var bannerInfo = _bannerService.GetBannerById(BannerId);
+            return View(bannerInfo);
+        }
+
+
+        [HttpGet]
+        public IActionResult DelBanner(int id)
+        {
+            try
+            {
+                _bannerService.RemoveBannerById(id);
+                return Json(new { code = 1, msg = "OK" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 0, msg = "OK" });
+            }
+        }
+
+        /// <summary>
+        /// 上传banner图片
+        /// </summary>
+        /// <param name="BannerId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult UploadBannerAttachment(int BannerId)
+        {
+            #region 文件上传
+            var imgFile = Request.Form.Files[0];
+            if (imgFile != null && !string.IsNullOrEmpty(imgFile.FileName))
+            {
+                string uniqueFileName = null;
+                var filename = ContentDispositionHeaderValue
+                     .Parse(imgFile.ContentDisposition)
+                     .FileName
+                     .Trim('"');
+                string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "banners");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + filename;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (FileStream fs = System.IO.File.Create(filePath))
+                {
+                    imgFile.CopyTo(fs);
+                    fs.Flush();
+                }
+
+                #region banner 信息
+
+                var bannerInfo = _bannerService.GetBannerById(BannerId);
+                var details = new List<BannerDetail>();
+                details.Add(new BannerDetail()
+                {
+                    BannerId = bannerInfo.Id,
+                    PhotoPath = Path.Combine("banners",uniqueFileName)
+                });
+                bannerInfo.BannerDetails = details;
+                _bannerService.UpdateBanner(bannerInfo);
+
+                #endregion
+
+
+                return Json(new { code = 0, msg = "上传成功", data = new { src = $"/images/{filePath}", title = "图片标题" } });
+            }
+            return Json(new { code = 1, msg = "上传失败", });
+            #endregion
+        }
 
 
 

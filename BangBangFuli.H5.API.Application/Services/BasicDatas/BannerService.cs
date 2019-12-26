@@ -24,6 +24,11 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _unitOfWork.SaveChanges();
         }
 
+        public int AddBanner(Banner bannerInfo)
+        {
+            return _bannerRepository.AddBanner(bannerInfo);
+        }
+
         public void UpdateBanner(Banner banner)
         {
             _bannerRepository.UpdateBanner(banner);

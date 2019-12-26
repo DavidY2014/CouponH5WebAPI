@@ -48,9 +48,12 @@
                             @Html.DisplayFor(modelItem => item.CreateTime)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.BannerId" class="btn btn-primary m-1">编辑</a> |
-                            <a asp-action="Details" asp-route-id="@item.BannerId" class="btn btn-primary m-1">详情</a> |
-                            <a asp-action="Delete" asp-route-id="@item.BannerId" class="btn btn-primary m-1">删除</a>
+                            @*<a asp-action="Edit" asp-route-id="@item.BannerId" class="btn btn-primary m-1">编辑</a> |
+                                <a asp-action="Details" asp-route-id="@item.BannerId" class="btn btn-primary m-1">详情</a> |
+                                <a asp-action="Delete" asp-route-id="@item.BannerId" class="btn btn-primary m-1">删除</a>*@
+
+                            <a href="/EnterCustom/AddNewBanner?id=@(item.BannerId)" class="layui-btn layui-btn-small">编辑</a>
+                            <a href="javascript:;" class="layui-btn layui-btn-danger layui-btn-small" onclick="del('@(item.BannerId)')">删除</a>
                         </td>
                     </tr>
                 }
@@ -60,3 +63,26 @@
     </div>
 </div>
 
+@section Scripts{
+    <script type="text/javascript">
+        var layer, form
+        layui.use(['form', 'element', 'layer', 'laypage', 'upload', 'table'], function () {
+            form = layui.form
+            layer = layui.layer
+            del = function (id) {
+                layer.confirm('是否删除？', { icon: 3, title: '删除提示' }, function (index) {
+                    $.get('/EnterCustom/DelBanner?id=' + id, function (res) {
+                        if (res.code == 1) {
+                            layer.msg('成功', { icon: 6 });
+                            window.location = '/EnterCustom/QueryBannerList'
+                        } else {
+                            layer.msg('失败', { icon: 5 });
+                        }
+                    })
+                    layer.close(index);
+                });
+            }
+
+        });
+    </script>
+}

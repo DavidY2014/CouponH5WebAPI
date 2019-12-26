@@ -20,6 +20,23 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             Master.Add(banner);
         }
 
+        public int AddBanner(Banner bannerInfo)
+        {
+            int id = 0;
+            try
+            {
+                var entity = Master.Banners.Add(bannerInfo);
+                Master.SaveChanges();
+                id = entity.Entity.Id;
+            }
+            catch (Exception ex)
+            {
+            }
+            return id;
+        }
+
+
+
         public int GetMax()
         {
             return Master.Banners.ToList().Count();
