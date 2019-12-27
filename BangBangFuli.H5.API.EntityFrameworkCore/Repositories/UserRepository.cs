@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BangBangFuli.Common;
 using BangBangFuli.H5.API.Core.Entities;
+using BangBangFuli.H5.API.Core.Entities.Enumes;
 using BangBangFuli.H5.API.Core.IRepositories.BasicDatas;
 using BangBangFuli.Utils.ORM.Imp;
 
@@ -53,5 +54,56 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             }
             return null;
         }
+
+        public Tuple<List<UserInfo>, long>  GetList(string name, int pageIndex, int pageSize)
+        {
+            try
+            {
+                List<UserInfo> userlist = new List<UserInfo>();
+                long count = 0;
+                if (!string.IsNullOrEmpty(name))
+                {
+                    var query = Master.UserInfos.Where(x => x.State == StateEnum.Invalid && x.Name.Contains(name));
+                    userlist = query.OrderByDescending(x => x.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                    count = query.LongCount();
+                }
+                else
+                {
+                    userlist = Master.UserInfos.Where(x => x.State == StateEnum.Invalid).OrderByDescending(x => x.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                    count = Master.UserInfos.Where(x => x.State == StateEnum.Invalid).LongCount();
+                }
+
+                return Tuple.Create(userlist, count);
+            }
+            catch (Exception ex)
+            {
+            }
+            return Tuple.Create<List<UserInfo>, long>(new List<UserInfo>(), 0);
+        }
+
+        public bool UpdateUserInfo(UserInfo user)
+        {
+            bool flag = false;
+            try
+            {
+                Master.UserInfos.Update(user);
+                Master.SaveChangesAsync();
+                flag = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            return flag;
+        }
+
+        public UserInfo AddUser(UserInfo userInfo)
+        {
+            Master.UserInfos.Add(userInfo);
+            Master.SaveChanges();
+            return Master.UserInfos.Find(userInfo.Id);
+        }
+
+
+
     }
 }

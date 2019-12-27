@@ -19,5 +19,20 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
         {
             return _moduleInfoRepository.GetList();
         }
+
+        public int AddModuleInfo(ModuleInfo module)
+        {
+            return _moduleInfoRepository.AddModuleInfo(module);
+        }
+
+        public void DelModel(ModuleInfo module)
+        {
+            _moduleInfoRepository.DelModel(module);
+        }
+
+        public ModuleInfo Get(int id)
+        {
+            return _moduleInfoRepository.Get(id);
+        }
     }
 }

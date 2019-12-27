@@ -10,5 +10,11 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
     public interface IUserRepository: IBaseRepository<UserInfo>
     {
         UserInfo UserLogin(string username, string password);
+        Tuple<List<UserInfo>, long> GetList(string name, int pageIndex, int pageSize);
+        UserInfo GetByID(int id);
+
+        bool UpdateUserInfo(UserInfo user);
+
+        UserInfo AddUser(UserInfo userInfo);
     }
 }

@@ -8,6 +8,8 @@ namespace BangBangFuli.H5.API.Core.IRepositories.BasicDatas
 {
     public interface IUserRoleJurisdictionRepository : IBaseRepository<UserRoleJurisdiction>
     {
-        List<UserRoleJurisdiction> GetListAsync(int UserRoleID);
+        List<UserRoleJurisdiction> GetList(int UserRoleID);
+        int AddUserRoleJurisdiction(UserRoleJurisdiction urj);
+        bool UpdateUserRoleJurisdiction(UserRoleJurisdiction urj);
     }
 }

@@ -43,5 +43,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore
 
         public DbSet<UserRoleJurisdiction> UserRoleJurisdictions { get; set; }
 
+        public DbSet<UserRole> UserRoles { get; set; }
+
     }
 }

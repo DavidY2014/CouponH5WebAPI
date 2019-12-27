@@ -15,9 +15,19 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
             _userRoleJurisdictionRepository = userRoleJurisdictionRepository;
         }
 
-        public List<UserRoleJurisdiction> GetListAsync(int UserRoleID)
+        public List<UserRoleJurisdiction> GetList(int UserRoleID)
         {
-            return _userRoleJurisdictionRepository.GetListAsync(UserRoleID);
+            return _userRoleJurisdictionRepository.GetList(UserRoleID);
+        }
+
+        public int AddUserRoleJurisdiction(UserRoleJurisdiction urj)
+        {
+            return _userRoleJurisdictionRepository.AddUserRoleJurisdiction(urj);
+        }
+
+        public bool UpdateUserRoleJurisdiction(UserRoleJurisdiction urj)
+        {
+            return _userRoleJurisdictionRepository.UpdateUserRoleJurisdiction(urj);
         }
 
     }

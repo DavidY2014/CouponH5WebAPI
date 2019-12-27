@@ -682,7 +682,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             ViewData["user"] = User;
-            List<UserRoleJurisdiction> userrolejurlist = _userRoleJurisdictionService.GetListAsync(User.RoleID);
+            List<UserRoleJurisdiction> userrolejurlist = _userRoleJurisdictionService.GetList(User.RoleID);
             ViewData["userrolejurlist"] = userrolejurlist;
             List<ModuleInfo> modulelist = _moduleInfoService.GetList();
             ViewData["modulelist"] = modulelist;

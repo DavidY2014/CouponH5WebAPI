@@ -15,7 +15,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
 
         }
 
-        public List<UserRoleJurisdiction> GetListAsync(int UserRoleID)
+        public List<UserRoleJurisdiction> GetList(int UserRoleID)
         {
             try
             {
@@ -28,6 +28,37 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             }
             return null;
         }
+
+        public int AddUserRoleJurisdiction(UserRoleJurisdiction urj)
+        {
+            int id = 0;
+            try
+            {
+                var entity = Master.Add(urj);
+                Master.SaveChanges();
+                id = urj.Id;
+            }
+            catch (Exception ex)
+            {
+            }
+            return id;
+        }
+
+        public bool UpdateUserRoleJurisdiction(UserRoleJurisdiction urj)
+        {
+            bool flag = false;
+            try
+            {
+                Master.Update(urj);
+                Master.SaveChangesAsync();
+                flag = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            return flag;
+        }
+
 
     }
 }

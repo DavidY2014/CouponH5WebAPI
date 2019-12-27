@@ -7,6 +7,8 @@ namespace BangBangFuli.H5.API.Application.Services.BasicDatas
 {
    public  interface IUserRoleJurisdictionService:IAppService
     {
-        List<UserRoleJurisdiction> GetListAsync(int UserRoleID);
+        List<UserRoleJurisdiction> GetList(int UserRoleID);
+        int AddUserRoleJurisdiction(UserRoleJurisdiction urj);
+        bool UpdateUserRoleJurisdiction(UserRoleJurisdiction urj);
     }
 }

@@ -42,12 +42,65 @@
                     <li class="layui-nav-item @(ViewBag.root=="console"?"layui-nav-itemed":"")"><a href="/EnterCustom/ConsoleIndex">工作台</a></li>
                     @if (modulelist != null && modulelist.Count > 0 && userrolejurlist != null && userrolejurlist.Count > 0)
                     {
+                        var module7 = modulelist.FirstOrDefault(x => x.Name == "账户管理");
+                        var module8 = modulelist.FirstOrDefault(x => x.Name == "模块管理");
+                        var module9 = modulelist.FirstOrDefault(x => x.Name == "角色管理");
+                        var module10 = modulelist.FirstOrDefault(x => x.Name == "用户管理");
+
                         var module1 = modulelist.FirstOrDefault(x => x.Name == "商品管理");
                         var module2 = modulelist.FirstOrDefault(x => x.Name == "头图管理");
                         var module3 = modulelist.FirstOrDefault(x => x.Name == "提货券管理");
                         var module4 = modulelist.FirstOrDefault(x => x.Name == "订单管理");
                         var module5 = modulelist.FirstOrDefault(x => x.Name == "批次管理");
                         var module6 = modulelist.FirstOrDefault(x => x.Name == "供应商管理");
+
+                        if (module7 != null)
+                        {
+                            var userjur = userrolejurlist.FirstOrDefault(x => x.ModuleID == module7.ID && x.IsQuery);
+
+                            if (userjur != null)
+                            {
+                                <li class="layui-nav-item  @(ViewBag.root=="account"?"layui-nav-itemed":"")">
+                                    <a class="" href="javascript:;">账户管理</a>
+                                    <dl class="layui-nav-child">
+                                        @if (module8 != null)
+                                        {
+                                            var modeule8_jur = userrolejurlist.FirstOrDefault(x => x.ModuleID == module8.ID && x.IsQuery);
+                                            if (modeule8_jur != null)
+                                            {
+                                                <dd>
+                                                    <a href="/Users/ModuleList">模块管理</a>
+                                                </dd>
+                                            }
+                                        }
+                                        @if (module9 != null)
+                                        {
+                                            var modeule9_jur = userrolejurlist.FirstOrDefault(x => x.ModuleID == module9.ID && x.IsQuery);
+                                            if (modeule9_jur != null)
+                                            {
+                                                <dd>
+                                                    <a href="/Users/RoleList">角色管理</a>
+                                                </dd>
+                                            }
+                                        }
+                                        @if (module10 != null)
+                                        {
+                                            var modeule10_jur = userrolejurlist.FirstOrDefault(x => x.ModuleID == module10.ID && x.IsQuery);
+                                            if (modeule10_jur != null)
+                                            {
+                                                <dd>
+                                                    <a href="/Users/UserList">用户管理</a>
+                                                </dd>
+                                            }
+                                        }
+
+                                    </dl>
+                                </li>
+                            }
+                        }
+
+
+
                         if (module1 != null)
                         {
                             var module1_jur = userrolejurlist.FirstOrDefault(x => x.ModuleID == module1.ID && x.IsQuery);
