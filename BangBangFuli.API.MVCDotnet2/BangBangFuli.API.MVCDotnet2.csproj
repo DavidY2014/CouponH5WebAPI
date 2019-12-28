@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.8.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="3.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
@@ -24,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="BasePages\EnterCustom\" />
-    <Folder Include="wwwroot\images\" />
     <Folder Include="upload\" />
     <Folder Include="BasePages\" />
     <Folder Include="wwwroot\banners\" />
