@@ -29,12 +29,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             _userService = userService;
         }
 
-
-        public IActionResult Index()
-        {
-            ViewBag.root = "account";
-            return View();
-        }
+        #region 模块管理
 
         public IActionResult ModuleList()
         {
@@ -49,7 +44,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             string name = Request.Form["name"].TryToString();
             ModuleInfo moduleInfo = new ModuleInfo();
             moduleInfo.Name = name;
-            int id =  _moduleInfoService.AddModuleInfo(moduleInfo);
+            int id = _moduleInfoService.AddModuleInfo(moduleInfo);
             if (id > 0)
                 return Json(new { code = 1, msg = "OK" });
             return Json(new { code = 0, msg = "保存失败" });
@@ -57,7 +52,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpGet]
         public IActionResult DelModel(int id)
         {
-            var info =  _moduleInfoService.Get(id);
+            var info = _moduleInfoService.Get(id);
             if (info != null)
             {
                 _moduleInfoService.DelModel(info);
@@ -66,13 +61,18 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             return Json(new { code = 0, msg = "删除失败" });
         }
 
+
+        #endregion
+
+        #region 角色管理
+
         /// <summary>
         /// 角色管理
         /// </summary>
         /// <returns></returns>
         public IActionResult RoleList()
         {
-            var list =  _userRoleService.Get();
+            var list = _userRoleService.Get();
             ViewBag.root = "account";
             return View(list);
         }
@@ -113,7 +113,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             List<ModuleInfo> mlist = _moduleInfoService.GetList();
             ViewBag.mlist = mlist;
 
-            UserRole userRole =  _userRoleService.Get(roleid);
+            UserRole userRole = _userRoleService.Get(roleid);
             ViewBag.userRole = userRole;
             ViewBag.roleid = roleid;
             ViewBag.root = "account";
@@ -124,7 +124,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         {
             if (userRoleJurisdiction.Id <= 0)
             {
-                int id =  _userRoleJurisdictionService.AddUserRoleJurisdiction(userRoleJurisdiction);
+                int id = _userRoleJurisdictionService.AddUserRoleJurisdiction(userRoleJurisdiction);
                 if (id > 0)
                     return Json(new { code = 1, msg = "保存成功" });
                 else
@@ -132,7 +132,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             }
             else
             {
-                bool flag =  _userRoleJurisdictionService.UpdateUserRoleJurisdiction(userRoleJurisdiction);
+                bool flag = _userRoleJurisdictionService.UpdateUserRoleJurisdiction(userRoleJurisdiction);
                 if (flag)
                     return Json(new { code = 1, msg = "保存成功" });
                 else
@@ -140,6 +140,12 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             }
             return Json(new { code = 0, msg = "保存失败" });
         }
+
+
+        #endregion
+
+
+        #region 用户管理
 
         /// <summary>
         /// 用户管理
@@ -165,7 +171,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
                     vm.Name = user.Name;
                     if (user.RoleID > 0)
                     {
-                        var info =  _userRoleService.Get(user.RoleID);
+                        var info = _userRoleService.Get(user.RoleID);
                         if (info != null)
                             vm.RoleName = info.RoleName;
                     }
@@ -182,7 +188,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         /// <returns></returns>
         public IActionResult AddUser(int id = 0)
         {
-            var userRolelist =  _userRoleService.Get();
+            var userRolelist = _userRoleService.Get();
             ViewBag.userRolelist = userRolelist;
             ViewBag.root = "account";
             UserInfo userInfo = new UserInfo();
@@ -207,13 +213,13 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             user.Id = Request.Form["ID"].TryToInt();
             if (user.Id > 0)
             {
-                bool flag =  _userService.UpdateUserInfo(user, Password);
+                bool flag = _userService.UpdateUserInfo(user, Password);
                 if (flag)
                     return Json(new { code = 1, msg = "成功" });
             }
             else
             {
-                int id =  _userService.AddUser(user, Password);
+                int id = _userService.AddUser(user, Password);
                 if (id > 0)
                     return Json(new { code = 1, msg = "成功" });
             }
@@ -223,11 +229,11 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
         [HttpGet]
         public IActionResult DelUser(int id)
         {
-            var user =  _userService.GetByID(id);
+            var user = _userService.GetByID(id);
             if (user != null)
             {
                 user.State = StateEnum.Valid;
-                bool flag =  _userService.UpdateUserInfo(user);
+                bool flag = _userService.UpdateUserInfo(user);
                 if (flag)
                     return Json(new { code = 1, msg = "OK" });
             }
@@ -236,10 +242,15 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
 
         public IActionResult UserMessage()
         {
-            UserRole userRole =  _userRoleService.Get(User.RoleID);
+            UserRole userRole = _userRoleService.Get(User.RoleID);
             ViewBag.userRole = userRole;
             return View(User);
         }
+
+
+        #endregion
+
+
 
 
         #region 基类

@@ -69,7 +69,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
                 }
                 else
                 {
-                    userlist = Master.UserInfos.Where(x => x.State == StateEnum.Invalid).OrderByDescending(x => x.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                    userlist = Master.UserInfos.Where(x => x.State == StateEnum.Invalid).ToList();
                     count = Master.UserInfos.Where(x => x.State == StateEnum.Invalid).LongCount();
                 }
 
