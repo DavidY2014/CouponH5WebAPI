@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using BangBangFuli.API.MVCDotnet2.Extensions;
 using BangBangFuli.H5.API.Core;
@@ -12,9 +14,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using UEditorNetCore;
 
 namespace BangBangFuli.API.MVCDotnet2
@@ -31,22 +35,8 @@ namespace BangBangFuli.API.MVCDotnet2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddScoped<IDbContextManager<CouponSystemDBContext>>(s =>
-            //{
-            //    return new DbContextManager<CouponSystemDBContext>(new ConnectionOption()
-            //    {
-            //        Master = Configuration.GetConnectionString("H5BasicData"),
-            //        SqlProvider = SqlProvider.SqlServer
-            //    });
-            //});
-
             services.AddDbContext<CouponSystemDBContext>(d => d.UseSqlServer(Configuration.GetConnectionString("H5BasicData")));
             services.AddScoped<IUnitOfWork, H5.API.EntityFrameworkCore.UnitOfWork<CouponSystemDBContext>>();//注入UOW依赖，确保每次请求都是同一个对象
-            //权限关联
-            //services.AddIdentity<User, IdentityRole>()
-            //     .AddEntityFrameworkStores<CouponSystemDBContext>();
-
-            //services.AddControllersWithViews();
             services.AddByAssembly("BangBangFuli.H5.API.EntityFrameworkCore", "IBaseRepository");
             services.AddByAssembly("BangBangFuli.H5.API.Application", "IAppService");
 
@@ -65,8 +55,6 @@ namespace BangBangFuli.API.MVCDotnet2
             services.AddMvc();
 
 
-
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,7 +68,8 @@ namespace BangBangFuli.API.MVCDotnet2
             {
                 app.UseExceptionHandler("/Home/Error");
             }
- 
+
+
             app.UseStaticFiles();
             app.UseCookiePolicy();
             //启用认证
