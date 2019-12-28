@@ -21,7 +21,7 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
             List<UserRole> list = null;
             try
             {
-                list = Master.UserRoles.Where(x => x.State == StateEnum.Invalid).ToList();
+                list = Master.UserRoles.Where(x => x.State == StateEnum.Valid).ToList();
             }
             catch (Exception ex)
             {
