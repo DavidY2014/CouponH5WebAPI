@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BangBangFuli.H5.API.Application", "BangBangFuli.H5.API.Application\BangBangFuli.H5.API.Application.csproj", "{0B365C18-D703-45E2-B31B-CA26F86E1679}"
 EndProject
@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BangBangFuli.Utils.ORM.Imp"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BangBangFuli.Utils.ORM.Interface", "BangBangFuli.Utils.ORM.Interface\BangBangFuli.Utils.ORM.Interface.csproj", "{E6457185-BC6B-485A-AB1E-7098EFB31CDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BangBangFuli.API.MVCDotnet2", "BangBangFuli.API.MVCDotnet2\BangBangFuli.API.MVCDotnet2.csproj", "{EB314929-5687-4A8C-A61D-C361D9ECF786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BangBangFuli.API.MVCDotnet2", "BangBangFuli.API.MVCDotnet2\BangBangFuli.API.MVCDotnet2.csproj", "{EB314929-5687-4A8C-A61D-C361D9ECF786}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BangBangFuli.Common", "BangBangFuli.Common\BangBangFuli.Common.csproj", "{9E94913E-6EAB-4E99-9B06-9AB240A09C54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{EB314929-5687-4A8C-A61D-C361D9ECF786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB314929-5687-4A8C-A61D-C361D9ECF786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB314929-5687-4A8C-A61D-C361D9ECF786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E94913E-6EAB-4E99-9B06-9AB240A09C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E94913E-6EAB-4E99-9B06-9AB240A09C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E94913E-6EAB-4E99-9B06-9AB240A09C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E94913E-6EAB-4E99-9B06-9AB240A09C54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

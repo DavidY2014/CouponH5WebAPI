@@ -1,0 +1,8 @@
+E:\BangbangFuli\source2\BangBangFuli.Common\bin\Debug\netcoreapp2.2\BangBangFuli.Common.deps.json
+E:\BangbangFuli\source2\BangBangFuli.Common\bin\Debug\netcoreapp2.2\BangBangFuli.Common.dll
+E:\BangbangFuli\source2\BangBangFuli.Common\bin\Debug\netcoreapp2.2\BangBangFuli.Common.pdb
+E:\BangbangFuli\source2\BangBangFuli.Common\obj\Debug\netcoreapp2.2\BangBangFuli.Common.csprojAssemblyReference.cache
+E:\BangbangFuli\source2\BangBangFuli.Common\obj\Debug\netcoreapp2.2\BangBangFuli.Common.AssemblyInfoInputs.cache
+E:\BangbangFuli\source2\BangBangFuli.Common\obj\Debug\netcoreapp2.2\BangBangFuli.Common.AssemblyInfo.cs
+E:\BangbangFuli\source2\BangBangFuli.Common\obj\Debug\netcoreapp2.2\BangBangFuli.Common.dll
+E:\BangbangFuli\source2\BangBangFuli.Common\obj\Debug\netcoreapp2.2\BangBangFuli.Common.pdb
