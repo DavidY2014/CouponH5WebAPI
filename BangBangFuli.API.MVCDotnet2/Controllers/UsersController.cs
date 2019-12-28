@@ -83,7 +83,7 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             string name = Request.Form["name"].TryToString();
             UserRole userRole = new UserRole();
             userRole.RoleName = name;
-            userRole.State = StateEnum.Invalid;
+            userRole.State = StateEnum.Valid;
             int id = _userRoleService.AddRole(userRole);
             if (id > 0)
                 return Json(new { code = 1, msg = "OK" });

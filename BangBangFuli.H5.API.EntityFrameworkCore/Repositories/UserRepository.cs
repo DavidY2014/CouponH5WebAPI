@@ -63,14 +63,14 @@ namespace BangBangFuli.H5.API.EntityFrameworkCore.Repositories
                 long count = 0;
                 if (!string.IsNullOrEmpty(name))
                 {
-                    var query = Master.UserInfos.Where(x => x.State == StateEnum.Invalid && x.Name.Contains(name));
+                    var query = Master.UserInfos.Where(x => x.State == StateEnum.Valid && x.Name.Contains(name));
                     userlist = query.OrderByDescending(x => x.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
                     count = query.LongCount();
                 }
                 else
                 {
-                    userlist = Master.UserInfos.Where(x => x.State == StateEnum.Invalid).ToList();
-                    count = Master.UserInfos.Where(x => x.State == StateEnum.Invalid).LongCount();
+                    userlist = Master.UserInfos.Where(x => x.State == StateEnum.Valid).ToList();
+                    count = Master.UserInfos.Where(x => x.State == StateEnum.Valid).LongCount();
                 }
 
                 return Tuple.Create(userlist, count);
