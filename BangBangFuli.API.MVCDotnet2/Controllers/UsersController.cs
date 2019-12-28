@@ -211,6 +211,8 @@ namespace BangBangFuli.API.MVCDotnet2.Controllers
             user.TelPhone = Request.Form["TelPhone"].TryToString();
             user.RoleID = Request.Form["RoleID"].TryToInt();
             user.Id = Request.Form["ID"].TryToInt();
+            user.State = StateEnum.Valid;
+            user.TargetAmt = 100;
             if (user.Id > 0)
             {
                 bool flag = _userService.UpdateUserInfo(user, Password);
